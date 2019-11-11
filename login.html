@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Hello Auction</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/login.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="index.html">Hello Auction</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              Danh mục
+            </a>
+            <div class="dropdown-menu">
+            <ul>
+              <li class="dropdown-submenu">
+              <a class="drop dropdown-item" href="#"> Điện tử &nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Smartphone</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Laptop</a></li>
+                </ul>
+              </li>
+              <li><a class="dropdown-item" href="#">Gia dụng</a></li>
+              <li><a class="dropdown-item" href="#">Làm đẹp</a></li>
+            </ul>
+            </div>
+          </li>
+          <li class="nav-item non-drop">
+            <a class="nav-link test js-scroll-trigger" href="#masthead">Sản phẩm</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#top-chart" id="navbarDropdown" role="button" data-toggle="dropdown">
+              Bảng xếp hạng
+            </a>
+            <div class="dropdown-menu" >
+              <a class="dropdown-item" href="#">Hot nhất</a>
+              <a class="dropdown-item" href="#">Giá tốt nhất</a>
+              <a class="dropdown-item" href="#">Sắp kết thúc</a>
+              <a class="dropdown-item" href="#">Giá cao nhất</a>
+            </div>
+          </li>
+          <li class="nav-item non-drop">
+            <a class="nav-link test js-scroll-trigger" href="#faq">FAQ</a>
+          </li>
+          <li class="nav-item non-drop">
+            <a class="nav-link test js-scroll-trigger" href="#services">Về chúng tôi</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="login.html" style ="color:black">Login now!</a></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="row">
+        <h1 class="h1 heading col-12"> Join our Auction now! </h1>
+        <div id="logreg-forms" class="text-center">
+        <form class="form-signin" action="/" method="POST">
+          <!--Login for's label (Name of form, logo, etc) -->
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+                     
+            <!-- Username login form -->
+            <input type="name" name ="name" class="form-control" placeholder="Your Name" required="">
+            <input type="password" name ="pass" class="form-control" placeholder="Your Password" required="">
+            <input type="email" name ="email" class="form-control" placeholder="Your Email" required="">
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+            <a href="#" id="forgot_pswd">Forgot your password?</a>
+
+            <p style="text-align:center"> OR  </p>
+
+            <!--Social login button -->
+            <div class="social-login">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
+            </div>
+            <hr>
+            <!-- Sign up button  -->
+            <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up for New Account</button>
+            </form>
+      
+       <!-- Form for reset password -->
+            <form action="/reset/password/" class="form-reset">
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Reset your password</h1>
+                <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+                <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
+                <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
+            </form>
+            <!-- Form for sign up -->
+            <form action="/signup/" class="form-signup">
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign up your new account</h1>
+                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
+                <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
+                <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+                <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
+
+                <p style="text-align:center">OR</p>
+
+                <div class="social-login">
+                    <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
+                    <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
+                </div>            
+                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+            </form>
+            <br> 
+        </div>
+      </div>
+    </div>
+	</header>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; Hello Auction</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a class="text-muted" href="#">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="text-muted" href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
