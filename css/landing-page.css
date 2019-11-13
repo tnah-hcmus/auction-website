@@ -20,13 +20,71 @@ a:hover {
 }
 
 h1,
-h2,
+h2{
+   font-family: "Franklin Gothic Medium", sans-serif;
+}
 h3,
-h4,
+h4{
+  font-family: Franklin Gothic Medium, sans-serif;
+}
+
 h5,
 h6 {
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
+}
+
+.product-title {
+    font-size: 30px ;
+    font-weight: bold ;
+    display: block ;
+}
+.product-price {
+    font-size: 30px ;
+    font-weight: bold ;
+    display: block ;
+}
+
+.content{
+   text-align: justify;
+   font-family: 'Montserrat', sans-serif;
+}
+
+.btn-buynow{
+  text-align: center;
+  text-decoration: none;
+  font-family: "Franklin Gothic Medium", sans-serif;
+  display: inline-block;
+  font-size: 20px;
+  padding: 5px 5px;
+  margin: 10px;
+  border-radius: 20px;
+ /* background-color: white;*/
+  color: black;
+  border: 2px solid #fed136;
+}
+
+.btn-bid {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  padding: 10px 10px;
+  margin: 10px 10px;
+  border-radius:50%;
+  background-color: white;
+  color: black;
+  border: 2px solid #fed136;
+}
+
+.a-price{
+  font-size: 15px;
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+.a-currentbid{
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .page-section {
