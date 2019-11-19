@@ -460,7 +460,11 @@ header.masthead .intro-text .intro-heading {
   margin: 0 auto;
   cursor: pointer;
 }
-
+#list .list-item .list-link .img-fluid {
+  width: 350px !important;
+  height: 225px !important;
+  object-fit: cover;
+}
 #list .list-item .list-link .list-hover {
   position: absolute;
   width: 100%;
@@ -469,6 +473,7 @@ header.masthead .intro-text .intro-heading {
   opacity: 0;
   background: rgba(254, 209, 54, 0.9);
 }
+
 
 #list .list-item .list-link .list-hover:hover {
   opacity: 1;
