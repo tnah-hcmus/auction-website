@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Hello Auction</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/bidder-profile.css" rel="stylesheet">
+ 
+</head>
+
+<body id="page-top">
+
+      <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="index.html">Hello Auction</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              CATEGORIES
+            </a>
+                        <div class="dropdown-menu">
+                            <ul>
+                                <li class="dropdown-submenu">
+                                    <a class="drop dropdown-item" href="#"> Electronice device &nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Smartphone</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Laptop</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Household appliance</a></li>
+                                <li><a class="dropdown-item" href="#">Beauty</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item non-drop">
+                        <a class="nav-link test js-scroll-trigger" href="#masthead">PRODUCTS</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#list" id="navbarDropdown" role="button" data-toggle="dropdown">
+              CHARTS
+            </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Hottest</a>
+                            <a class="dropdown-item" href="#">Best price</a>
+                            <a class="dropdown-item" href="#">Almost end</a>
+                            <a class="dropdown-item" href="#">Highest price</a>
+                        </div>
+                    </li>
+                    <li class="nav-item non-drop">
+                        <a class="nav-link test js-scroll-trigger" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item non-drop">
+                        <a class="nav-link test js-scroll-trigger" href="#services">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="login.html" style ="color:black">Login now!</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+        <div class="input-group search-bar text-center">
+            <div class="input-group-prepend dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              <i class="fas fa-filter"></i>
+            </a>
+            <div class="dropdown-menu" >
+              <a class="dropdown-item" href="#">Tìm theo tên sản phẩm</a>
+              <a class="dropdown-item" href="#">Tìm theo danh mục</a>
+            </div>
+          </div>
+          <input type="text" class="form-control" placeholder="Search your goods">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+          </div>
+
+        </div>
+        <br> <br>
+      </div>
+    </header>
+
+    <!-- container -->
+    <section class="bg-light page-section">
+        <div class="container ">
+       <ul class="breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li>My Profile</li>
+        </ul>
+        <h1>Bidder's Profile</h1>
+        <hr class="featurette-divider "> 
+        </div>
+    </section>
+
+    
+    <div class="container">
+        <div class="row profile">
+        <div class="col-md-3">
+          <div class="profile-sidebar">
+            <!-- card profile -->
+            <div class="card">
+              <img src="img/profile/user01.jpg" alt="John" style="width:100%">
+              <h1>John Doe</h1>
+              <p class="title">CEO & Founder, Example</p>
+              <p><a href="#"><i class="fa fa-dribbble"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+              <a href="#"><i class="fa fa-facebook"></i></a></p>
+              <p><button>Contact</button></p>
+            </div>
+            <!-- tab menu -->
+            <div class="tab">
+              <button class="tablink" onclick="openTab('Watch List',this)" id="defaultOpen">Watch List </button>
+              <button class="tablink" onclick="openTab('Reviews',this)">Reviews</button>
+              <button class="tablink" onclick="openTab('Now bidding',this)">Now bidding</button>
+              <button class="tablink" onclick="openTab('Won Products',this)">Won Products</button>
+              <button class="tablink" onclick="openTab('My Imfomation',this)">My Imfomation</button>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="row  mt-5 profile-intro vertical-divider">
+            <div class="col-md-4">
+              <p>Member Since:</p>
+              <p class="text-muted">December 26th,2013</p>
+            </div>
+             <div class="col-md-4">
+              <p>Total Buy:</p>
+              <p class="text-muted">250</p>            
+            </div>
+             <div class="col-md-4">
+              <p>Web site:</p>
+              <p class="text-muted">www.1234.com</p>
+            </div>          
+          </div>   
+                <div class="profile-content">
+                 <!-- tab menu content -->
+                <div id="Watch List" class="tabcontent">
+                  <h3>London</h3>
+                  <p>London is the capital city of England.</p>
+                </div>
+
+                <div id="Reviews" class="tabcontent">
+                  <h3>Paris</h3>
+                  <p>Paris is the capital of France.</p>
+                </div>
+
+                <div id="Now bidding" class="tabcontent">
+                  <h3>Tokyo</h3>
+                  <p>Tokyo is the capital of Japan.</p>
+                </div>
+                <div id="Won Products" class="tabcontent">
+                  <h3>Tokyo</h3>
+                  <p>Tokyo is the capital of Japan.</p>
+                </div>
+                <div id="My Imfomation" class="tabcontent">
+                  <h3>Tokyo</h3>
+                  <p>Tokyo is the capital of Japan.</p>
+                </div>
+                </div>
+        </div>
+      </div>
+    </div>
+ 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; Hello Auction</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a class="text-muted" href="#">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="text-muted" href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/bidder-profile.js"></script>
+  <script src="js/index.js"></script>
+
+
+</body>
+
+</html>
