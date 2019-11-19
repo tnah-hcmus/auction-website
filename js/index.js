@@ -69,3 +69,10 @@ $(document).ready(function(){
 })
 
 })(jQuery); // End of use strict
+
+ //<!-- tooltip -->
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+

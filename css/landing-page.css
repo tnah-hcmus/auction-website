@@ -75,6 +75,10 @@ h6 {
   border-radius: 50%;
 }
 
+.btn-bid a {
+   color: black; 
+}
+
 .a-price{
   font-size: 15px;
   font-family: Impact, Charcoal, sans-serif;

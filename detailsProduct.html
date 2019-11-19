@@ -176,10 +176,10 @@
                   <li>Auction ends: May 15, 2020 12:00 am</li>                  
                 </ul>
                 <div>
-                  <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                  <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                  <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                  </button>
+                  <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
+                  <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                  <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                 </div>
 
               </div>
@@ -212,24 +212,32 @@
             <th>Date</th>
             <th>Bid</th>
             <th>User</th>
+            <th>Note</th>
           </tr>
           <tr>
             <td>  11/18/2019 0:18 </td>
-            <td>  11/13/2019 13:16  </td>
-            <td>  11/11/2019 12:14  </td>
-            <td>  9/30/2019 0:00  </td>
+            <td>  $17.00  </td>
+            <td>  koke  </td>
+            <td>    </td>
+            
           </tr>
           <tr>
-            <td>  $17.00  </td>
+            <td>  11/13/2019 13:16  </td>
             <td>  $16.00  </td>
-            <td>  $15.00  </td>
-            <td>  Auction started </td>
+            <td>  Gosser Box  </td>
+            <td>   </td>
 
           </tr>
           <tr>
-            <td>  koke  </td>
-            <td>  ooo </td>
+            <td>  11/11/2019 12:14  </td>
+            <td>  $15.00  </td>
             <td>  Gosser Box  </td>
+            <td>    </td>
+          </tr>
+          <tr>
+            <td>  9/30/2019 0:00  </td>
+            <td>  ooo </td>
+            <td>  Auction started </td>
             <td>    </td>
           </tr>
         </table>
@@ -247,7 +255,7 @@
          
 
         <!-- top-chart Grid -->
-        <section class="bg-light page-section" id="top-chart">
+        <section class="bg-light page-section" id="related-products">
           <div class="container">
             <div class="row">
               <div class="col-lg-12 text-center mb-5">
@@ -256,29 +264,31 @@
             </div>
             <div class="row">
               <div class="col-md-4 col-sm-6 top-chart-item">
-                <a class="top-chart-link" data-toggle="modal" href="#chart-item-1">
-                  <div class="top-chart-hover">
-                    <div class="top-chart-hover-content">
-                      <i class="fas fa-plus fa-3x"></i>
-                    </div>
-                  </div>
-                   <div class="container">
-                     <img class="img-fluid" src="img/top-chart/01-thumbnail.jpg" alt="">
-                  </div>
+                    <a class="top-chart-link" data-toggle="modal" href="#chart-item-1">
+                        <div class="top-chart-hover">
+                            <div class="top-chart-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <img class="img-fluid" src="img/top-chart/01-thumbnail.jpg" alt="">
 
-                </a>
-                <div class="top-chart-caption">
-                  <h4>Laptop A</h4>
-                  <a class="text-muted a-currentbid">Giá hiện tại: </a>
-                  <a class=" text-muted a-price">$600.00</a>
-                  <div>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                    </button>
-                  </div>
+                        </div>
+
+                    </a>
+                    <div class="top-chart-caption">
+                        <h4>Laptop A</h4>
+                        <a class="text-muted a-currentbid">Current price: </a>
+                        <a class=" text-muted a-price">$600.00</a>
+                        <div>
+                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>            
+                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
               <div class="col-md-4 col-sm-6 top-chart-item">
                 <a class="top-chart-link" data-toggle="modal" href="#chart-item-2">
                   <div class="top-chart-hover">
@@ -293,9 +303,10 @@
                    <a class="text-muted a-currentbid">Giá hiện tại: </a>
                   <a class=" text-muted a-price">$600.00</a>
                   <div>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                     <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>                
+                    <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                    <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                     </button>
                   </div>
                 </div>
@@ -314,9 +325,10 @@
                    <a class="text-muted a-currentbid">Giá hiện tại: </a>
                   <a class=" text-muted a-price">$600.00</a>
                   <div>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                     <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>                
+                    <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                    <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                     </button>
                   </div>
                 </div>
@@ -335,9 +347,10 @@
                    <a class="text-muted a-currentbid">Giá hiện tại: </a>
                   <a class=" text-muted a-price">$600.00</a>
                   <div >
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                    <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>                
+                    <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                    <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                     </button>
                   </div>
                 </div>
@@ -356,9 +369,10 @@
                    <a class="text-muted a-currentbid">Giá hiện tại: </a>
                   <a class=" text-muted a-price">$600.00</a>
                   <div>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                     <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>                
+                    <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                    <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                     </button>
                   </div>
                 </div>
@@ -419,67 +433,10 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
+  <script src="js/detailsProduct.js"></script>
   <script src="js/index.js"></script>
 
-  <!-- SlideShow Products -->
-  <script type="text/javascript">
-      var slideIndex = 1;
-      showSlides(slideIndex);
 
-      // Next/previous controls
-      function plusSlides(n) {
-        showSlides(slideIndex += n);
-      }
-
-      // Thumbnail image controls
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
-      }
-
-      function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-      
-      }
-  </script>
-
-  <script type="text/javascript">
-      function openTab(tabName,elmnt) {
-      // Hide all elements with class="tabcontent" by default */
-      var i, tabcontent, tablinks;
-      var color= '#fed136';
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-
-      // Remove the background color of all tablinks/buttons
-      tablinks = document.getElementsByClassName("tablink");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-      }
-
-      // Show the specific tab content
-      document.getElementById(tabName).style.display = "block";
-
-      // Add the specific color to the button used to open the tab content
-      elmnt.style.backgroundColor = color;
-    }
-    
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-  </script>
 </body>
 
 </html>
