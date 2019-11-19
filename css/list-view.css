@@ -20,19 +20,14 @@ a:hover {
 }
 
 h1,
-h2{
-   font-family: "Franklin Gothic Medium", sans-serif;
-}
+h2,
 h3,
-h4{
-  font-family: Franklin Gothic Medium, sans-serif;
-}
+h4,
 h5,
 h6 {
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
 }
-
 
 .product-title {
     font-size: 30px ;
@@ -299,6 +294,7 @@ header.masthead {
 
 header.masthead .search-bar{
   padding-top: 90px;
+  padding-bottom:25px;
 }
 
 header.masthead .search-bar input, button{
@@ -340,6 +336,7 @@ header.masthead .intro-text .intro-heading {
 @media (min-width: 768px) {
   header.masthead .search-bar {
   padding-top: 180px;
+  padding-bottom: 50px;
   }
   header.masthead .search-bar input, button{
   padding: 22px 10px; 
@@ -363,76 +360,6 @@ header.masthead .intro-text .intro-heading {
   }
 }
 
-#sign-up {
-  background-color: #f7d14d;
-  position: relative;
-  border-radius: 25px;
-  padding: 20px 10px;
-  text-align: center;
-}
-
-#sign-up .sign-heading {
-  color: #fff;
-}
-#sign-up .text-muted {
-  padding-bottom: 25px;
-}
-
-#sign-up .form-group {
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-#sign-up .form-group input,
-#sign-up .form-group textarea {
-  padding: 20px;
-}
-
-#sign-up .form-group input.form-control {
-  height: auto;
-  border-radius: 15px;
-}
-
-#sign-up .form-group textarea.form-control {
-  height: 248px;
-}
-
-#sign-up .form-control:focus {
-  border-color: #fed136;
-  box-shadow: none;
-}
-
-#sign-up ::-webkit-input-placeholder {
-  font-weight: 700;
-  color: #ced4da;
-  font-family: 'Montserrat', sans-serif;
-}
-
-#sign-up :-moz-placeholder {
-  font-weight: 700;
-  color: #ced4da;
-  font-family: 'Montserrat', sans-serif;
-}
-
-#sign-up ::-moz-placeholder {
-  font-weight: 700;
-  color: #ced4da;
-  font-family: 'Montserrat', sans-serif;
-}
-
-#sign-up :-ms-input-placeholder 
-{
-  font-weight: 700;
-  color: #ced4da;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.service-heading {
-  margin: 15px 0;
-  text-transform: none;
-}
-
 #list .section-subheading {
   margin-bottom: 35px;
 }
@@ -447,6 +374,12 @@ header.masthead .intro-text .intro-heading {
 #list .list-item {
   right: 0;
   margin: 0 0 15px;
+}
+
+#list .list-item .img-fluid{
+  object-fit: cover;
+  height:225px !important;
+  width:350px !important;
 }
 
 #list .list-item .list-link {
@@ -593,17 +526,6 @@ header.masthead .intro-text .intro-heading {
   transform: rotate(90deg);
   background-color: #212529;
 }
-
-#pdf {
-  border-radius: 15px;
-  background-color: #fed136;
-  color: black !important;
-  margin-top: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  padding: 15px 20px;
-}
-
 .footer {
   padding: 25px 0;
   text-align: center;
