@@ -19,10 +19,7 @@ a:hover {
   color: #fed136 !important;
 }
 
-h1{
-  font-size: 50px;
-   font-family: "Franklin Gothic Medium", sans-serif;
-}
+h1,
 h2{
    font-family: "Franklin Gothic Medium", sans-serif;
 }
@@ -36,150 +33,6 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
- *{
-  box-sizing: border-box;
-}
-
-
-.container{
-  margin-top: 50px;
-}
-
-/* Position the image container (needed to position the left and right arrows) */
-.slideshow-container {
-  position: relative;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-  cursor: pointer;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* Container for image text */
-.caption-container {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Six columns side by side */
-.columnslide {
-  float: left;
-  width: 20.00%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-
-/*table style*/
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
-
-th, td {
-  text-align: left;
-  padding: 16px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-/* Style the tab */
-.tab {
-  margin-top: 70px;
-  overflow: hidden;
-  /*border: 1px solid #ccc;*/
-  background-color: #000;
-
-}
-
-.tablink {
-  background-color: #000;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  font-size: 17px;
-  width: 33.33%;
-}
-
-/* Change background color of buttons on hover */
-.tablink:hover {
-  background-color: #fed136;
-  color: black;
-
-}
-
-/* Set default styles for tab content */
-.tabcontent {
-  color: black;
-  display: none;
-  padding: 50px;
-  text-align: center;
-}
 
 .product-title {
     font-size: 30px ;
@@ -212,18 +65,16 @@ tr:nth-child(even) {
 }
 
 .btn-bid {
-  background-color: #fff; 
-  border: 2px solid #fed136; 
-  color: black; 
-  padding: 6px 10px; 
-  font-size: 12px; 
-  margin: 10px;
-  cursor: pointer; 
-  border-radius: 50%;
-}
-
-.btn-bid a {
-   color: black; 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  padding: 10px 10px;
+  margin: 10px 10px;
+  border-radius:50%;
+  background-color: white;
+  color: black;
+  border: 2px solid #fed136;
 }
 
 .a-price{
@@ -236,7 +87,7 @@ tr:nth-child(even) {
   font-family: Arial, Helvetica, sans-serif;
 }
 .page-section {
-  padding: 30px 0;
+  padding: 100px 0;
 }
 
 .page-section h2.section-heading {
@@ -281,7 +132,6 @@ img::selection {
 img::-moz-selection {
   background: transparent;
 }
-
 
 .btn {
   font-family: 'Montserrat', sans-serif;
@@ -585,7 +435,6 @@ header.masthead .intro-text .intro-heading {
   text-transform: none;
 }
 
-<<<<<<< HEAD
 #top-chart .section-subheading {
   margin-bottom: 35px;
 }
@@ -598,29 +447,11 @@ header.masthead .intro-text .intro-heading {
   text-decoration: underline;
 }
 #top-chart .top-chart-item {
-=======
-#related-products .section-subheading {
-  margin-bottom: 35px;
-}
-
-#related-products #top-chart-nav {
-  margin-bottom: 15px;
-}
-#related-products .active {
-  color: #33383c !important;
-  text-decoration: underline;
-}
-#related-products .top-chart-item {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   right: 0;
   margin: 0 0 15px;
 }
 
-<<<<<<< HEAD
 #top-chart .top-chart-item .top-chart-link {
-=======
-#related-products .top-chart-item .top-chart-link {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   position: relative;
   display: block;
   max-width: 400px;
@@ -628,11 +459,7 @@ header.masthead .intro-text .intro-heading {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
 #top-chart .top-chart-item .top-chart-link .top-chart-hover {
-=======
-#related-products .top-chart-item .top-chart-link .top-chart-hover {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   position: absolute;
   width: 100%;
   height: 100%;
@@ -641,19 +468,11 @@ header.masthead .intro-text .intro-heading {
   background: rgba(254, 209, 54, 0.9);
 }
 
-<<<<<<< HEAD
 #top-chart .top-chart-item .top-chart-link .top-chart-hover:hover {
   opacity: 1;
 }
 
 #top-chart .top-chart-item .top-chart-link .top-chart-hover .top-chart-hover-content {
-=======
-#related-products .top-chart-item .top-chart-link .top-chart-hover:hover {
-  opacity: 1;
-}
-
-#related-products .top-chart-item .top-chart-link .top-chart-hover .top-chart-hover-content {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   font-size: 20px;
   position: absolute;
   top: 50%;
@@ -664,7 +483,6 @@ header.masthead .intro-text .intro-heading {
   color: white;
 }
 
-<<<<<<< HEAD
 #top-chart .top-chart-item .top-chart-link .top-chart-hover .top-chart-hover-content i {
   margin-top: -12px;
 }
@@ -675,18 +493,6 @@ header.masthead .intro-text .intro-heading {
 }
 
 #top-chart .top-chart-item .top-chart-caption {
-=======
-#related-products .top-chart-item .top-chart-link .top-chart-hover .top-chart-hover-content i {
-  margin-top: -12px;
-}
-
-#related-products .top-chart-item .top-chart-link .top-chart-hover .top-chart-hover-content h3,
-#related-products .top-chart-item .top-chart-link .top-chart-hover .top-chart-hover-content h4 {
-  margin: 0;
-}
-
-#related-products .top-chart-item .top-chart-caption {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   max-width: 400px;
   margin: 0 auto;
   padding: 25px;
@@ -694,31 +500,19 @@ header.masthead .intro-text .intro-heading {
   background-color: #fff;
 }
 
-<<<<<<< HEAD
 #top-chart .top-chart-item .top-chart-caption h4 {
-=======
-#related-products.top-chart-item .top-chart-caption h4 {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   margin: 0;
   text-transform: none;
 }
 
-<<<<<<< HEAD
 #top-chart .top-chart-item .top-chart-caption p {
-=======
-#related-products .top-chart-item .top-chart-caption p {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   font-size: 16px;
   font-style: italic;
   margin: 0;
   font-family: 'Droid Serif', sans-serif;
 }
 
-<<<<<<< HEAD
 #top-chart * {
-=======
-#related-products * {
->>>>>>> d1a1cdef990b6ce1b94fcc62d8ed96b2eb1b3eb8
   z-index: 2;
 }
 
@@ -754,7 +548,7 @@ header.masthead .intro-text .intro-heading {
   font-family: 'Droid Serif', sans-serif;
 }
 
-.top-chart-modal .modal-content ul.top-chart-inline {
+.top-chart-modal .modal-content ul.list-inline {
   margin-top: 0;
   margin-bottom: 30px;
 }
