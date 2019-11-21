@@ -279,24 +279,6 @@ tr:nth-child(even) {
     border: 2px solid #fed136;
 }
 
-
-/*style button add more description*/
-
-.btn-add-description {
-    border: none !important;
-    background-color: #fff!important;
-    color: black;
-    padding: 6px 10px;
-    font-size: 12px;
-    margin: 10px;
-    border-radius: 50%;
-}
-
-.btn-add-description:hover {
-    text-decoration: underline;
-    color: #fec503;
-}
-
 .btn-bid {
     background-color: #fff;
     border: 2px solid #fed136;
