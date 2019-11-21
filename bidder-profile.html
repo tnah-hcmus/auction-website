@@ -29,9 +29,21 @@
 <body id="page-top">
 
       <!-- Navigation -->
+ <!--  <div class="w3-container top">
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <div class="topnav-right">
+        <a href="#search">Search</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </div> -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="index.html">Hello Auction</a>
+
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -76,8 +88,20 @@
                     <li class="nav-item non-drop">
                         <a class="nav-link test js-scroll-trigger" href="#services">ABOUT US</a>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="login.html" style ="color:black">Login now!</a></button>
+                    <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle border-user" id="navbarDropdown" href="#"  data-toggle="dropdown">
+
+                              <span class="dot"><img class="avatar"src="img/profile/user01.jpg"></span> Chung
+                            
+                           </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Account setting</a>
+                            <a class="dropdown-item" href="#">Watch list</a>
+                            <a class="dropdown-item" href="#">Bidding products</a>
+                            <a class="dropdown-item" href="#">Won Products</a>
+                            <a class="dropdown-item" href="#">Log out</a>
+                        </div>
+                        
                     </li>
                 </ul>
             </div>
@@ -107,21 +131,22 @@
     </header>
 
     <!-- container -->
-    <section class="bg-light page-section">
+<!--     <section class="bg-light page-section">
         <div class="container ">
        <ul class="breadcrumb">
           <li><a href="index.html">Home</a></li>
           <li>My Profile</li>
         </ul>
-        <h1>Bidder's Profile</h1>
+      
         <hr class="featurette-divider "> 
         </div>
-    </section>
+    </section> -->
 
     
+
     <div class="container">
-        <div class="row profile">
-        <div class="col-md-3">
+        <div class="row mt-5">
+        <div class="col-md-4">
           <div class="profile-sidebar">
             <!-- card profile -->
             <div class="card">
@@ -132,60 +157,50 @@
               <a href="#"><i class="fa fa-twitter"></i></a>
               <a href="#"><i class="fa fa-linkedin"></i></a>
               <a href="#"><i class="fa fa-facebook"></i></a></p>
-              <p><button>Contact</button></p>
-            </div>
-            <!-- tab menu -->
-            <div class="tab">
-              <button class="tablink" onclick="openTab('Watch List',this)" id="defaultOpen">Watch List </button>
-              <button class="tablink" onclick="openTab('Reviews',this)">Reviews</button>
-              <button class="tablink" onclick="openTab('Now bidding',this)">Now bidding</button>
-              <button class="tablink" onclick="openTab('Won Products',this)">Won Products</button>
-              <button class="tablink" onclick="openTab('My Imfomation',this)">My Imfomation</button>
-            </div>
-
-          </div>
-        </div>
-        <div class="col-md-9">
-          <div class="row  mt-5 profile-intro vertical-divider">
-            <div class="col-md-4">
+              <div>
+                <button class="btn-contact">Contact</button>
+                <a><i class="far fa-thumbs-up"></i></a>
+                <a><i class="far fa-thumbs-down"></i></a>
+              </div> 
+              
+               <div >
+                 <hr class="featurette-divider "> 
               <p>Member Since:</p>
               <p class="text-muted">December 26th,2013</p>
             </div>
-             <div class="col-md-4">
+             <div >
+               <hr class="featurette-divider "> 
               <p>Total Buy:</p>
               <p class="text-muted">250</p>            
             </div>
-             <div class="col-md-4">
+             <div >
+               <hr class="featurette-divider "> 
               <p>Web site:</p>
               <p class="text-muted">www.1234.com</p>
-            </div>          
-          </div>   
+            </div>  
+            <div >
+               <hr class="featurette-divider "> 
+                <p><button>Account setting</button></p>
+            </div>      
+          </div> 
+        </div>
+        </div>
+        <div class="col-lg-8">
+                <!-- menu -->
+            <div class="topnav mt-5 ">
+              <a href="bidder-review.html">Reviews</a>
+              <a href="#news">Won products</a>
+              <a href="bidder-bidding.html">Bidding products</a>
+               <a href="#home" class="active">Watch list</a>
+              <!-- <a href="#contact">Account setting</a> -->
+      </div>
+
+                     
                 <div class="profile-content">
                  <!-- tab menu content -->
-                <div id="Watch List" class="tabcontent">
-                  <h3>London</h3>
-                  <p>London is the capital city of England.</p>
+               
                 </div>
-
-                <div id="Reviews" class="tabcontent">
-                  <h3>Paris</h3>
-                  <p>Paris is the capital of France.</p>
-                </div>
-
-                <div id="Now bidding" class="tabcontent">
-                  <h3>Tokyo</h3>
-                  <p>Tokyo is the capital of Japan.</p>
-                </div>
-                <div id="Won Products" class="tabcontent">
-                  <h3>Tokyo</h3>
-                  <p>Tokyo is the capital of Japan.</p>
-                </div>
-                <div id="My Imfomation" class="tabcontent">
-                  <h3>Tokyo</h3>
-                  <p>Tokyo is the capital of Japan.</p>
-                </div>
-                </div>
-        </div>
+        
       </div>
     </div>
  
