@@ -44,23 +44,6 @@ h6 {
 }
 
 
-/*style button add more description*/
-
-.btn-add-description {
-    border: none !important;
-    background-color: #fff!important;
-    color: black;
-    padding: 6px 10px;
-    font-size: 12px;
-    margin: 10px;
-}
-
-.btn-add-description:hover {
-    text-decoration: underline;
-    color: #fec503;
-}
-
-
 /* Style the list */
 
 ul.breadcrumb {
@@ -395,6 +378,36 @@ img::-moz-selection {
 .btn-primary:active,
 .btn-primary:focus {
     box-shadow: 0 0 0 0.2rem rgba(254, 209, 55, 0.5) !important;
+}
+
+
+/*style button add more description and refuse*/
+
+.btn-add-description {
+    border: none !important;
+    background-color: #fff!important;
+    color: black;
+    padding: 6px 10px;
+    font-size: 12px;
+    margin: 10px;
+}
+
+.btn-add-description:hover {
+    text-decoration: underline;
+    color: #fec503;
+}
+
+.btn-refuse {
+    border: none;
+    background: none;
+    color: red;
+}
+
+.btn-refuse:hover {
+    text-decoration: underline;
+    background: none;
+    color: red;
+    font-weight: bold;
 }
 
 .avatar {
