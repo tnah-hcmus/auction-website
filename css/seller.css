@@ -756,3 +756,10 @@ tr:nth-child(even) {
     border-radius: 50%;
     float: right;
 }
+
+.avatar {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
