@@ -69,32 +69,65 @@ $(document).ready(function () {
     function TableEdit() {
 
   
-    $('td').click(function() {
-
+        $('td').click(function() {        
+            var td_value = $(this).html();
+            var input_field = '<input type="text" id="edit" value="' + td_value + '" />'
+            $(this).empty().append(input_field);
+            $('input').focus();
+            var i = 0;
+            $('td').off('click');
         
-        var td_value = $(this).html();
-        var input_field = '<input type="text" id="edit" value="' + td_value + '" />'
-        $(this).empty().append(input_field);
-        $('input').focus();
-        var i = 0;
-        $('td').off('click');
-        
-        $(this).find('input').blur(function(){
+            $(this).find('input').blur(function(){
             var new_text = $(this).val();
             $(this).parent().html(new_text);
             TableEdit();
-        })
+            })
+        });
+    }
+    //Accept edit table btn
 
-    });
-}
-  $('#edit-table').on('click', function () {
+    $('#edit-table').on('click', function () {
         TableEdit();//typically called from ajax
     });
-  function toggleAddForm(e){
-    e.preventDefault();
-    $('#add').toggle(); // display:block or none
-}
-$('#cancel').click(toggleAddForm);
-$('#add-btn').click(toggleAddForm);
-$('#submit-btn').click(toggleAddForm);
+    //Confirm form
+    var confirmForm = function(callback) {
+
+        $("#modal-btn-yes").on("click", function() {
+        $("#confirm-modal").modal('hide')
+        return callback(true);
+        });
+  
+        $("#modal-btn-no").on("click", function() {
+        $("#confirm-modal").modal('hide');
+        return callback(false);
+        });
+    }
+    $(".delete").on("click", function() {
+
+        var tr = $(this).parents('tr').first();
+        confirmForm(function(confirm) {
+            if(confirm)
+            {
+                tr.remove();
+            }
+        });
+    });
+    $(".accept").on("click", function() {
+
+        var tr = $(this).parents('tr').first();
+        confirmForm(function(confirm) {
+            if(confirm)
+            {
+                tr.remove();
+            }
+        });
+    });
+    //Add form
+    function toggleAddForm(e){
+        e.preventDefault();
+        $('#add').toggle(); // display:block or none
+    }
+    $('#cancel').click(toggleAddForm);
+    $('#add-btn').click(toggleAddForm);
+    $('#submit-btn').click(toggleAddForm);
 });

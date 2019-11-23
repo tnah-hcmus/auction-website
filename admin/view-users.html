@@ -59,7 +59,7 @@
           <!-- Page Header-->
           <header class="page-header" id = "dash-title">
             <div class="container-fluid">
-              <h2>Dashboard</h2>
+              <h2>Dashboard/Manage user/View all users</h2>
             </div>
           </header>
           <section>
@@ -97,98 +97,98 @@
                               <td>Mark</td>
                               <td>Otto</td>
                               <td>@mdo</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
                               <td>@fat</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <tr key = {key}>
                               <td>3</td>
                               <td>Larry</td>
                               <td>The Bird</td>
                               <td>@twitter</td>
-                              <td><button class="btn btn-primary delete">Delete</button></td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                           </tbody>
                         </table>
@@ -252,6 +252,23 @@
             </div>
         </div>
     </footer>
+    <!-- Confirm form -->
+    <div class="modal fade text-center" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="confirm-modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <h4>Are you sure</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="modal-btn-yes">Yes</button>
+          <button type="button" class="btn btn-danger" id="modal-btn-no">No</button>
+        </div>
+    </div>
+  </div>
+</div>
     <!-- JavaScript files-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/popper.js/umd/popper.min.js"> </script>

@@ -474,11 +474,28 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   background: #e84848;
   border: 0px;
 }
-
+.accept
+{
+  background: #28a745;
+  border: 0px;
+}
+.delete a
+{
+  color: #fff;
+}
+.accept a
+{
+  color: #fff;
+}
 .delete:hover
 {
   background: #971414 !important;;
   border: 0px;
+}
+.modal-body h4
+{
+  font-weight: bold;
+  color: black !important;;
 }
 #edit
 {
