@@ -47,6 +47,18 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
   
+  //arlet
+  var close = document.getElementsByClassName("closebtn");
+  var i;
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+      var div = this.parentElement;
+      div.style.opacity = "0";
+      setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+  }
+
   // Toggle signup, reset password in logged form
   function toggleResetPswd(e){
     e.preventDefault();
@@ -68,6 +80,9 @@ $(document).ready(function(){
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 })
 
+
+
+
 })(jQuery); // End of use strict
 
  //<!-- tooltip -->
@@ -82,3 +97,8 @@ $(document).ready(function(){
     $("#myModal").modal();
   });
 });
+
+function addedWatchList() {
+  alert("Added to your watch list!");
+}
+
