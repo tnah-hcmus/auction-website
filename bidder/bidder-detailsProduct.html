@@ -75,8 +75,19 @@
                     <li class="nav-item non-drop">
                         <a class="nav-link test js-scroll-trigger" href="#services">ABOUT US</a>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="login.html" style ="color:black">Login now!</a></button>
+                    <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle border-user" id="navbarDropdown" href="#"  data-toggle="dropdown">
+
+                              <span class="dot"><img class="avatar"src="../img/profile/user01.jpg"></span> Chung
+                            
+                           </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="bidder-account-setting.html">Account setting</a>
+                            <a class="dropdown-item" href="bidder-watchlist.html">Watch list</a>
+                            <a class="dropdown-item" href="bidder-bidding.html">Bidding products</a>
+                            <a class="dropdown-item" href="bidder-wonproduct.html">Won Products</a>
+                            <a class="dropdown-item" href="../index.html">Log out</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -176,16 +187,15 @@
                     <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $800.00
                 </button>
                     <!-- bid box -->
-                    <p> Reserve price has been met</p>
+                    <p> Reserve price has been met:</p>
                     <form class="">
-                   
-                        <div class="quantity buttons_added">
-                            <input type="button" value="+" class="plus">            
-                            <input type="number" name="bid_value" data-auction-id="1" value="100" min="100" step="any" size="6" title="bid" class="qty">
-                            <input type="button" value="-" class="minus">
-                        </div>  
-                        <button href="#bid-now" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
-                        <button href="#add-watch-list" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                      <div class="quantity buttons_added">  
+                        <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
+                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="1" value="100" min="100" max="1000">
+                        <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
+                      </div>  
+                        <button data-target="#bid-now" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
+                        <button data-target="#add-watch-list" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
                     </form>
 
                     <ul class="list-inline content mx-auto">
@@ -210,8 +220,8 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Are your sure?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
@@ -220,15 +230,15 @@
         </div>
       </div>
     </div>
-     <!-- modal bid now alert -->
+     <!-- modal added watch list alert -->
     <div id="add-watch-list" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Added to your watch list!</h4>
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
@@ -236,7 +246,7 @@
         </div>
       </div>
     </div>    
-        
+      <!-- /modal added watch list alert -->  
     
     <!-- tabs vendor details -->
     <section class="bg-light page-section">
@@ -328,10 +338,8 @@
                         <a class="text-muted a-currentbid">Current price: </a>
                         <a class=" text-muted a-price">$600.00</a>
                         <div>
-                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                            <button data-target="#add-watch-list" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><a href="bidder-detailsProduct.html"><i class="fas fa-gavel"></i></a>
                             </button>
                         </div>
                     </div>
@@ -350,11 +358,9 @@
                         <a class="text-muted a-currentbid">Current price: </a>
                         <a class=" text-muted a-price">$600.00</a>
                         <div>
-                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                    </button>
+                              <button data-target="#add-watch-list" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><a href="bidder-detailsProduct.html"><i class="fas fa-gavel"></i></a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -372,11 +378,9 @@
                         <a class="text-muted a-currentbid">Current price: </a>
                         <a class=" text-muted a-price">$600.00</a>
                         <div>
-                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                    </button>
+                              <button data-target="#add-watch-list" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><a href="bidder-detailsProduct.html"><i class="fas fa-gavel"></i></a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -394,11 +398,9 @@
                         <a class="text-muted a-currentbid">Current price: </a>
                         <a class=" text-muted a-price">$600.00</a>
                         <div>
-                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                    </button>
+                               <button data-target="#add-watch-list" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><a href="bidder-detailsProduct.html"><i class="fas fa-gavel"></i></a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -416,11 +418,9 @@
                         <a class="text-muted a-currentbid">Current price: </a>
                         <a class=" text-muted a-price">$600.00</a>
                         <div>
-                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                    </button>
+                              <button data-target="#add-watch-list" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><a href="bidder-detailsProduct.html"><i class="fas fa-gavel"></i></a>
+                            </button>
                         </div>
                     </div>
                 </div>

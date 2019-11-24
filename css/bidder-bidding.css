@@ -21,20 +21,35 @@ a:hover {
 
 h1,
 h2,
-h3,
-h4,
+h3{
+   font-family: "Titillium Web", sans-serif;
+}
+h4{
+  font-family: Franklin Gothic Medium, sans-serif;
+}
 h5,
 h6 {
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
 }
 
-.fa {
-  font-size: 25px;
+.left-border {
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
+  border-left: 6px solid #fed136;
+  color: #000;
+  padding: 5px 16px;
+  background-color: #fff;
 }
 
-.checked {
-  color: orange;
+.a-price{
+  font-size: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+.a-currentbid{
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Three column layout */
@@ -747,6 +762,11 @@ header.masthead .intro-text .intro-heading {
   margin: 0;
   font-family: 'Droid Serif', sans-serif;
 }
+
+.list-caption span {
+  float: left;
+}
+
 
 #list * {
   z-index: 2;

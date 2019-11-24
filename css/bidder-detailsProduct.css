@@ -183,7 +183,6 @@ div.quantity {
     border-radius: 3px 0 0 3px;
 }
 
-
 /* On hover, add a black background color with a little bit see-through */
 
 .prev:hover,
@@ -237,6 +236,22 @@ div.quantity {
 .active,
 .demo:hover {
     opacity: 1;
+}
+
+.border-user{
+  border-style: solid;
+  border: 1px solid #fed136;
+  border-radius: 16px;
+  height: 60px;
+  width: 150px;
+  background-color: none;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 

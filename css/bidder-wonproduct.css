@@ -21,7 +21,9 @@ a:hover {
 
 h1,
 h2,
-h3,
+h3{
+   font-family: "Titillium Web", sans-serif;
+}
 h4,
 h5,
 h6 {
@@ -55,7 +57,6 @@ label {
     cursor: pointer;
 }
 
-
 textarea{
   width: 460px;
   height: 200px;
@@ -66,11 +67,11 @@ textarea{
 }
 
 .left-border {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin-top: 30px;
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
   border-left: 6px solid #fed136;
   color: #000;
-  padding: 8px 16px;
+  padding: 5px 16px;
   background-color: #fff;
 }
 

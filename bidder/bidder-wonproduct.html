@@ -166,21 +166,26 @@
                   </div>
                 </div>
               </div>
+              <div >
+                <hr class="featurette-divider "> 
+                <p><b>You are a bidder </b></p>
+                <button data-toggle="modal" data-target="#become-seller" class="btn-contact">Become a seller</button>
+              </div>
                <div >
                  <hr class="featurette-divider "> 
-              <p><b>Member Since:</b></p>
-              <p class="text-muted">December 26th,2013</p>
-            </div>
+                 <p><b>Member Since:</b></p>
+                 <p class="text-muted">December 26th,2013</p>
+               </div>
+               <div >
+                <hr class="featurette-divider "> 
+                <p><b>Total Buy:</b></p>
+                <p class="text-muted">250</p>            
+               </div>
              <div >
-               <hr class="featurette-divider "> 
-              <p><b>Total Buy:</b></p>
-              <p class="text-muted">250</p>            
-            </div>
-             <div >
-               <hr class="featurette-divider "> 
-              <p><b>Web site:</b></p>
-              <p class="text-muted">www.1234.com</p>
-            </div>     
+                <hr class="featurette-divider "> 
+                <p><b>Web site:</b></p>
+                <p class="text-muted">www.1234.com</p>
+              </div>     
              <div >
                <hr class="featurette-divider "> 
                 <p><button><a href="bidder-account-setting.html"></a>Account setting</button></p>
@@ -188,9 +193,34 @@
           </div> 
           </div>
         </div>
+
+        <!-- request becomeseller modal -->
+          <div class="modal fade" id="become-seller" role="dialog">
+              <div class="modal-dialog">         
+                <!-- Modal content-->                        
+                <div class="modal-content">              
+                    <!-- INPUT CONTAINER -->
+                    <div class="input-container">
+                      <div class="modal-header"> 
+                        <h4 class="modal-title">Your request has been send already!</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Pleases wait for reponse.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
+                      </div>                             
+                    </div>
+                    <!-- /INPUT CONTAINER -->
+                </div>
+                
+              </div>
+            </div>
+        <!-- /request becomeseller modal -->
         <div class="col-lg-8">
                 <!-- menu -->
-            <div class="topnav mt-5">
+            <div class="topnav">
               <a  href="bidder-review.html">Reviews</a>
               <a class="active" href="bidder-wonproduct.html">Won products</a>
               <a  href="bidder-bidding.html">Bidding products</a>
@@ -198,6 +228,9 @@
               <!-- <a href="#contact">Account setting</a> -->
             </div>          
                 <div class="profile-content">
+                  <div class="left-border">
+                    <h3><b>Won Products<b></h3>
+                  </div>
                  <!-- tab menu content -->
                <!-- Main View -->
                  <section class="bg-light page-section" id="list">
@@ -217,8 +250,8 @@
                         </a>
                         <div class="list-caption">
                           <h4>Laptop A</h4>
-                          <p class="text-muted">Chủ sở hữu: Hoàng đẹp trai</p>
-                          <p class="text-muted">Ngày đăng: dd/mm/yyyy</p>
+                          <a class="text-muted a-currentbid">Won price: </a>
+                          <a class=" text-muted a-price">$600.00</a>
                           <hr class="featurette-divider "> 
                          <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user01.jpg"> <b>Chung</b></span>  
                           <a class="mr-2" data-toggle="modal" data-target="#review-up-1"><i class="far fa-thumbs-up"></i></a>
@@ -239,8 +272,8 @@
                         </a>
                         <div class="list-caption">
                           <h4>Laptop B</h4>
-                          <p class="text-muted">Chủ sở hữu: Hoàng đẹp trai</p>
-                          <p class="text-muted">Ngày đăng: dd/mm/yyyy</p>
+                           <a class="text-muted a-currentbid">Won price: </a>
+                          <a class=" text-muted a-price">$600.00</a>
                           <hr class="featurette-divider "> 
                          <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user01.jpg"> <b>Chung</b></span>  
                           <a class="mr-2" data-toggle="modal" data-target="#review-up-2"><i class="far fa-thumbs-up"></i></a>
@@ -258,8 +291,8 @@
                         </a>
                         <div class="list-caption">
                           <h4>Laptop C</h4>
-                          <p class="text-muted">Chủ sở hữu: Hoàng đẹp trai</p>
-                          <p class="text-muted">Ngày đăng: dd/mm/yyyy</p>
+                            <a class="text-muted a-currentbid">Won price: </a>
+                          <a class=" text-muted a-price">$600.00</a>
                           <hr class="featurette-divider "> 
                          <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user01.jpg"> <b>Chung</b></span>  
                           <a class="mr-2" data-toggle="modal" data-target="#review-up-3"><i class="far fa-thumbs-up"></i></a>
@@ -277,8 +310,8 @@
                         </a>
                         <div class="list-caption">
                           <h4>Laptop D</h4>
-                          <p class="text-muted">Chủ sở hữu: Hoàng đẹp trai</p>
-                          <p class="text-muted">Ngày đăng: dd/mm/yyyy</p>
+                            <a class="text-muted a-currentbid">Won price: </a>
+                          <a class=" text-muted a-price">$600.00</a>
                           <hr class="featurette-divider "> 
                          <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user01.jpg"> <b>Chung</b></span>  
                           <a class="mr-2" data-toggle="modal" data-target="#review-up-4"><i class="far fa-thumbs-up"></i></a>
@@ -296,8 +329,8 @@
                         </a>
                         <div class="list-caption">
                           <h4>Laptop E</h4>
-                          <p class="text-muted">Chủ sở hữu: Hoàng đẹp trai</p>
-                          <p class="text-muted">Ngày đăng: dd/mm/yyyy</p>
+                            <a class="text-muted a-currentbid">Won price: </a>
+                          <a class=" text-muted a-price">$600.00</a>
                           <hr class="featurette-divider "> 
                          <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user01.jpg"> <b>Chung</b></span>  
                          <a class="mr-2" data-toggle="modal" data-target="#review-up-5"><i class="far fa-thumbs-up"></i></a>
@@ -315,8 +348,8 @@
                         </a>
                         <div class="list-caption">
                           <h4>Laptop Z</h4>
-                          <p class="text-muted">Chủ sở hữu: Hoàng đẹp trai</p>
-                          <p class="text-muted">Ngày đăng: dd/mm/yyyy</p>
+                            <a class="text-muted a-currentbid">Won price: </a>
+                          <a class=" text-muted a-price">$600.00</a>
                           <hr class="featurette-divider "> 
                          <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user01.jpg"> <b>Chung</b></span>  
                           <a class="mr-2" data-toggle="modal" data-target="#review-up-6"><i class="far fa-thumbs-up"></i></a>

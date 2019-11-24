@@ -21,7 +21,9 @@ a:hover {
 
 h1,
 h2,
-h3,
+h3{
+   font-family: "Titillium Web", sans-serif;
+}
 h4 {
   font-family: "Franklin Gothic Medium", sans-serif;
 }
@@ -31,12 +33,13 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.fa {
-  font-size: 25px;
-}
-
-.checked {
-  color: orange;
+.left-border {
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
+  border-left: 6px solid #fed136;
+  color: #000;
+  padding: 5px 16px;
+  background-color: #fff;
 }
 
 /* Three column layout */
