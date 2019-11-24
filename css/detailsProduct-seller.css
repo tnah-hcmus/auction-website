@@ -402,7 +402,7 @@ img::-moz-selection {
 
 .btn-add-description:hover {
     text-decoration: underline;
-    color: #fec503;
+    color: #fff;
     font-weight: bold;
 }
 
