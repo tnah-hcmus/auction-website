@@ -173,20 +173,25 @@
 
                     <h1 class=" product-price mt-4"> Current Bid: $600.00</h1>
                     <hr class="featurette-divider">
-                    <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $800.00
+                    <button data-target="#alert-login" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $800.00
                 </button>
+
+                    <!-- bid box -->
+                    <p> Reserve price has been met:</p>
+                    <form class="">
+                      <div class="quantity buttons_added">  
+                        <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
+                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="1" value="100" min="100" max="1000">
+                        <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
+                      </div>  
+                        <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
+                        <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                    </form>
                     <ul class="list-inline content mx-auto">
                         <li>Item condition: New</li>
                         <li>Auction starts: May 15, 2020 12:00 am</li>
                         <li>Auction ends: May 15, 2020 12:00 am</li>
                     </ul>
-                    <div>
-                        <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                              <a href="detailsProduct.html"><i class="fas fa-search"></i></a></button>
-                        <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                        <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                </div>
-
               </div>
           </div>
         </div>
@@ -194,7 +199,22 @@
 
   
     <!-- product details -->
-        
+     <!-- modal login alert -->
+    <div id="alert-login" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Please login to use this function !</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
         
     
     <!-- tabs vendor details -->

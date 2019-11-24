@@ -85,6 +85,55 @@ ul.breadcrumb li a:hover {
     text-decoration: underline;
 }
 
+div.quantity {
+    margin-right: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    float: left;
+    margin: 0 4px 0 0;
+}
+
+.minus {
+    border: transparent;
+    border-radius: 4px;
+    color: #242424;
+    font-weight: 400;
+    height: 40px;
+    padding: 0;
+    width: 30px;
+    background: #fff;
+    outline: 0;
+    float: left
+}
+
+.plus {
+    border: transparent;
+    border-radius: 4px;
+    color: #242424;
+    font-weight: 400;
+    height: 40px;
+    padding: 0;
+    width: 30px;
+    background: #fff;
+    outline: 0;
+}
+
+.plus {
+    float: right;
+}
+
+.qty {
+    border: transparent;
+    border-radius: 4px;s
+    color: #242424;
+    font-weight: 400;
+    height: 40px;
+    padding: 0;
+    width: 50px;
+    background: #fff;
+    outline: 0;
+}
+
 
 /* Position the image container (needed to position the left and right arrows) */
 
