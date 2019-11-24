@@ -189,6 +189,14 @@ ul.breadcrumb li a:hover {
 }
 
 
+/*text area style*/
+
+textarea {
+    height: 100px !important;
+    margin-top: 30px !important;
+}
+
+
 /*table style*/
 
 table {
@@ -200,7 +208,7 @@ table {
 
 th,
 td {
-    text-align: left;
+    text-align: center;
     padding: 16px;
 }
 
@@ -385,28 +393,28 @@ img::-moz-selection {
 
 .btn-add-description {
     border: none !important;
-    background-color: #fff!important;
+    background-color: none !important;
     color: black;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 16px;
     margin: 10px;
 }
 
 .btn-add-description:hover {
     text-decoration: underline;
     color: #fec503;
+    font-weight: bold;
 }
 
 .btn-refuse {
     border: none;
-    background: none;
-    color: red;
+    background: red;
 }
 
 .btn-refuse:hover {
     text-decoration: underline;
     background: none;
-    color: red;
+    background: #971414 !important;
     font-weight: bold;
 }
 
@@ -415,6 +423,10 @@ img::-moz-selection {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+.cancel {
+    background: none !important;
 }
 
 #mainNav {
