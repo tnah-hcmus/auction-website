@@ -32,16 +32,16 @@
           <!-- Sidebar Navidation Menus-->
           <span class="heading">Main</span>
           <ul class="list-unstyled">
-            <li class="active"><a href="admin.html"><i class="fas fa-home"></i> Home </a></li>
-            <li><a href="index.html"><i class="fas fa-home"></i>Profile</a></li>
+            <li><a href="admin.html"><i class="fas fa-home"></i> Home </a></li>
+            <li class="active"><a href="admin-profile.html"><i class="fas fa-home"></i>Profile</a></li>
             <li><a href="../login.html"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout </a></li>
           </ul>
           <span class="heading">Manage</span>
           <ul class="list-unstyled">
             <li><a href="admin-category.html"><i class="fas fa-list"></i>&nbsp;Manage Category</a></li>
             <li><a href="admin-product.html"><i class="fas fa-box"></i>&nbsp;Manage Product</a></li>
-            <li><a href="#user" aria-expanded="false" data-toggle="collapse"><i class="fas fa-users"></i>Manage User</a>
-              <ul id="user" class="collapse list-unstyled ">
+            <li><a href="#user" aria-expanded="true" data-toggle="collapse"><i class="fas fa-users"></i>Manage User</a>
+              <ul id="user" class="collapse list-unstyled show">
                 <li><a href="view-users.html">View all users</a></li>
                 <li><a href="view-request.html">Manage seller request</a></li>
                 <li><a href="admin-seller.html">Manage seller</a></li>
@@ -57,14 +57,108 @@
         </nav>
         <div class="content-inner">
           <!-- Page Header-->
-          <header class="page-header">
+          <header class="page-header" id = "dash-title">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Dashboard</h2>
+              <h2>Dashboard/Manage user/View all users</h2>
             </div>
           </header>
-          <div class="text-center">
-          <h1 style="color: black">Chưa có cái gì ở trang này cả</h1>
-        </div>
+          <section class="profile no-padding-top">
+            <div class="container-fluid">
+              <div class="row">
+                <!-- Client Profile -->
+                <div class="col-lg-4">
+                  <div class="profile card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow" style="display: none; position: absolute; transform: translate3d(-90px, 24px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-end"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-body text-center">
+                      <div class="avatar"><img src="../img/ava.jpg" alt="..." class="img-fluid">
+                        <div class="status bg-green"></div>
+                      </div>
+                      <div class="client-title">
+                        <h3>Jason Doe</h3><span>Web Developer</span>
+                      </div>              
+                      <div class="row">
+                        <hr class="featurette-divider "> 
+                        <div class="col-6">
+                          <div class="side">
+                            <div><a><i class="far fa-thumbs-up"></i></a></div>
+                          </div>
+                          <div class="middle">
+                            <div class="bar-container">
+                              <div class="bar-up"></div>
+                            </div>
+                          </div>
+                          <div class="side right">
+                            <div>99999</div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="side">
+                            <div><a><i class="far fa-thumbs-down"></i></a></div>
+                          </div>
+                          <div class="middle">
+                            <div class="bar-container">
+                              <div class="bar-down"></div>
+                            </div>
+                          </div>
+                        <div class="side right">
+                            <div>-100</div>
+                        </div>
+                      </div>
+                      <div class="col-12"><span class="heading"><b>Email: tnah.work@gmail.com</b></span></div>
+                      <hr class="featurette-divider ">
+                      <div class="col-12"><span class="heading"><b>Born: 7/12/1999</b></span></div>
+                    </div>
+                      <div class="client-social d-flex justify-content-between"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a><a href="#" target="_blank"><i class="fa fa-twitter"></i></a><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a><a href="#" target="_blank"><i class="fa fa-instagram"></i></a><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="checklist card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">           
+                      <h2 class="h3">To Do List </h2>
+                    </div>
+                    <div class="card-body no-padding">
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-1" name="input-1" class="checkbox">
+                        <label for="input-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      </div>
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-2" name="input-2" class="checkbox">
+                        <label for="input-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      </div>
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-3" name="input-3" class="checkbox">
+                        <label for="input-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      </div>
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-4" name="input-4" class="checkbox">
+                        <label for="input-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      </div>
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-5" name="input-5" class="checkbox">
+                        <label for="input-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      </div>
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-6" name="input-6" class="checkbox">
+                        <label for="input-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>                
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -108,8 +202,26 @@
             </div>
         </div>
     </footer>
+    <!-- Confirm form -->
+    <div class="modal fade text-center" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="confirm-modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <h4>Are you sure</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="modal-btn-yes">Yes</button>
+          <button type="button" class="btn btn-danger" id="modal-btn-no">No</button>
+        </div>
+    </div>
+  </div>
+</div>
     <!-- JavaScript files-->
     <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/popper.js/umd/popper.min.js"> </script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Main File-->
     <script src="../js/front.js"></script>

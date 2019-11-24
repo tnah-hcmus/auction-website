@@ -143,14 +143,12 @@ nav.side-navbar a .badge {
 nav.side-navbar .sidebar-header {
   padding: 30px 15px;
 }
-
 nav.side-navbar .avatar .img-fluid {
   width: 45px;
   height: 45px;
   object-fit: cover;
   border-radius: 16px;
 }
-
 nav.side-navbar .title {
   margin-left: 10px;
 }
@@ -285,6 +283,40 @@ nav.side-navbar ul li ul {
   }
 }
 
+.profile
+{
+  color: #4d4d4a
+}
+
+.profile .avatar .img-fluid {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 20px auto;
+}
+
+.checklist label {
+  font-size: 0.8em;
+  color: #999;
+  line-height: 1.8em;
+  margin-bottom: 0;
+}
+
+.checklist .item {
+  padding: 20px;
+}
+
+.checklist .item:nth-of-type(even) {
+  background: #fafafa;
+}
+
+.checklist .checkbox
+{
+  border-radius: 2px;
+  width: 100px;
+  margin-right: 12px;
+}
 /*    CARD    */
 
 .card-close {
