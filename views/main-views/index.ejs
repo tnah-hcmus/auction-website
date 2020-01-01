@@ -24,21 +24,7 @@
     <% include ../partial-layout/header%>
     <header class="masthead">
         <div class="container">
-            <div class="input-group search-bar text-center">
-                <div class="input-group-prepend dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fas fa-filter"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Search by name</a>
-                        <a class="dropdown-item" href="#">Search by category</a>
-                    </div>
-                </div>
-                <input type="text" class="form-control" placeholder="Search your goods">
-                <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
+            <% include ../partial-layout/search-bar%>            
             <div class="row">
                 <div class="col-lg-6 intro-text">
                     <div class="intro-lead-in">Welcome To Our Auction!</div>
@@ -129,29 +115,29 @@
             </div>
             <div class="row" id="list-nav">
                 <div class="col-lg-2">
-                    <h4><a class="list-title active text-muted" href="#list">Almost end</a></h4>
+                    <h4><a class="list-title <%= nearest %> text-muted" href="?sort=nearest#list">Almost end</a></h4>
                 </div>
                 <div class="col-lg-2">
-                    <h4><a class="list-title text-muted" href="#">Highest price</a></h4>
+                    <h4><a class="list-title <%= highest %> text-muted" href="?sort=highest#list">Highest price</a></h4>
                 </div>
                 <div class="col-lg-2">
-                    <h4><a class="list-title text-muted" href="#">Best price</a></h4>
+                    <h4><a class="list-title <%= best %> text-muted" href="?sort=best#list">Best price</a></h4>
                 </div>
                 <div class="col-lg-2">
-                    <h4><a class="list-title text-muted" href="#">Hottest price</a></h4>
+                    <h4><a class="list-title <%= hottest %> text-muted" href="?sort=hottest#list">Hottest product</a></h4>
                 </div>
             </div>
             <div class="row">
                 <% items.forEach(function(item) { %>
                 <div class="col-md-4 col-sm-6 list-item">
-                    <a class="list-link" data-toggle="modal" href="#<%= item.tag %>">
+                    <a class="list-link" data-toggle="modal" href="#P<%= item.id %>">
                         <div class="list-hover">
                             <div class="list-hover-content">
                                 <i class="fas fa-plus fa-3x"></i>
                             </div>
                         </div>
                         <div class="container">
-                            <img class="img-fluid" src="img/top-chart/<%= item.imgID %>-thumbnail.jpg">
+                            <img class="img-fluid" src="img/thumbnail/<%= item.id %>-thumbnail.jpg">
                         </div>
                     </a>
                     <div class="list-caption">
@@ -163,7 +149,7 @@
                             <%= item.price %></a>
                         <div>
                             <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                                <a href="/detailsProduct"><i class="fas fa-search"></i></a></button>
+                                <a href="/detailsProduct?id=<%= item.id %>"><i class="fas fa-search"></i></a></button>
                             <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
                             <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                             </button>
@@ -186,13 +172,13 @@
                         <div class="card">
                             <div class="card-header p-2">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= faq.name %>">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#question-<%= faq.id %>">
                                         Q:
                                         <%= faq.question %>?
                                     </button>
                                 </h5>
                             </div>
-                            <div id="<%= faq.name %>" class="collapse" data-parent="#FAQ">
+                            <div id="question-<%= faq.id %>" class="collapse" data-parent="#FAQ">
                                 <div class="card-body">
                                     <b>Answer:</b>
                                     <%= faq.answer %>
@@ -210,9 +196,9 @@
     </section>
     <% include ../partial-layout/footer%>
     <!-- list Modals -->
-    <!-- Modal 1 -->
+    <!-- Modal -->
     <% items.forEach(function(item) { %>
-    <div class="list-modal modal fade" id="<%= item.tag %>" tabindex="-1" role="dialog">
+    <div class="list-modal modal fade" id="P<%= item.id %>" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-dismiss="modal">
@@ -224,7 +210,7 @@
                     <div class="row featurette ">
                         <div class="col-lg-5 mx-auto">
                             <div class="modal-body">
-                                <img class="img-fluid d-block mx-auto mt-5" src="img/top-chart/<%= item.imgID %>-full.jpg" alt="">
+                                <img class="img-fluid" src="img/thumbnail/<%= item.id %>-thumbnail.jpg">
                                 <div>
                                     <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
                                     <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
@@ -242,17 +228,15 @@
                             </h1>
                             <hr class="featurette-divider">
                             <!-- Project Details Go Here -->
-                            <p class="content">ABCDE laptop on the lid is designed with aluminum alloy with characteristic concentric circles, in addition to the surface is covered with a layer of flashy diamond imitation with advanced nano embossing technology, "light
-                                weight" standard with 1.2kg weight. The design of the device tapers towards the keyboard, so holding the phone or moving is still comfortable and easy.</p>
-                            <!--<%= item.description %>-->
+                            <p class="content"><%= item.details %></p>
                             <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $
-                                <%= item.price+200 %>
+                                <%= item.buynow %>
                             </button>
                             <ul class="list-inline content mx-auto">
-                                <li>People post the product: <%= item.own %></li>
+                                <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>
                                 <li>Posted date: <%= item.dateStart %></li>
                                 <li>End date: <%= item.dateEnd %></li>
-                                <li>Category: <%= item.type %></li>
+                                <li>Category: <%= item.category %></li>
                             </ul>
                         </div>
                     </div>

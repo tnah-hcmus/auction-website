@@ -31,23 +31,7 @@
     <!-- Header -->
     <header class="masthead">
         <div class="container">
-            <div class="input-group search-bar text-center">
-                <div class="input-group-prepend dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fas fa-filter"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Search by name</a>
-                        <a class="dropdown-item" href="#">Search by category</a>
-                    </div>
-                </div>
-                <input type="text" class="form-control" placeholder="Search your goods">
-                <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                </div>
-
-            </div>
-            <br> <br>
+            <% include ../partial-layout/search-bar%>
         </div>
     </header>
 
@@ -56,8 +40,8 @@
         <div class="container ">
             <ul class="breadcrumb">
                 <li><a href="/index">Home</a></li>
-                <li><a href="/list-view">Product</a></li>
-                <li><a href="/list-view">Laptop</a></li>
+                <li><a href="/list-view/1?category=all">Product</a></li>
+                <li><a href="/list-view/1?category=<%= product.catID %>"><%= product.category %></a></li>
                 <li><%= product.name %></li>
             </ul>
             <hr class="featurette-divider ">
@@ -114,12 +98,11 @@
 
                 <div class="col-lg-7 mx-auto">
                     <!-- Project Details Go Here -->
-                    <p class="content">ABCDE laptop on the lid is designed with aluminum alloy with characteristic concentric circles, in addition to the surface is covered with a layer of flashy diamond imitation with advanced nano embossing technology, "light weight"
-                        standard with 1.2kg weight. The design of the device tapers towards the keyboard, so holding the phone or moving is still comfortable and easy.</p><!--<%= product.description %>-->
+                    <p class="content"><%= product.description %></p>
 
                     <h1 class=" product-price mt-4"> Current Bid: $<%= product.price %></h1>
                     <hr class="featurette-divider">
-                    <button data-target="#alert-login" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $<%= product.price + 200 %>
+                    <button data-target="#alert-login" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $<%= product.buynow%>
                 </button>
 
                     <!-- bid box -->
@@ -168,40 +151,24 @@
       <div class="container">
         <div class="tab">
           <button class="tablink" onclick="openTab('Description',this)" id="defaultOpen">DESCRIPTION </button>
-                        <button class="tablink" onclick="openTab('Auction history',this)">AUCTION HISTORY</button>
+                        <button class="tablink" onclick="openTab('Holder',this)">HOLD</button>
                         <button class="tablink" onclick="openTab('Vendor info',this)">VENDOR INFO</button>
                     </div>
 
                     <!-- Tab content -->
                     <div id="Description" class="tabcontent">
-                        <p class="content">ABCDE laptop on the lid is designed with aluminum alloy with characteristic concentric circles, in addition to the surface is covered with a layer of flashy diamond imitation with advanced nano embossing technology, "light weight"
-                            standard with 1.2kg weight. The design of the device tapers towards the keyboard, so holding the phone or moving is still comfortable and easy.</p><!--<%= product.description %>-->
+                        <p class="content"><%= product.detail %></p>
                     </div>
 
-                    <div id="Auction history" class="tabcontent">
-                        <table>
-                            <tr>
-                                <th>Date</th>
-                                <th>Bid</th>
-                                <th>User</th>
-                                <th>Note</th>
-                            </tr>
-                            <% history.forEach(function(bid) { %>
-                            <tr>
-                                <td> <%= bid.date %> </td>
-                                <td> $<%= bid.price %> </td>
-                                <td> <%= bid.user %> </td>
-                                <td> <%= bid.note %> </td>
-                            </tr>
-                            <% }); %>
-                        </table>
+                    <div id="Holder" class="tabcontent">
+                        <p><i class="fas fa-user"></i>Bidder: <%= product.hold%> <a href="#" class="link"><b>Model</b></a></p>
+                        <p><i class="fas fa-star link"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%= product.bidRating %>from reviewer</p>
                     </div>
 
                     <div id="Vendor info" class="tabcontent">
-                        <p><i class="fas fa-shopping-cart"></i>Store Name: <%= user.name %></p>
-                        <p><i class="fas fa-user"></i>Vendor: <b><%= product.type %></b></p>
-                        <p><i class="fas fa-map-marker-alt"></i><b>Address: </b><%= user.address %></p>
-                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%= user.rating %> rating from reviewer</p>
+                        <p><i class="fas fa-shopping-cart"></i>Store Name: <%= own.name %></p>
+                        <p><i class="fas fa-user"></i>Email: <b><%= own.email %></b></p>
+                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0 rating from reviewer</p> <!---<%= own.rating %> -->
                     </div>
                 </div>
 
@@ -218,15 +185,15 @@
             </div>
             <div class="row">
                 <% relateItems.forEach(function(item) { %>
-                <div class="col-md-4 col-sm-6 list-item">
-                    <a class="list-link" data-toggle="modal" href="#<%= item.tag %>">
+               <div class="col-md-4 col-sm-6 list-item">
+                    <a class="list-link" data-toggle="modal" href="#<%= item.id %>">
                         <div class="list-hover">
                             <div class="list-hover-content">
                                 <i class="fas fa-plus fa-3x"></i>
                             </div>
                         </div>
                         <div class="container">
-                            <img class="img-fluid" src="img/top-chart/<%= item.imgID %>-thumbnail.jpg">
+                            <img class="img-fluid" src="img/thumbnail/<%= item.id %>-thumbnail.jpg">
                         </div>
                     </a>
                     <div class="list-caption">
@@ -238,7 +205,7 @@
                             <%= item.price %></a>
                         <div>
                             <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                                <a href="/detailsProduct"><i class="fas fa-search"></i></a></button>
+                                <a href="/detailsProduct?<%= item.id %>"><i class="fas fa-search"></i></a></button>
                             <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
                             <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                             </button>
@@ -252,7 +219,7 @@
 
     </div>
 
-    <% include ../partial-layout/header%>
+    <% include ../partial-layout/footer%>
 
 
 
