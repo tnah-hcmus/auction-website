@@ -33,6 +33,18 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+span p .text-muted{
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.review {
+  background-color: #e0e0e0;
+  border: 2px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 25px;
+}
+
 .left-border {
   box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.5);
   margin-top: 15px;
@@ -120,8 +132,9 @@ h6 {
 
 .review-avatar{
   vertical-align: middle;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  margin: 20px;
   border-radius: 50%;
 }
 
@@ -159,6 +172,16 @@ h6 {
   margin-top: 30px; /* Add a top margin to avoid content overlay */
 }
 
+
+/*review card*/
+
+.review-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
+}
+
 /*profile card*/
 
 .card {
@@ -191,6 +214,13 @@ h6 {
   font-size: 22px;
   color: black;
 }
+
+.card div p button a {
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+}
+
 
 .card p button:hover, a:hover {
   opacity: 0.7;
@@ -398,7 +428,7 @@ tr:nth-child(even) {
   font-family: Arial, Helvetica, sans-serif;
 }
 .page-section {
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .page-section h2.section-heading {

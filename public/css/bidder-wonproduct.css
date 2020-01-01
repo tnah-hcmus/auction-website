@@ -24,7 +24,9 @@ h2,
 h3{
    font-family: "Titillium Web", sans-serif;
 }
-h4,
+h4{
+  font-family: Franklin Gothic Medium, sans-serif;
+}
 h5,
 h6 {
   font-weight: 700;
@@ -216,6 +218,13 @@ textarea{
   font-size: 22px;
   color: black;
 }
+
+.card div p button a {
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+}
+
 
 .card p button:hover, a:hover {
   opacity: 0.7;
@@ -635,7 +644,8 @@ header.masthead .intro-text .intro-heading {
 #list .list-item .list-caption {
   max-width: 400px;
   margin: 0 auto;
-  padding: 15px 5px;
+  /*padding: 25px;*/
+  padding-bottom: 10px;
   text-align: center;
   background-color: #fff;
 }
@@ -652,6 +662,22 @@ header.masthead .intro-text .intro-heading {
   font-family: 'Droid Serif', sans-serif;
 }
 
+#list .list-item .list-caption hr {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+} 
+
+
+
+#list .list-item .list-caption span {
+  float: left;
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: 'Droid Serif', sans-serif;
+}
 .list-caption p a {
   float: right;
 }
