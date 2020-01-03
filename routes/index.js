@@ -1,6 +1,5 @@
 var express = require('express');
 const guestModel = require('../models/guest.model');
-const bidderModel = require('../models/bidder.model');
 var cookieParser = require('cookie-parser');
 var passport 	 = require('passport');
 var session      = require('express-session')

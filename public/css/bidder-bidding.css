@@ -100,9 +100,9 @@ h6 {
 }
 
 /* Individual bars */
-.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
+/*.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
 .bar-down {width: 30%; height: 18px; background-color: #2196F3;}
-
+*/
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
   .side, .middle {
@@ -786,10 +786,10 @@ background-color: : #fff;
 #list .list-item .list-caption span {
   float: left;
   margin: 0;
-  font-size: 16px;
+  font-size: 12px;
   font-style: italic;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 20px;
+  padding-right: 10px;
   font-family: 'Droid Serif', sans-serif;
 }
 
