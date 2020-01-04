@@ -117,7 +117,7 @@
                     <div class="col-lg-7 mx-auto">
                         <!-- Project Details Go Here -->
                         <p class="content">
-                            <%= product.description %>
+                            <%= product.detail %>
                         </p>
                         <h1 class=" product-price mt-4"> Current Bid: $
                             <%= product.price %>
@@ -125,7 +125,7 @@
                         <hr class="featurette-divider">
                         <ul class="list-inline content mx-auto">
                             <li>Item condition:
-                                <%= product.status %>
+                                <!--%= product.status %!-->
                             </li>
                             <li>Auction starts:
                                 <%= product.dateStart %>
@@ -181,16 +181,16 @@
                         <% history.forEach(function(bid) { %>
                             <tr>
                                 <td>
-                                    <%= bid.date %>
+                                    <%= bid.time %>
                                 </td>
                                 <td> $
-                                    <%= bid.price %>
+                                    <%= bid.current_price %>
                                 </td>
                                 <td>
-                                    <%= bid.user %>
+                                    <%= bid.bidder %>
                                 </td>
                                 <td>
-                                    <%= bid.note %>
+                                    <p> test </p>
                                 </td>
                                 <td><button class="btn btn-primary btn-refuse">Refuse</button></td>
                             </tr>
@@ -202,12 +202,11 @@
                     <p><i class="fas fa-shopping-cart"></i>Store Name:
                         <%= user.name %>
                     </p>
-                    <p><i class="fas fa-user"></i>Vendor: <b><%= product.type %></b></p>
-                    <p><i class="fas fa-map-marker-alt"></i><b>Address: </b>
-                        <%= user.address %>
+                    <p><i class="fas fa-user"></i>Vendor: <b><%= product.category %></b></p>
+                    <p><i class="fas fa-map-marker-alt"></i><b>Email: </b>
+                        <%= user.email %>
                     </p>
-                    <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        <%= user.rating %> rating from reviewer</p>
+                    <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5 rating from reviewer</p>
                 </div>
             </div>
 
