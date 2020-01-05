@@ -31,22 +31,35 @@ router.get('/detailsProduct-seller', async(req, res, next) => {
     });
 });
 
-/*
-//List of product page
-router.get('/detailsProduct-seller/laptop-list', function(req, res, next) {
-    var category = { name: 'Laptop', description: 'Máy tính xách tay giá rẻ', length: 5 };
-    var items = [
-        { name: 'Laptop A', tag: 'chart-item-1', imgID: '01', price: 600, own: 'BlackPink', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019' },
-        { name: 'Laptop B', tag: 'chart-item-2', imgID: '02', price: 600, own: 'BlackPink', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019' },
-        { name: 'Laptop C', tag: 'chart-item-3', imgID: '03', price: 600, own: 'BlackPink', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019' },
-        { name: 'Laptop D', tag: 'chart-item-4', imgID: '04', price: 600, own: 'BlackPink', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019' },
-        { name: 'Laptop E', tag: 'chart-item-5', imgID: '05', price: 600, own: 'BlackPink', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019' }
-    ];
-    res.render('main-views/list-view-laptop', {
-        category: category,
-        list: items
+//Profile page
+router.get('/profile-seller', async(req, res, next) => {
+    const idU = String(req.query.idU);
+    var json = await sellerModel.getSellerbyID(idU);
+    var user = JSON.parse(JSON.stringify(json))[0];
+    json = await sellerModel.getTotalLike(idU);
+    var totalLike = JSON.parse(JSON.stringify(json))[0];
+    var result = await sellerModel.getTotalDislike(idU);
+    var totalDislike = JSON.parse(JSON.stringify(result))[0];
+    var temp = totalLike.totalLike + totalDislike.totalDisLike;
+    var point = totalLike.totalLike + "/" + temp;
+    var percentLike = (totalLike.totalLike / temp) * 100;
+    var percentDislike = 100 - percentLike;
+    json = await sellerModel.getdateJoinbyID(idU);
+    var dateJoin = JSON.parse(JSON.stringify(json))[0];
+    const categoryList = await sellerModel.getListCategory();
+
+    res.render('seller-layout/profile-seller', {
+        catList: categoryList,
+        user: user,
+        idU: idU,
+        totalLike: totalLike,
+        totalDislike: totalDislike,
+        point: point,
+        percentLike: percentLike,
+        percentDislike: percentDislike,
+        dateJoin: dateJoin,
     });
-});*/
+});
 
 //Auctioned product - seller page
 router.get('/auctionedProduct-seller/:page', async(req, res, next) => {
