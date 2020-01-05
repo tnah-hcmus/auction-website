@@ -1,4 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var configAuth = require('./auth');
 
 // load up the user model
 var bcrypt = require('bcryptjs');
@@ -51,7 +53,8 @@ module.exports = function(passport) {
                 catch(e) {
                     return done(e);
                 }
-                var insert = await userModel.insertUser(newUser.username, newUser.password);
+                newUser.name = req.body.name;
+                var insert = await userModel.insertUser(newUser.username, newUser.password, newUser.name);
                 newUser.id = insert.insertId;
                 return done(null, newUser);
                 }
@@ -75,5 +78,29 @@ module.exports = function(passport) {
 
                 // all is well, return successful user
                 return done(null, users[0]);
+            }));
+    passport.use(new FacebookStrategy({
+            clientID: configAuth.facebookAuth.clientID,
+            clientSecret: configAuth.facebookAuth.clientSecret,
+            callbackURL: configAuth.facebookAuth.callbackURL,
+            profileFields: ['id','displayName','email','first_name','last_name','middle_name']
+            },
+            async (token, refreshToken, profile, done) => {
+                console.log(profile);
+                const user = await userModel.findUserById(profile.id);
+                if (user.length){
+                    return done(null, user);
+                }
+                else
+                {
+                    var password = '123123788';
+                    var newUser = {
+                        id: profile.id,
+                        username: profile.id,
+                        password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
+                    };
+                    var insert = await userModel.insertUser(newUser.username, newUser.password);
+                    return done(null, newUser);
+                }
             }));
 };

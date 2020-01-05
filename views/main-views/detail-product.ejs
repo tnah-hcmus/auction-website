@@ -117,9 +117,8 @@
                         <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
                     </form>
                     <ul class="list-inline content mx-auto">
-                        <li>Item condition: <%= product.status %></li>
-                        <li>Auction starts: <%= product.dateStart %></li>
-                        <li>Auction ends: <%= product.dateEnd %></li>
+                        <li>Đã đăng: <%= product.dayStart %> ngày <%= product.hourStart %> tiếng <%= product.minStart %> phút trước </li>
+                        <li>Kết thúc trong: <%= product.dayEnd %> ngày <%= product.hourEnd %> tiếng <%= product.minEnd %> phút nữa </li>
                     </ul>
               </div>
           </div>
@@ -161,7 +160,7 @@
                     </div>
 
                     <div id="Holder" class="tabcontent">
-                        <p><i class="fas fa-user"></i>Bidder: <%= product.hold%> <a href="#" class="link"><b>Model</b></a></p>
+                        <p><i class="fas fa-user"></i>Bidder: <%= product.hold%> </p>
                         <p><i class="fas fa-star link"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%= product.bidRating %>from reviewer</p>
                     </div>
 

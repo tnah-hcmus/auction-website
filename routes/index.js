@@ -4,8 +4,13 @@ var cookieParser = require('cookie-parser');
 var passport 	 = require('passport');
 var session      = require('express-session')
 var flash    = require('connect-flash');
+var moment = require('moment');
+var Recaptcha = require('express-recaptcha').RecaptchaV2;
+const userModel = require('../models/user.model');
 var router = express.Router();
 
+//import Recaptcha from 'express-recaptcha'
+var recaptcha = new Recaptcha('6Lf5cswUAAAAADGJaL_6T1teTwQRxjSRLV7Ia1TP', '6Lf5cswUAAAAAJOuMnedrEBVeGbTqQGI2iRoUCtX');
 require('../config/passport')(passport);
 router.use(cookieParser());
 
@@ -17,11 +22,12 @@ router.use(flash());
 
 //Login page
 
-router.get('/login', async(req, res, next) => {
+router.get('/login', recaptcha.middleware.render, async(req, res, next) => {
   const categoryList = await guestModel.getListCategory();
   res.render('main-views/login', { 
     title: 'Login page',
-    catList: categoryList
+    catList: categoryList,
+    captcha : res.recaptcha
   });
 });
 
@@ -31,7 +37,15 @@ router.post('/login', passport.authenticate('local-login', {
         failureFlash : true
     }));
 
-router.post('/signup', passport.authenticate('local-signup', {
+router.post('/login/check', async(req, res) => {
+  var username = req.body.username;
+  const users = await userModel.findUserByName(username);
+  if (users.length) {
+    res.send('already');
+  } 
+})
+
+router.post('/signup', recaptcha.middleware.verify, captchaVerification, passport.authenticate('local-signup', {
         successRedirect : '/profile', // Điều hướng tới trang hiển thị profile
         failureRedirect : '/signup', // Trở lại trang đăng ký nếu lỗi
         failureFlash : true 
@@ -50,13 +64,19 @@ router.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+            successRedirect: '/profile',
+            failureRedirect: '/'
+        })
+    );
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
     res.redirect('/');
 }
 
-//Product-view page
+//Product-view process.memoryUsage();
 router.get('/detailsProduct', async(req, res, next) => {
   const id = String(req.query.id);
   const categoryList = await guestModel.getListCategory();
@@ -67,6 +87,16 @@ router.get('/detailsProduct', async(req, res, next) => {
   result = await guestModel.getOwnerbyID(id);  
 	const seller = JSON.parse(JSON.stringify(result))[0];
 	var items = await guestModel.getRelateItembyID(id);
+  var now = moment();
+  var start = one.dateStart;
+  var end = one.dateEnd;
+  one.dayStart = now.diff(start,'days');
+  one.hourStart = now.diff(start, 'hours'); - one.dayStart*24;
+  one.minStart = now.diff(start, 'minutes') - one.hourStart*60 - one.dayStart*24*60;
+  one.dayEnd = -now.diff(end,'days');
+  one.hourEnd = -now.diff(end, 'hours') - one.dayEnd*24;
+  one.minEnd = -now.diff(end, 'minutes') - one.hourEnd*60 - one.dayEnd*24*60;
+
 	res.render('main-views/detail-product', { 
 		product: one,
     catList: categoryList,
@@ -77,12 +107,13 @@ router.get('/detailsProduct', async(req, res, next) => {
 });
 //Search page
 router.get('/search/:page', async(req, res, next) => {
-  var input = req.cookies["input"];
-  const filter = String(req.query.filter);
+  var input = req.cookies["input"] || "";
+  console.log(input);
+  var filter = String(req.query.filter);
+  if (filter == 'undefined') filter = String(req.query.search);
   const categoryList = await guestModel.getListCategory();
   var dataPerPage = 1;
   var page = req.params.page || 1;
-  console.log(page);
   var skip = dataPerPage*(page - 1);
   if(filter == 'name')
   {
@@ -96,13 +127,15 @@ router.get('/search/:page', async(req, res, next) => {
   	var json = await guestModel.getNumSeachByCategory(input);
   	var length = JSON.parse(JSON.stringify(json))[0].num;
   }
+  var recent = 3600;
   res.render('main-views/search', { 
   	catList: categoryList,
   	filter: filter,
   	list: result,
   	current:page,
   	length:length,
-  	pages: Math.floor(length/dataPerPage)
+  	pages: Math.floor(length/dataPerPage),
+    recent: recent
   });
 });
 router.post('/search/:page', async(req, res, next) => {
@@ -146,6 +179,7 @@ router.get('/list-view/:page', async(req, res, next) => {
 			var result = await guestModel.getInfoCategory(catID);
 			var category = JSON.parse(JSON.stringify(result))[0];
 	}
+  var recent = 3600;
 	res.render('main-views/list-view', { 
 		category: category,
 		filter: search,
@@ -153,7 +187,8 @@ router.get('/list-view/:page', async(req, res, next) => {
 		catList: categoryList,
 		catID: catID,
 		current: page,
-		pages: Math.floor(category.length/dataPerPage)
+		pages: Math.floor(category.length/dataPerPage),
+    recent: recent
 	});
 });
 
@@ -202,7 +237,14 @@ router.get(/\/index|\//, async(req, res, next) => {
     res.end('View error log in console.');
   }
 });
-
+function captchaVerification(req, res, next) {
+    if (req.recaptcha.error) {
+        req.flash('signupMessage','reCAPTCHA Incorrect');
+        res.redirect('back');
+    } else {
+        return next();
+    }
+}
 
 
 module.exports = router;

@@ -69,17 +69,26 @@ $(document).ready(function () {
     function TableEdit() {
 
   
-        $('td').click(function() {        
-            var td_value = $(this).html();
-            var input_field = '<input type="text" id="edit" value="' + td_value + '" />'
+        $('td:not(.not-edit)').click(function() {        
+            var old_text = $(this).html();
+            var tr = $(this).parents('tr').first();
+            var child = tr.children();
+            var id = parseInt(child[0].innerHTML);
+            var th = $("table thead tr th").eq($(this).index()).html().toUpperCase();
+            var path = window.location.pathname;
+            var input_field = '<input type="text" id="edit" value="' + old_text + '" />'
             $(this).empty().append(input_field);
             $('input').focus();
             var i = 0;
             $('td').off('click');
-        
             $(this).find('input').blur(function(){
             var new_text = $(this).val();
             $(this).parent().html(new_text);
+            if (old_text != new_text)
+            {
+                $.post(path+'/edit', { id: id, column:th, info: new_text });
+
+            }
             TableEdit();
             })
         });
@@ -103,22 +112,56 @@ $(document).ready(function () {
         });
     }
     $(".delete").on("click", function() {
-
         var tr = $(this).parents('tr').first();
-        confirmForm(function(confirm) {
+        var child = tr.children();
+        var id = parseInt(child[0].innerHTML);
+        var path = window.location.pathname;
+        if (path == '/admin/category')
+        {
+            var number = parseInt(child[2].innerHTML);
+            confirmForm(function(confirm) {
+            if(confirm)
+            {
+                if(number == 0)
+                {
+                    tr.remove();
+                    $.post(path+'/delete', { id: id, number: number }, function(id, number, status, jqXHR) {// success callback
+                            console.log(id);
+                        });
+                }
+                else
+                {
+                    alert("Remain product in this category");
+                }
+            }
+            });
+        }
+        if (path == '/admin/view-request')
+        {
+            confirmForm(function(confirm) {
             if(confirm)
             {
                 tr.remove();
+                $.post(path+'/reject-request', { id: id}, function(id, number, status, jqXHR) {// success callback
+                        console.log(id);
+                });
             }
-        });
+            });
+        }             
     });
     $(".accept").on("click", function() {
 
         var tr = $(this).parents('tr').first();
+        var child = tr.children();
+        var id = parseInt(child[0].innerHTML);
+        var path = window.location.pathname;
         confirmForm(function(confirm) {
             if(confirm)
             {
                 tr.remove();
+                $.post(path+'/accept-request', { id: id }, function(id, number, status, jqXHR) {// success callback
+                        console.log(id);
+                });
             }
         });
     });
@@ -129,5 +172,4 @@ $(document).ready(function () {
     }
     $('#cancel').click(toggleAddForm);
     $('#add-btn').click(toggleAddForm);
-    $('#submit-btn').click(toggleAddForm);
 });

@@ -76,6 +76,7 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
 
+
 function addedWatchList() {
   alert("Added to your watch list!");
 }

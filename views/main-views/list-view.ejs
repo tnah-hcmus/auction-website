@@ -54,6 +54,9 @@
           </a>
           <div class="list-caption">
             <h4><%= item.name %></h4>
+            <% if (item.postTime < recent) { %>
+              <p class="text-muted">Mới</p>
+            <% } %>
             <p class="text-muted">Chủ sở hữu: ****<%= item.hold.substring(4,50) %></p>
             <p class="text-muted">Giá hiện tại: $<%= item.price %></p>
           </div>
@@ -61,7 +64,7 @@
         <% }); %>
         </div>
       <% if (pages > 0) { %>
-                <ul class="pagination justify-content-center">
+                <ul class="pagination text-center">
                     <% if (current == 1) { %>
                         <li class="page-item disabled"><a class="page-link">First</a></li>
                     <% } else { %>
@@ -109,7 +112,7 @@
                             <div class="modal-body">
                                 <img class="img-fluid" src="/img/thumbnail/<%= item.ID %>-thumbnail.jpg">
                                 <div>
-                                    <button type="button" class="btn-bid btn-outline-warning"><a href="/detailsProduct?id=<%= item.id %>"><i class="fas fa-search"></i></a></button>
+                                    <button type="button" class="btn-bid btn-outline-warning"><a href="/detailsProduct?id=<%= item.ID %>"><i class="fas fa-search"></i></a></button>
                                     <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
                                     <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                                     </button>
@@ -123,16 +126,19 @@
                             <h1 class=" product-price mt-4"> Current Bid: $
                                 <%= item.price %>
                             </h1>
+                            <h1 class=" product-price mt-4"> Số lượt ra giá:
+                                <%= item.auctionTime %>
+                            </h1>
                             <hr class="featurette-divider">
+                            <!-- Project Details Go Here -->
                             <p class="content"><%= item.details %></p>
                             <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $
                                 <%= item.buynow %>
                             </button>
                             <ul class="list-inline content mx-auto">
-                                <li>People post the product: <%= item.own %></li>
-                                <li>Posted date: <%= item.dateStart %></li>
-                                <li>End date: <%= item.dateEnd %></li>
-                                <li>Category: <%= item.type %></li>
+                                <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>
+                                <li>Remaining time: <%= item.remain %> seconds</li>
+                                <li>Category: <%= item.category %></li>
                             </ul>
                         </div>
                     </div>
