@@ -60,19 +60,25 @@ function toggleSignUp(e){
     $('#logreg-forms .form-signup').toggle(); // display:block or none
 }
 
+
+$(document).ready(function(){
+      $("#signup-mail").blur(function(){
+      var path = window.location.pathname;
+      var new_text = $(this).val();
+      $.post(path+'/check', { username: new_text}, function(data)
+        {
+          $("#signup-mail").val('');
+          if(data == 'already') alert("This username is already taken.");
+        });
+    });
+});
 $(document).ready(function(){
     // Login Register Form
     $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
     $('#logreg-forms #cancel_reset').click(toggleResetPswd);
     $('#logreg-forms #btn-signup').click(toggleSignUp);
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
-})
 
-})(jQuery); // End of use strict
-
- //<!-- tooltip -->
-
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
 });
 
+})(jQuery); // End of use strict

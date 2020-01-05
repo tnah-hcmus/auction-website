@@ -226,6 +226,9 @@
                             <h1 class=" product-price mt-4"> Current Bid: $
                                 <%= item.price %>
                             </h1>
+                            <h1 class=" product-price mt-4"> Số lượt ra giá:
+                                <%= item.auctionTime %>
+                            </h1>
                             <hr class="featurette-divider">
                             <!-- Project Details Go Here -->
                             <p class="content"><%= item.details %></p>
@@ -234,8 +237,7 @@
                             </button>
                             <ul class="list-inline content mx-auto">
                                 <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>
-                                <li>Posted date: <%= item.dateStart %></li>
-                                <li>End date: <%= item.dateEnd %></li>
+                                <li>Remaining time: <%= item.remain %> seconds</li>
                                 <li>Category: <%= item.category %></li>
                             </ul>
                         </div>
