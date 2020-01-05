@@ -1,86 +1,16 @@
 var express = require('express');
 const guestModel = require('../models/guest.model');
 var cookieParser = require('cookie-parser');
-var passport 	 = require('passport');
-var session      = require('express-session')
-var flash    = require('connect-flash');
 var moment = require('moment');
-var Recaptcha = require('express-recaptcha').RecaptchaV2;
-const userModel = require('../models/user.model');
 var router = express.Router();
 
 //import Recaptcha from 'express-recaptcha'
-var recaptcha = new Recaptcha('6Lf5cswUAAAAADGJaL_6T1teTwQRxjSRLV7Ia1TP', '6Lf5cswUAAAAAJOuMnedrEBVeGbTqQGI2iRoUCtX');
-require('../config/passport')(passport);
 router.use(cookieParser());
-
-router.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-
-router.use(passport.initialize());
-router.use(passport.session()); 
-router.use(flash()); 
-
-//Login page
-
-router.get('/login', recaptcha.middleware.render, async(req, res, next) => {
-  const categoryList = await guestModel.getListCategory();
-  console.log(req.session.passport);
-  res.render('main-views/login', { 
-    title: 'Login page',
-    catList: categoryList,
-    captcha : res.recaptcha
-  });
-});
-
-router.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile',
-        failureRedirect : '/login', 
-        failureFlash : true
-    }));
-
-router.post('/login/check', async(req, res) => {
-  var username = req.body.username;
-  const users = await userModel.findUserByName(username);
-  if (users.length) {
-    res.send('already');
-  } 
-})
-
-router.post('/signup', recaptcha.middleware.verify, captchaVerification, passport.authenticate('local-signup', {
-        successRedirect : '/profile', // Điều hướng tới trang hiển thị profile
-        failureRedirect : '/signup', // Trở lại trang đăng ký nếu lỗi
-        failureFlash : true 
-    }));
-router.get('/profile', isLoggedIn, async(req, res) => {
-        const categoryList = await guestModel.getListCategory();
-        console.log(req.session.passport.user);
-        var filter = String(req.query.filter);
-        if (filter == 'undefined') filter = 'name';
-        res.render('main-views/profile', {
-            user : req.user, // truyền đối tượng user cho profile.ejs để hiển thị lên view
-            filter: filter,
-            catList: categoryList
-        });
-    });
-router.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-            successRedirect: '/profile',
-            failureRedirect: '/'
-        })
-    );
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-}
 
 //Product-view process.memoryUsage();
 router.get('/detailsProduct', async(req, res, next) => {
   const id = String(req.query.id);
+  console.log(req.session.user);
   const categoryList = await guestModel.getListCategory();
   var filter = String(req.query.filter);
   if (filter == 'undefined') filter = 'name';
@@ -239,14 +169,6 @@ router.get(/\/index|\//, async(req, res, next) => {
     res.end('View error log in console.');
   }
 });
-function captchaVerification(req, res, next) {
-    if (req.recaptcha.error) {
-        req.flash('signupMessage','reCAPTCHA Incorrect');
-        res.redirect('back');
-    } else {
-        return next();
-    }
-}
 
 
 module.exports = router;
