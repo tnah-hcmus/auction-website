@@ -24,6 +24,7 @@ router.use(flash());
 
 router.get('/login', recaptcha.middleware.render, async(req, res, next) => {
   const categoryList = await guestModel.getListCategory();
+  console.log(req.session.passport);
   res.render('main-views/login', { 
     title: 'Login page',
     catList: categoryList,
@@ -52,6 +53,7 @@ router.post('/signup', recaptcha.middleware.verify, captchaVerification, passpor
     }));
 router.get('/profile', isLoggedIn, async(req, res) => {
         const categoryList = await guestModel.getListCategory();
+        console.log(req.session.passport.user);
         var filter = String(req.query.filter);
         if (filter == 'undefined') filter = 'name';
         res.render('main-views/profile', {

@@ -13,7 +13,7 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user);
     });
 
     // used to deserialize the user
@@ -56,6 +56,7 @@ module.exports = function(passport) {
                 newUser.name = req.body.name;
                 var insert = await userModel.insertUser(newUser.username, newUser.password, newUser.name);
                 newUser.id = insert.insertId;
+                req.session.cookie.expires = false;
                 return done(null, newUser);
                 }
             ));
