@@ -19,6 +19,11 @@ a:hover {
   color: #fed136 !important;
 }
 
+.none{
+  display: none;
+}
+
+
 h1,
 h2,
 h3{

@@ -141,7 +141,7 @@
                             <a class="text-muted a-currentbid">Current bid: </a>
                             <a class=" text-muted a-price">$<%= item.price %></a>
                             <hr class="featurette-divider "> 
-                            <span class="dot"><img class="avatar"src="/img/profile/user-<%= item.holdId %>.jpg"> ****<%= item.owner.substring(4,50) %></span>  
+                            <span class="dot"><img class="avatar"src="/img/profile/user-<%= item.holdId %>.jpg"> ****<%= item.owner.substring(4,20) %></span>  
                           </div>
                         </div>
                         <% }); %>
@@ -188,6 +188,7 @@
 
     <!-- list Modals -->
     <!-- Modal -->
+    <input class="none"  type="text" id="userId" value="<%= uid %>">
     <% items.forEach(function(item) { %>
     <div class="list-modal modal fade" id="P<%= item.id %>" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -201,10 +202,12 @@
                     <div class="row featurette ">
                         <div class="col-lg-5 mx-auto">
                             <div class="modal-body">
-                                <img class="img-fluid" src="img/thumbnail/<%= item.name %>-thumbnail.jpg">
+                                <img class="img-fluid" src="/img/thumbnail/<%= item.id %>-thumbnail.jpg">
                                 <div>
-                                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                                    <!-- <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button> -->
+                                    
+                                    <input class="none productId" type="text" value="<%= item.id %>">
+                                    <button id="addWatchList" type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
                                     <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                                     </button>
                                 </div>
@@ -244,22 +247,25 @@
             <div class="modal-content">              
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
+                      <!-- <input class="none"  type="text" id="userId" value="<%= uid %>"> -->
                     <div class="modal-header"> 
-                        <h4 class="modal-title">Your request has been send already!</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Do you want to be a seller?</h4>
+                        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
                     </div>
-                    <div class="modal-body">
+                  <!--   <div class="modal-body">
                         <p>Pleases wait for reponse.</p>
-                    </div>
+                    </div> -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
-                    </div>                             
+                         <button id="cancle" class="btn btn-warning" data-dismiss="modal" value="OK">NO</button>
+                          <button id="submit" type="button" class="btn btn-warning" data-dismiss="modal">YES</button> <!-- <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button> -->
+                    </div> 
+                                               
                 </div>
                 <!-- /INPUT CONTAINER -->
             </div> 
         </div>
-    </div>   
-    <!-- /request becomeseller modal -->       
+    </div> 
+  <!-- /request becomeseller modal -->       
   <!-- Footer -->
   <% include ../partial-layout/footer%>
 

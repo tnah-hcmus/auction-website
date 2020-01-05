@@ -80,7 +80,50 @@ $(document).ready(function(){
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 })
 
+$(document).ready(function(){
+        $("#submit").click(function(){
+          var userId = $("#userId").val();
+          console.log(userId+"dsfs");
+           $.ajax({
+                  type: 'POST',
+                  data: {"userid": userId},
+                  url: '/bidder/bidder-wonproduct/request',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                        alert("Send request succesfully! Please wait for response.");
+                      }
+                      else
+                      {
+                        alert("Your request has sended already! Please wait for response.");                        
+                      }
+                    });
+          });
+      });
 
+$(document).ready(function(){
+        $("#addWatchList").click(function(){
+          var userId = $("#userId").val();
+          var productId = $(".productId").val();
+          console.log(userId+"  " +productId);
+           $.ajax({
+                  type: 'POST',
+                  data: {"userId": userId, "productId" : productId},
+                  url: '/bidder/bidder-wonproduct/addWatchList',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                        alert("Added to yout Watch List succesfully!");
+                      }
+                      else
+                      {
+                        alert("This product has been added to your Watch List!");                        
+                      }
+                    });
+          });
+      });
 
 
 })(jQuery); // End of use strict

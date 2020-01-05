@@ -68,4 +68,124 @@ $(document).ready(function(){
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 })
 
+$(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd-mm-yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+
+$(document).ready(function(){
+        $("#saveInfo").click(function(){
+          var userId = $("#userId").val(); 
+          var name = $("#name").val();
+          var phone = $("#phone").val();
+          var email = $("#email").val();
+          var date = $("#date").val();
+          console.log(name+"  " +phone + "  " +email + "  " +date);
+           if (validateForm()){
+            $.ajax({
+                  type: 'POST',
+                  data: {"userId": userId, "name": name, "phone" : phone, "email": email, "date": date},
+                  url: window.location.assign('/bidder/bidder-account-setting/updateInfo'),
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                        alert("Change infomation succesfully!");
+                      }
+                      
+                    });
+           }
+           else
+                      {
+                        alert("Change fail!");                        
+                      }
+           
+          });
+      });
+
+$(document).ready(function(){
+        $("#savePass").click(function(){
+          var userId = $("#userId").val(); 
+          var currentPass = $("#current_pass").val();
+          var newPass = $("#new_pass").val();
+          var newPass2 = $("#new_pass2").val();
+          console.log(currentPass + "  " +newPass + "  " +newPass2);
+           if (validateForm()){
+            $.ajax({
+                  type: 'POST',
+                  data: {"userId": userId, "currentPass": currentPass, "newPass" : newPass, "newPass2": newPass2},
+                  url: '/bidder/bidder-account-setting/updatePass',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='0')
+                      {
+                        alert("Change Pass succesfully!");
+                        window.location.assign("/bidder/bidder-watchlist/1?id=8");
+                      }
+                      else if (data==='2'){
+                        alert("Current Password is incorrect!")
+                      }
+                      else{
+                        alert("New Passwords is incorrect!")
+                      }
+                      
+                    });
+           }
+           else
+                      {
+                        alert("Change fail!");                        
+                      }
+           
+          });
+      });
 })(jQuery); // End of use strict
+
+
+ function validateForm()  {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var date = document.getElementById("date").value;
+            console.log(name+"  " +phone + "  " +email + "  " +date);
+             if(name== "") {
+                 alert("Please enter your Name");
+                 return false;
+             }
+             if(email == "") {
+                 alert("Please enter you Email");
+                 return false;
+             }
+             if(phone == "") {
+                 alert("Please enter you Phone");
+                 return false;
+             }
+             if(date == "") {
+                 alert("Please enter you Birth Day");
+                 return false;
+             }
+ 
+             return true;
+         }
+
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();

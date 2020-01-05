@@ -68,6 +68,28 @@ $(document).ready(function(){
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 })
 
+$(document).ready(function(){
+        $("#submit").click(function(){
+          var userId = $("#userId").val();
+          console.log(userId+"dsfs");
+           $.ajax({
+                  type: 'POST',
+                  data: {"userid": userId},
+                  url: '/bidder/bidder-review/request',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                        alert("Send request succesfully! Please wait for response.");
+                      }
+                      else
+                      {
+                        alert("Your request has sended already! Please wait for response.");                        
+                      }
+                    });
+          });
+      });
+
 })(jQuery); // End of use strict
 
  //<!-- tooltip -->

@@ -6,10 +6,12 @@ var createError = require('http-errors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bidderRouter =require('./routes/bidder');
-
+// var bodyParser     =        require("body-parser");
 var app = express();
 
-// view engine setup
+// // view engine setup
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());	
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));

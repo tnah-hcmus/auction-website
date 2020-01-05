@@ -33,6 +33,10 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+.none{
+  display: none;
+}
+
 .a-price{
   font-size: 10px;
   font-family: Impact, Charcoal, sans-serif;

@@ -122,7 +122,8 @@
                       </div> 
                   </div>
               </div>
-
+        <!-- id user -->
+         <input class="none"  type="text" id="userId" value="<%= uid %>">
         <!-- request becomeseller modal -->
           <div class="modal fade" id="become-seller" role="dialog">
               <div class="modal-dialog">         
@@ -130,16 +131,18 @@
                 <div class="modal-content">              
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
-                      <div class="modal-header"> 
-                        <h4 class="modal-title">Your request has been send already!</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-                      <div class="modal-body">
-                        <p>Pleases wait for reponse.</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
-                      </div>                             
+                      
+                        <div class="modal-header"> 
+                            <h4 class="modal-title">Do you want to be a seller?</h4>
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                        </div>
+                      <!--   <div class="modal-body">
+                            <p>Pleases wait for reponse.</p>
+                        </div> -->
+                        <div class="modal-footer">
+                             <button id="cancle" class="btn btn-warning" data-dismiss="modal" value="OK">NO</button>
+                              <button id="submit" type="button" class="btn btn-warning" data-dismiss="modal">YES</button> <!-- <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button> -->
+                        </div>                     
                     </div>
                     <!-- /INPUT CONTAINER -->
                 </div>
@@ -167,7 +170,7 @@
                     <div class="row">
                        <% items.forEach(function(item) { %>
                       <div class="col-md-4 col-sm-6 list-item">
-                        <a class="list-link" data-toggle="modal" href="#<%= item.id %>">
+                        <a class="list-link" data-toggle="modal" href="#P<%= item.id %>">
                           <div class="list-hover">
                             <div class="list-hover-content">
                               <i class="fas fa-plus fa-3x"></i>
@@ -276,7 +279,7 @@
                 
                   <!-- Modal 1 -->
                   <% items.forEach(function(item) { %>
-    <div class="list-modal modal fade" id="<%= item.id %>" tabindex="-1" role="dialog">
+    <div class="list-modal modal fade" id="P<%= item.id %>" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-dismiss="modal">
@@ -288,11 +291,12 @@
                     <div class="row featurette ">
                         <div class="col-lg-5 mx-auto">
                             <div class="modal-body">
-                                <img class="img-fluid d-block mx-auto mt-5" src="/img/top-chart/<%= item.id %>-full.jpg" alt="">
+                                <img class="img-fluid d-block mx-auto mt-5" src="/img/list/<%= item.id %>-thumbnail.jpg" alt="">
                                 <div>
                                     <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
-                                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                                    <input class="none productId" type="text" value="<%= item.id %>">
+                                    <button id="addWatchList" type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                                    <!-- <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i> -->
                                     </button>
                                 </div>
                             </div>
