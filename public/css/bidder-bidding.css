@@ -19,11 +19,6 @@ a:hover {
   color: #fed136 !important;
 }
 
-.none{
-  display: none;
-}
-
-
 h1,
 h2,
 h3{
@@ -36,6 +31,10 @@ h5,
 h6 {
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
+}
+
+.none{
+  display: none;
 }
 
 .left-border {
@@ -103,9 +102,9 @@ h6 {
 }
 
 /* Individual bars */
-.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
+/*.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
 .bar-down {width: 30%; height: 18px; background-color: #2196F3;}
-
+*/
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
   .side, .middle {
@@ -198,6 +197,13 @@ h6 {
   font-size: 22px;
   color: black;
 }
+
+.card div p button a {
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+}
+
 
 .card p button:hover, a:hover {
   opacity: 0.7;
@@ -751,7 +757,8 @@ header.masthead .intro-text .intro-heading {
 #list .list-item .list-caption {
   max-width: 400px;
   margin: 0 auto;
-  padding: 25px;
+  /*padding: 25px;*/
+  padding-bottom: 40px;
   text-align: center;
   background-color: #fff;
 }
@@ -768,8 +775,24 @@ header.masthead .intro-text .intro-heading {
   font-family: 'Droid Serif', sans-serif;
 }
 
-.list-caption span {
+#list .list-item .list-caption hr {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+} 
+
+#list .list-item .list-caption a {
+background-color: : #fff;
+} 
+
+
+#list .list-item .list-caption span {
   float: left;
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  padding-left: 20px;
+  padding-right: 10px;
+  font-family: 'Droid Serif', sans-serif;
 }
 
 

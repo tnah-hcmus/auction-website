@@ -11,17 +11,17 @@
     <title>Hello Auction</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/detailsProduct.css" rel="stylesheet">
+    <link href="/css/bidder-detailsProduct.css" rel="stylesheet">
 
 </head>
 
@@ -58,19 +58,19 @@
                             <!--  images with number  -->
                             <div class="mySlides">
                                 <div class="numbertext">1 / 3</div>
-                                <img src="img/<%= product.id %>/01-full.jpg" style="width:100%">
+                                <img src="/img/<%= product.id %>/1-full.jpg" style="width:100%">
 
                             </div>
 
                             <div class="mySlides">
                                 <div class="numbertext">2 / 3</div>
-                                <img src="img/<%= product.id %>/02-full.jpg" style="width:100%">
+                                <img src="/img/<%= product.id %>/2-full.jpg" style="width:100%">
 
                             </div>
 
                             <div class="mySlides">
                                 <div class="numbertext">3 / 3</div>
-                                <img src="img/<%= product.id %>/03-full.jpg" style="width:100%">
+                                <img src="/img/<%= product.id %>/3-full.jpg" style="width:100%">
 
                             </div>
 
@@ -83,26 +83,27 @@
                         <!-- Thumbnail images -->
                         <div class="rowslide">
                             <div class="columnslide">
-                                <img class="demo cursor" src="img/<%= product.id %>/01-full.jpg" style="width:100%" onclick="currentSlide(1)" alt="laptop">
+                                <img class="demo cursor" src="/img/<%= product.id %>/1-full.jpg" style="width:100%" onclick="currentSlide(1)" alt="laptop">
                             </div>
                             <div class="columnslide">
-                                <img class="demo cursor" src="img/<%= product.id %>/02-full.jpg" style="width:100%" onclick="currentSlide(2)" alt="laptsop">
+                                <img class="demo cursor" src="/img/<%= product.id %>/2-full.jpg" style="width:100%" onclick="currentSlide(2)" alt="laptsop">
                             </div>
                             <div class="columnslide">
-                                <img class="demo cursor" src="img/<%= product.id %>/03-full.jpg" style="width:100%" onclick="currentSlide(3)" alt="laptop">
+                                <img class="demo cursor" src="/img/<%= product.id %>/3-full.jpg" style="width:100%" onclick="currentSlide(3)" alt="laptop">
                             </div>
                         </div>
                     </div>
 
                 </div>
-
+               
+                 
                 <div class="col-lg-7 mx-auto">
                     <!-- Project Details Go Here -->
                     <p class="content"><%= product.description %></p>
 
                     <h1 class=" product-price mt-4"> Current Bid: $<%= product.price %></h1>
                     <hr class="featurette-divider">
-                    <button data-target="#alert-login" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $<%= product.buynow%>
+                    <button data-target="#alert-buy" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $<%= product.buynow%>
                 </button>
 
                     <!-- bid box -->
@@ -110,13 +111,15 @@
                     <form class="">
                       <div class="quantity buttons_added">  
                         <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
-                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="1" value="100" min="100" max="1000">
+                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="<%=product.bidStep%>" value="<%=nextStep%>" min="<%=nextStep%>" max="<%=product.buynow%>">
                         <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
                       </div>  
-                        <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
-                        <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
+                       <input class="none productId" type="text" value="<%= product.id %>">
+                        <button data-target="#alert-check" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
+                        <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning addWatchList"><i class="far fa-heart"></i></button>
                     </form>
                     <ul class="list-inline content mx-auto">
+                         <p><i class="fas fa-user"></i>Bidder:  <a href="#" class="link"><b>****<%= product.hold.substring(4,50)%></b></a></p>
                         <li>Item condition: <%= product.status %></li>
                         <li>Auction starts: <%= product.dateStart %></li>
                         <li>Auction ends: <%= product.dateEnd %></li>
@@ -129,17 +132,33 @@
   
     <!-- product details -->
      <!-- modal login alert -->
-    <div id="alert-login" class="modal fade" role="dialog">
+    <div id="alert-check" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Please login to use this function !</h4>
+            <h4 class="modal-title">Are you sure!</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button> 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            <button id="Bid"  type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="alert-buy" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Are you sure!</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button> 
+          </div>
+          <div class="modal-footer">
+            <button id="buynow"  type="button" class="btn btn-default" data-dismiss="modal">OK</button>
           </div>
         </div>
       </div>
@@ -151,7 +170,7 @@
       <div class="container">
         <div class="tab">
           <button class="tablink" onclick="openTab('Description',this)" id="defaultOpen">DESCRIPTION </button>
-                        <button class="tablink" onclick="openTab('Holder',this)">HOLD</button>
+                           <button class="tablink" onclick="openTab('Auction history',this)">AUCTION HISTORY</button>
                         <button class="tablink" onclick="openTab('Vendor info',this)">VENDOR INFO</button>
                     </div>
 
@@ -165,10 +184,32 @@
                         <p><i class="fas fa-star link"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%= product.bidRating %>from reviewer</p>
                     </div>
 
+                     <div id="Auction history" class="tabcontent">
+                        
+                        <table>
+                            <tr>
+                                <th>Date</th>
+                                <th>Bid</th>
+                                <th>User</th>
+                                <th>Note</th>
+                            </tr>
+                             <% lists.forEach(function(history) { %>
+                            <tr>
+                                <td><%=history.date%> </td>
+                                <td> <%=history.price%> </td>
+                                <td> <%=history.biddername%> </td>
+                                <td> </td>
+
+                            </tr>
+                            <% }); %>
+                        </table>
+                         
+                    </div>
+
                     <div id="Vendor info" class="tabcontent">
-                        <p><i class="fas fa-shopping-cart"></i>Store Name: <%= own.name %></p>
+                        <p><i class="fas fa-shopping-cart"></i>Store Name: ****<%= own.name.substring(4,50) %></p>
                         <p><i class="fas fa-user"></i>Email: <b><%= own.email %></b></p>
-                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0 rating from reviewer</p> <!---<%= own.rating %> -->
+                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%=point%> rating from reviewer</p> <!---<%= own.rating %> -->
                     </div>
                 </div>
 
@@ -193,7 +234,7 @@
                             </div>
                         </div>
                         <div class="container">
-                            <img class="img-fluid" src="img/thumbnail/<%= item.id %>-thumbnail.jpg">
+                            <img class="img-fluid" src="/img/thumbnail/<%= item.id %>-thumbnail.jpg">
                         </div>
                     </a>
                     <div class="list-caption">
@@ -204,10 +245,11 @@
                         <a class=" text-muted a-price">$
                             <%= item.price %></a>
                         <div>
-                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
-                                <a href="/detailsProduct?<%= item.id %>"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                           <!--  <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                                <a href="/bidder/bidder-detail-product/?id=<%= item.id %>"><i class="fas fa-search"></i></a></button> -->
+                            <input class="none productID" type="text" value="<%= item.id %>">
+                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning addWatchList1"><i class="far fa-heart "></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"> <a href="/bidder/bidder-detail-product/?id=<%= item.id %>"><i class="fas fa-gavel"></i></a>
                             </button>
                         </div>
                     </div>
@@ -217,22 +259,20 @@
         </div>
     </section>
 
-    </div>
-
     <% include ../partial-layout/footer%>
 
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/detailsProduct.js"></script>
-    <script src="js/index.js"></script>
+    <script src="/js/bidder-detailsProduct.js"></script>
+    
 
 
 </body>

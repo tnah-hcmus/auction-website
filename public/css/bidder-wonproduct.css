@@ -15,6 +15,9 @@ a:hover {
   color: #fec503;
 }
 
+.none{
+    display: none;
+}
 .text-primary {
   color: #fed136 !important;
 }
@@ -24,7 +27,9 @@ h2,
 h3{
    font-family: "Titillium Web", sans-serif;
 }
-h4,
+h4{
+  font-family: Franklin Gothic Medium, sans-serif;
+}
 h5,
 h6 {
   font-weight: 700;
@@ -64,10 +69,6 @@ textarea{
   font-family: "Titillium Web", sans-serif;
   font-size: 0.8125em;
   border-radius: 4px;
-}
-
-.none{
-  display: none;
 }
 
 .left-border {
@@ -125,9 +126,9 @@ textarea{
 }
 
 /* Individual bars */
-.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
+/*.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
 .bar-down {width: 30%; height: 18px; background-color: #2196F3;}
-
+*/
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
   .side, .middle {
@@ -220,6 +221,13 @@ textarea{
   font-size: 22px;
   color: black;
 }
+
+.card div p button a {
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+}
+
 
 .card p button:hover, a:hover {
   opacity: 0.7;
@@ -639,7 +647,8 @@ header.masthead .intro-text .intro-heading {
 #list .list-item .list-caption {
   max-width: 400px;
   margin: 0 auto;
-  padding: 15px 5px;
+  /*padding: 25px;*/
+  padding-bottom: 10px;
   text-align: center;
   background-color: #fff;
 }
@@ -653,6 +662,23 @@ header.masthead .intro-text .intro-heading {
   font-size: 16px;
   font-style: italic;
   margin: 0;
+  font-family: 'Droid Serif', sans-serif;
+}
+
+#list .list-item .list-caption hr {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+} 
+
+
+
+#list .list-item .list-caption span {
+  float: left;
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  padding-left: 10px;
+  padding-right: 10px;
   font-family: 'Droid Serif', sans-serif;
 }
 

@@ -103,9 +103,11 @@ $(document).ready(function(){
       });
 
 $(document).ready(function(){
-        $("#addWatchList").click(function(){
+        $(".addWatchList").click(function(){
           var userId = $("#userId").val();
-          var productId = $(".productId").val();
+          var modal = $(this).parents('div').first();
+          var input = modal.children();
+          var productId = parseInt($(input[0]).val());
           console.log(userId+"  " +productId);
            $.ajax({
                   type: 'POST',

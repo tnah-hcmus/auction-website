@@ -97,6 +97,7 @@ $(document).ready(function(){
                       if (data ==='true')
                       {
                         alert("Change infomation succesfully!");
+                         window.location.assign("/bidder/bidder-watchlist/1");
                       }
                       
                     });
@@ -126,7 +127,7 @@ $(document).ready(function(){
                       if (data ==='0')
                       {
                         alert("Change Pass succesfully!");
-                        window.location.assign("/bidder/bidder-watchlist/1?id=8");
+                        window.location.assign("/bidder/bidder-watchlist/1");
                       }
                       else if (data==='2'){
                         alert("Current Password is incorrect!")

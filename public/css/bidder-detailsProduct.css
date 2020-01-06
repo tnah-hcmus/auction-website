@@ -95,6 +95,10 @@ div.quantity {
     margin: 0 4px 0 0;
 }
 
+.none{
+    display: none;
+}
+
 .minus {
     border: transparent;
     border-radius: 4px;
@@ -131,7 +135,7 @@ div.quantity {
     font-weight: 400;
     height: 40px;
     padding: 0;
-    width: 50px;
+    width: 100px;
     background: #fff;
     outline: 0;
 }

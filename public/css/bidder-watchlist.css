@@ -18,6 +18,9 @@ a:hover {
 .text-primary {
   color: #fed136 !important;
 }
+.none{
+    display: none;
+}
 
 h1,
 h2,
@@ -34,7 +37,7 @@ h6 {
 }
 
 .none{
-  display: none;
+    display: none;
 }
 
 .a-price{
@@ -102,9 +105,9 @@ h6 {
   color: white;
 }
 
-/* Individual bars */
-.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
-.bar-down {width: 30%; height: 18px; background-color: #2196F3;}
+/* Individual bars *//*
+.bar-up {width: <%= percentLike %>%; height: 18px; background-color: #4CAF50;}
+.bar-down {width: <%= percentDislike %>%; height: 18px; background-color: #2196F3;}*/
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
@@ -198,6 +201,13 @@ h6 {
   font-size: 22px;
   color: black;
 }
+
+.card div p button a {
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+}
+
 
 .card p button:hover, a:hover {
   opacity: 0.7;
@@ -751,15 +761,11 @@ header.masthead .intro-text .intro-heading {
 #list .list-item .list-caption {
   max-width: 400px;
   margin: 0 auto;
-  padding: 10px;
+  /*padding: 25px;*/
+  padding-bottom: 40px;
   text-align: center;
   background-color: #fff;
 }
-
-.list-caption span {
-  float: left;
-}
-
 
 #list .list-item .list-caption h4 {
   margin: 0;
@@ -770,6 +776,26 @@ header.masthead .intro-text .intro-heading {
   font-size: 16px;
   font-style: italic;
   margin: 0;
+  font-family: 'Droid Serif', sans-serif;
+}
+
+#list .list-item .list-caption hr {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+} 
+
+#list .list-item .list-caption a {
+  background-color: : #fff;
+} 
+
+
+#list .list-item .list-caption span {
+  float: left;
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  padding-left: 20px;
+  padding-right: 10px;
   font-family: 'Droid Serif', sans-serif;
 }
 

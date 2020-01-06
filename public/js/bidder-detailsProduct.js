@@ -83,6 +83,110 @@ $(document).ready(function(){
 // Quantity "plus" and "minus" buttons
  //End: WooCommerce Quantity
 
+$(document).ready(function(){
+        $(".addWatchList").click(function(){
+          var productId = $(".productId").val();
+          console.log("tren" + productId);
+           $.ajax({
+                  type: 'POST',
+                  data: {"productId" : productId},
+                  url: '/bidder/bidder-detail-product/addWatchList',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                         console.log("oke");
+                        alert("Added to yout Watch List succesfully!");
+                      }
+                      else
+                      {
+                        alert("This product has been added to your Watch List!");                        
+                      }
+                    });
+          });
+      });
+
+$(document).ready(function(){
+        $(".addWatchList1").click(function(){
+          var modal = $(this).parents('div').first();
+          var input = modal.children();
+          var productId = parseInt($(input[0]).val());
+          console.log("duoi"+productId);
+           $.ajax({
+                  type: 'POST',
+                  data: {"productId" : productId},
+                  url: '/bidder/bidder-detail-product/addWatchList',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                         console.log("oke");
+                        alert("Added to yout Watch List succesfully!");
+                      }
+                      else
+                      {
+                        alert("This product has been added to your Watch List!");                        
+                      }
+                    });
+          });
+      });
+
+$(document).ready(function(){
+        $("#Bid").click(function(){
+          var price = $("#input-number").val();
+          var productId = $(".productId").val();
+          console.log("bid "+price+" " + productId);
+           $.ajax({
+                  type: 'POST',
+                  data: {"price":price,"productId" : productId},
+                  url: '/bidder/bidder-detail-product/Bid',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+
+                         console.log("oke");
+                        alert("Bid succesfully!");
+                        window.location.assign("/bidder/bidder-detail-product/?id="+productId);
+                      }
+                      else if (data==='falsePrice')
+                      {
+                        alert("Invalid bid price !");                        
+                      }
+                      else if (data ==='auctioned'){
+                          alert("Auction has been ended!")
+                      }
+                      else{
+                        alert("You can't bid this one! Your point is under 80%");                        
+                      }
+                    });
+          });
+      });
+
+
+$(document).ready(function(){
+        $("#buynow").click(function(){
+          var productId = $(".productId").val();
+          console.log("buynow " + productId);
+           $.ajax({
+                  type: 'POST',
+                  data: {"productId" : productId},
+                  url: '/bidder/bidder-detail-product/buynow',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+
+                         console.log("oke");
+                        alert("Buy succesfully!");
+                        window.location.assign("/bidder/bidder-detail-product/?id="+productId);
+                      }
+                      else if (data ==='auctioned'){
+                          alert("Auction has been ended!")
+                      }
+                    });
+          });
+      });
 
 })(jQuery); // End of use strict
 
@@ -163,11 +267,13 @@ $('.btn-number').click(function(e){
     type      = $(this).attr('data-type');
     var input = $("input[name='"+fieldName+"']");
     var currentVal = parseInt(input.val());
+    var step = parseInt(document.getElementById("input-number").step);
+    console.log(step);
     if (!isNaN(currentVal)) {
         if(type == 'minus') {
             
             if(currentVal > input.attr('min')) {
-                input.val(currentVal - 1).change();
+                input.val(currentVal - step).change();
             } 
             if(parseInt(input.val()) == input.attr('min')) {
                 $(this).attr('disabled', true);
@@ -176,7 +282,7 @@ $('.btn-number').click(function(e){
         } else if(type == 'plus') {
 
             if(currentVal < input.attr('max')) {
-                input.val(currentVal + 1).change();
+                input.val(currentVal + step).change();
             }
             if(parseInt(input.val()) == input.attr('max')) {
                 $(this).attr('disabled', true);
