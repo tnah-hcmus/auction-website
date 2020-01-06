@@ -1,8 +1,7 @@
 const db = require('../utils/db');
 module.exports = {
-    getProfilebyID(idU) { return db.load("select u.id as id, u.name as name, u.email as email, u.username as username, u.datejoin as datejoin, count(r.status) as totalLike from user u, review r where u.id = r.id_user and r.status = 1 and u.id = " + idU + " group by u.id, u.name, u.email, u.username, u.datejoin") },
+    getProfilebyID(idU) { return db.load("select u.id as id, u.name as name, u.email as email, u.username as username, count(r.status) as totalLike from user u, review r where u.id = r.id_user and r.status = 1 and u.id = " + idU + " group by u.id, u.name, u.email, u.username") },
     getSellerbyID(idU) { return db.load("SELECT u.name as name FROM user u where u.id = " + idU) },
-    getdateJoinbyID(idU) { return db.load("select u.datejoin as dateJoin from user u where u.id = " + idU) },
     getOwnerbyID(id) { return db.load("SELECT u.id as ID, u.name as name, u.email as email FROM user u, product p where p.id_owner = u.id AND p.id = " + id) },
     getHistorybyID(id) { return db.load("select p.id as id, p.current_price as current_price, u.name as bidder, p.auctionTIme as time from product p, user u where p.id_bidder = u.id and p.id = " + id + " order by p.auctionTIme desc") },
     getProductbyID(id) { return db.load("SELECT p.name as name, p.current_price as price, p.id as id, p.auctionTime as auctionTime, p.details as detail,  p.startDate as dateStart, p.endDate as dateEnd, c.NAME as category, u.NAME as hold, u.email as bidRating, u.email as bidLink FROM product p, category c, user u where p.id_bidder = u.id and p.category = c.id and p.id = " + id) },

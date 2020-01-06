@@ -43,7 +43,8 @@ app.get('/login', recaptcha.middleware.render, async(req, res, next) => {
   res.render('main-views/login', { 
     title: 'Login page',
     catList: categoryList,
-    captcha : res.recaptcha
+    captcha : res.recaptcha,
+    log: false
   });
 });
 
@@ -69,13 +70,8 @@ app.post('/signup', recaptcha.middleware.verify, captchaVerification, passport.a
 app.get('/profile', isLoggedIn, async(req, res) => {
         const categoryList = await guestModel.getListCategory();
         req.session.user = req.session.passport.user;
-        var filter = String(req.query.filter);
-        if (filter == 'undefined') filter = 'name';
-        res.render('main-views/profile', {
-            user : req.user, // truyền đối tượng user cho profile.ejs để hiển thị lên view
-            filter: filter,
-            catList: categoryList
-        });
+        if (req.session.user.role == 0) res.redirect('/bidder/bidder-watchlist/1');
+        if (req.session.user.role == 1) res.redirect('/seller/profile-seller');
     });
 app.get('/logout', function(req, res) {
         req.logout();
@@ -89,7 +85,10 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     );
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
+    {
+        req.isLogged = true;
         return next();
+    }
     res.redirect('/');
 }
 function captchaVerification(req, res, next) {
@@ -103,7 +102,7 @@ function captchaVerification(req, res, next) {
 //Route
 app.use('/bidder',bidderRouter);
 app.use('/admin', adminRouter);
-app.use('/seller', adminRouter);
+app.use('/seller', sellerRouter);
 app.use('/', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

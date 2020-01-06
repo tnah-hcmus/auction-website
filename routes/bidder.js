@@ -348,12 +348,12 @@ router.get('/bidder-watchlist/:page', async(req, res, next) => {
  var point =  totalLike.totalLike + "/" +  temp;
  var percentLike = (totalLike.totalLike/temp)*100;
  var percentDislike = 100-percentLike;
+  console.log(dataPerPage);
+ console.log(page);
+ console.log(skip);
  var item = await bidderModel.getWatchList(user.id, dataPerPage, skip);
  var temp1 = await bidderModel.getLengthWatchList(user.id);
  var length =  JSON.parse(JSON.stringify(temp1))[0];
- console.log(dataPerPage);
- console.log(page);
- console.log(length.length);
  res.render('bidder-views/bidder-watchlist', {
         catList: category,
         items: item,

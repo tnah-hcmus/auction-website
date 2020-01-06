@@ -12,7 +12,9 @@ router.get('/login', function(req, res, next) {
 
 //Detail product-view page
 router.get('/detailsProduct-seller', async(req, res, next) => {
-    const id = String(req.query.id);
+    var user = req.session.user;
+    console.log("I'm here");
+    const id = user.id;
     var history = await sellerModel.getHistorybyID(id);
     const categoryList = await sellerModel.getListCategory();
     var filter = String(req.query.filter);
@@ -33,7 +35,8 @@ router.get('/detailsProduct-seller', async(req, res, next) => {
 
 //Profile page
 router.get('/profile-seller', async(req, res, next) => {
-    const idU = String(req.query.idU);
+    var user = req.session.user;
+    const idU = user.id;
     var json = await sellerModel.getSellerbyID(idU);
     var user = JSON.parse(JSON.stringify(json))[0];
     json = await sellerModel.getTotalLike(idU);
@@ -44,8 +47,6 @@ router.get('/profile-seller', async(req, res, next) => {
     var point = totalLike.totalLike + "/" + temp;
     var percentLike = (totalLike.totalLike / temp) * 100;
     var percentDislike = 100 - percentLike;
-    json = await sellerModel.getdateJoinbyID(idU);
-    var dateJoin = JSON.parse(JSON.stringify(json))[0];
     const categoryList = await sellerModel.getListCategory();
 
     res.render('seller-layout/profile-seller', {
@@ -57,7 +58,6 @@ router.get('/profile-seller', async(req, res, next) => {
         point: point,
         percentLike: percentLike,
         percentDislike: percentDislike,
-        dateJoin: dateJoin,
     });
 });
 
