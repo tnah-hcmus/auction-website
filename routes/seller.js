@@ -78,7 +78,8 @@ router.get('/detailsProduct-seller', async(req, res, next) => {
         catList: categoryList,
         user: own,
         history: history,
-        filter: filter
+        filter: filter,
+        logged: req.isLogged
     });
 });
 
@@ -119,7 +120,8 @@ router.get('/auctionedProduct-seller/:page', async(req, res, next) => {
         reviewPro: items,
         current: page,
         length: length,
-        pages: Math.floor(length / 6)
+        pages: Math.floor(length / 6),
+        logged: req.isLogged
     });
 });
 
@@ -158,7 +160,8 @@ router.get('/watchList-seller/:page', async(req, res, next) => {
         current: page,
         length: length,
         pages: Math.floor(length / 6),
-        catList: categoryList
+        catList: categoryList,
+        logged: req.isLogged
     });
 });
 
@@ -195,7 +198,8 @@ router.get('/review-seller/:page', async(req, res, next) => {
         current: page,
         length: length,
         pages: Math.floor(length / 6),
-        catList: categoryList
+        catList: categoryList,
+        logged: req.isLogged
     });
 });
 
@@ -234,7 +238,8 @@ router.get('/wonProduct-seller/:page', async(req, res, next) => {
         current: page,
         length: length,
         pages: Math.floor(length / 6),
-        catList: categoryList
+        catList: categoryList,
+        logged: req.isLogged
     });
 });
 
@@ -273,7 +278,8 @@ router.get('/bidding-seller/:page', async(req, res, next) => {
         current: page,
         length: length,
         pages: Math.floor(length / 6),
-        catList: categoryList
+        catList: categoryList,
+        logged: req.isLogged
     });
 });
 
@@ -313,7 +319,8 @@ router.get('/myProduct-seller/:page', async(req, res, next) => {
         current: page,
         length: length,
         pages: Math.floor(length / 6),
-        catList: categoryList
+        catList: categoryList,
+        logged: req.isLogged
     });
 });
 
@@ -340,7 +347,8 @@ router.get('/postProduct-seller', async(req, res, next) => {
         point: point,
         percentLike: percentLike,
         percentDislike: percentDislike,
-        catList: categoryList
+        catList: categoryList,
+        logged: req.isLogged
     });
 });
 

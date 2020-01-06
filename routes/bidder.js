@@ -72,7 +72,8 @@ router.get('/bidder-bidding/:page', async(req, res, next) => {
         percentLike: percentLike,
         percentDislike: percentDislike,
         current: page,
-        pages: Math.ceil(length.length/dataPerPage)
+        pages: Math.ceil(length.length/dataPerPage),
+        logged: req.isLogged
     });
 });
 
@@ -116,7 +117,8 @@ router.get('/bidder-detail-product/', async(req,res) => {
         catList: categoryList,
         own: seller,
         relateItems: items,
-        filter: filter
+        filter: filter,
+        logged: req.isLogged
     });
 });
 
@@ -398,7 +400,8 @@ router.get('/bidder-watchlist/:page', async(req, res, next) => {
         percentLike: percentLike,
         percentDislike: percentDislike,
         current: page,
-        pages: Math.ceil(length.length/dataPerPage)
+        pages: Math.ceil(length.length/dataPerPage),
+        logged: req.isLogged
     });
 });
 
@@ -438,7 +441,8 @@ router.get('/bidder-wonproduct/:page', async(req, res, next)=> {
         percentLike: percentLike,
         percentDislike: percentDislike,
         current: page,
-        pages: Math.ceil(length.length/dataPerPage)
+        pages: Math.ceil(length.length/dataPerPage),
+        logged: req.isLogged
     });
 });
 
@@ -478,7 +482,8 @@ router.get('/bidder-review/:page', async(req, res, next) =>{
         percentLike: percentLike,
         percentDislike: percentDislike,
         current: page,
-        pages: Math.ceil(length.length/dataPerPage)
+        pages: Math.ceil(length.length/dataPerPage),
+        logged: req.isLogged
     });
 });
 
@@ -490,7 +495,8 @@ router.get('/bidder-account-setting', async(req, res, next)=> {
   res.render('bidder-views/bidder-account-setting', {
         catList: category,
         user: user,
-        filter: filter
+        filter: filter,
+        logged: req.isLogged
     });
 });
 
