@@ -104,11 +104,11 @@
                     <h1 class=" product-price mt-4"> Current Bid: $<%= product.price %></h1>
                     <hr class="featurette-divider">
                     <button data-target="#alert-buy" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $<%= product.buynow%>
-                </button>
+                    <button id ="auto-bid" type="button" class="btn-buynow btn-warning  mb-5">AUTO BID</button>
 
                     <!-- bid box -->
                     <p> Reserve price has been met:</p>
-                    <form class="">
+                    <form class="normal-bid">
                       <div class="quantity buttons_added">  
                         <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
                         <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="<%=product.bidStep%>" value="<%=nextStep%>" min="<%=nextStep%>" max="<%=product.buynow%>">
@@ -118,6 +118,11 @@
                         <button data-target="#alert-check" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
                         <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning addWatchList"><i class="far fa-heart"></i></button>
                     </form>
+                    <div class="none auto-bid">
+                        <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
+                        <input id ="maxPrice" type="number" name="quant[1]" class="input-number qty" step="<%=product.bidStep%>" value ="0" min="<%=nextStep%>" max="<%=product.buynow%>">
+                        <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
+                    </div>
                     <ul class="list-inline content mx-auto">
                          <p><i class="fas fa-user"></i>Bidder:  <a href="#" class="link"><b>****<%= product.hold.substring(4,50)%></b></a></p>
                         <li>Item condition: <%= product.status %></li>

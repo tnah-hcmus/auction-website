@@ -5,7 +5,8 @@ var session      = require('express-session')
 var passport     = require('passport');
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
-
+const guestModel = require('../models/guest.model');
+var mail = require('../utils/mail-server.js');
 
 router.post('/bidder-wonproduct/reviewLike', async(req, res, next) => {
      const user=req.session.user;
@@ -80,7 +81,6 @@ router.get('/bidder-bidding/:page', async(req, res, next) => {
 router.get('/bidder-detail-product/', async(req,res) => {
   const user=req.session.user;
   const id = String(req.query.id);
-  console.log("tui ne "+id);
   const categoryList = await bidderModel.getListCategory();
   var filter = String(req.query.filter);
   if (filter == 'undefined') filter = 'name';
@@ -93,7 +93,7 @@ router.get('/bidder-detail-product/', async(req,res) => {
   var start = one.dateStart;
   var end = one.dateEnd;
   one.dayStart = now.diff(start,'days');
-  one.hourStart = now.diff(start, 'hours'); - one.dayStart*24;
+  one.hourStart = now.diff(start, 'hours') - one.dayStart*24;
   one.minStart = now.diff(start, 'minutes') - one.hourStart*60 - one.dayStart*24*60;
   one.dayEnd = -now.diff(end,'days');
   one.hourEnd = -now.diff(end, 'hours') - one.dayEnd*24;
@@ -123,11 +123,26 @@ router.get('/bidder-detail-product/', async(req,res) => {
 });
 
 
-router.post('/bidder-detail-product/Bid', async(req,res) => {
+router.post('/bidder-detail-product/Bid', async(req, res) => {
   const user=req.session.user;
   const productId = String(req.body.productId);
-  const price = String(req.body.price);
-  console.log(price +" gui roi ne "+productId );
+  var price = String(req.body.price);
+  var maxPrice = String(req.body.maxPrice);
+  maxPrice = parseInt(maxPrice);
+  var exist = await bidderModel.checkExistAuto(productId);
+  console.log(exist);
+  if (exist[0].bool == 1) 
+  {
+        var result = await bidderModel.getAutoBid(productId);
+        var bidder = result[0].id_bidder;
+        var maxAuto = result[0].max_price;
+  }
+  else
+  {
+        var maxAuto = 0;
+        var bidder = user.id;
+        var insert = await bidderModel.insertAutoBid(productId, bidder, maxAuto);
+  }
   var temp1= await bidderModel.getProductbyID(productId);
   var product = JSON.parse(JSON.stringify(temp1))[0];
   console.log(product);
@@ -143,20 +158,57 @@ router.post('/bidder-detail-product/Bid', async(req,res) => {
         point =0
     else 
         point =  (totalLike.totalLike/temp)*100;
-    console.log("diem" + point);
    if (product.auctioned == 0)
    {
-    if (point>=80 || point==0)
+    if (point>=80 || temp==0)
      {
         if (price>product.price)
         {
             product.auctionTime+=1;
-            console.log(price);
-            console.log(product.price);
-            var update = await bidderModel.BidProduct(user.id,productId,price,product.auctionTime);
-            var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
-            res.send('true');
-            res.redirect('/bidder/bidder-detail-product/?id='+productId);
+            if(price>=product.buynow)
+            {
+                var update = await bidderModel.BuyNowProduct(user.id,productId,price,product.auctionTime);
+                var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+                var product = await guestModel.getProductbyID(productId);
+                var info = { // thiết lập đối tượng, nội dung gửi mail
+                    from: 'Hello Auction',
+                    to: String(user.username),
+                    subject: 'Success buy',
+                    text: 'Buy success ' + String(product[0].name),
+                }
+            }
+            else
+            {
+                var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+            
+                if(maxPrice > maxAuto)
+                {
+                    var update = await bidderModel.updateAutoBid(productId, user.id, maxPrice);
+                    if (maxAuto != 0)
+                    {
+                        var biding = await bidderModel.updateBiddingList(bidder,productId,maxAuto,now);
+                        if (price < maxPrice) price = maxAuto + 500;
+                        var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+                    }
+                    var update = await bidderModel.BidProduct(user.id,productId,price,product.auctionTime);
+                }
+                else
+                {
+                    price =  maxPrice + 500;
+                    var biding = await bidderModel.updateBiddingList(bidder,productId,price,now);
+                    var update = await bidderModel.BidProduct(bidder,productId,price,product.auctionTime);
+                }
+                var product = await guestModel.getProductbyID(productId);
+                var info = { // thiết lập đối tượng, nội dung gửi mail
+                    from: 'Hello Auction',
+                    to: String(user.username),
+                    subject: 'Success bid',
+                    text: 'Bid ' + String(product[0].name),
+                }
+            }
+            var sender = new mail(info);
+            sender.send();
+        res.send('true');
         }
         else
         {
