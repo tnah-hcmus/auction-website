@@ -155,20 +155,15 @@
 
                 <!-- Tab content -->
                 <div id="Description" class="tabcontent">
-                    <p class="content">Friday, December 8th 2018</p>
-                    <p class="content">
-                        <%= product.details %>
-                    </p>
-                    <button id="add-description" type="button" class="btn-add-description btn-outline-warning"><i class="fa fa-edit" aria-hidden="true"></i> Add more description</button>
-
-
-                    <div id="add-more-description" class="tabcontent">
-                        <form action="/seller/detailsProduct" method="POST">
-                            <textarea id="add-more-description" type="description" name="description" class="form-control add-description-area" placeholder="Add description" required=""></textarea>
-                            <button class="btn btn-primary btn-block" id="submit-btn" type="submit"><i class="fas fa-edit"></i> Add</button>
-                            <a href="#" id="cancel" class="cancel"><i class="fas fa-angle-left"></i> Back</a>
-                        </form>
-                    </div>
+                    <%- product.details %>
+                        <button id="add-description" type="button" class="btn-add-description btn-outline-warning"><i class="fa fa-edit" aria-hidden="true"></i> Add more description</button>
+                        <div id="add-more-description" class="tabcontent">
+                            <form action="/seller/detailsProduct" method="POST">
+                                <textarea id="add-more-description" type="description" name="description" class="form-control add-description-area" placeholder="Add description" required=""></textarea>
+                                <button class="btn btn-primary btn-block" id="submit-btn" type="submit"><i class="fas fa-edit"></i> Add</button>
+                                <a href="#" id="cancel" class="cancel"><i class="fas fa-angle-left"></i> Back</a>
+                            </form>
+                        </div>
                 </div>
 
                 <div id="Auction history" class="tabcontent tb-auction-history">

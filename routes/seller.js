@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-const sellerModel = require('../models/seller.model');
-const guestModel = require('../models/guest.model');
+const sellerModel = require('../models/seller.model.js');
 var fs = require('fs');
 var moment = require('moment');
-var mail = require('../utils/mail-server.js');
 
 var storage = multer.diskStorage({
     destination: async(req, file, callback) => {
@@ -361,6 +359,7 @@ router.post('/postproduct', upload.array('addImg'), async(req, res, next) => {
     const idU = user.id;
     if (req.files.length >= 3) {
         var namePro = String(req.body.namePro);
+        var currentPrice = String(req.body.price);
         var priceStep = String(req.body.priceStep);
         var startDate = String(req.body.startDate);
         var endDate = String(req.body.endDate);
@@ -368,10 +367,10 @@ router.post('/postproduct', upload.array('addImg'), async(req, res, next) => {
         var description = String(req.body.description);
         var addImg = String(req.body.addImg);
         var extend = String(req.body.extend);
-        var result = await sellerModel.inserttoPro(namePro, idU, priceStep, buyNow, startDate, endDate, description);
-        res.redirect("/seller/myProduct-seller/1?idU=" + idU);
+        var result = await sellerModel.inserttoPro(namePro, idU, priceStep, currentPrice, buyNow, startDate, endDate, description);
+        res.redirect("/seller/myProduct-seller/1");
     } else {
-        res.redirect("/seller/postProduct-seller?idU=" + idU);
+        res.redirect("/seller/postProduct-seller");
     }
 });
 
@@ -382,7 +381,7 @@ router.post('/detailsProduct', async(req, res, next) => {
     var json = await sellerModel.getoldDetailsbyId(id);
     var oldDetails = JSON.parse(JSON.stringify(json))[0];
     console.log(oldDetails);
-    var newDetails = "\r" + oldDetails.oldDetails + "\r" + now + "\r" + extraDetails + "\r";
+    var newDetails = oldDetails.oldDetails + '<p class ="content">' + now + '</p> <p class = "content">' + extraDetails + "</p>";
     var updateDetails = await sellerModel.updateDetailsbyId(id, newDetails);
     res.redirect("/seller/detailsProduct-seller?id=" + id);
 });
@@ -440,7 +439,6 @@ router.post('/reivewSellerLike', async(req, res, next) => {
 });
 
 router.post('/refuse', async(req, res, next) => {
-    var user = req.session.user;
     var bidder = String(req.body.bidder_id);
     var proID = String(req.body.product_id);
     var json = await sellerModel.findid1stBidder(proID);
@@ -458,23 +456,6 @@ router.post('/refuse', async(req, res, next) => {
         var insertBidderBlock = await sellerModel.inserttoBidderBlock(bidder, proID);
         var deleteBidder = await sellerModel.deletefromHistory(bidder, proID);
     }
-    var product = await guestModel.getProductbyID(proID);
-    var info = { // thiết lập đối tượng, nội dung gửi mail
-        from: 'Hello Auction',
-        to: bidder.username,
-        subject: 'Refuse bid product',
-        text: 'Refuse from'+String(user.name)+'for bid'+String(product[0].name),
-    }
-    mail.sendMail(info, function(err, info){
-        if (err) {
-            console.log(err);
-            res.redirect('/');
-        } else {
-            console.log('Message sent: ' +  info.response);
-            res.redirect('/');
-        }
-    });
-
     /*if (bidder có phải là bidder giữ giá không)
     {
         xoá
