@@ -23,7 +23,7 @@ router.get('/detailsProduct', async(req, res, next) => {
   var start = one.dateStart;
   var end = one.dateEnd;
   one.dayStart = now.diff(start,'days');
-  one.hourStart = now.diff(start, 'hours'); - one.dayStart*24;
+  one.hourStart = now.diff(start, 'hours') - one.dayStart*24;
   one.minStart = now.diff(start, 'minutes') - one.hourStart*60 - one.dayStart*24*60;
   one.dayEnd = -now.diff(end,'days');
   one.hourEnd = -now.diff(end, 'hours') - one.dayEnd*24;
@@ -34,7 +34,8 @@ router.get('/detailsProduct', async(req, res, next) => {
     catList: categoryList,
 		own: seller,
 		relateItems: items,
-    filter: filter
+    filter: filter,
+    logged: req.isLogged
 	});
 });
 //Search page
@@ -67,7 +68,8 @@ router.get('/search/:page', async(req, res, next) => {
   	current:page,
   	length:length,
   	pages: Math.floor(length/dataPerPage),
-    recent: recent
+    recent: recent,
+    logged: req.isLogged
   });
 });
 router.post('/search/:page', async(req, res, next) => {
@@ -120,13 +122,15 @@ router.get('/list-view/:page', async(req, res, next) => {
 		catID: catID,
 		current: page,
 		pages: Math.floor(category.length/dataPerPage),
-    recent: recent
+    recent: recent,
+    logged: req.isLogged
 	});
 });
 
 //Homepage
 router.get(/\/index|\//, async(req, res, next) => {
  try {
+    
     const faqs = await guestModel.faq();
     const category = await guestModel.getListCategory();
     const type = String(req.query.sort);
@@ -162,7 +166,8 @@ router.get(/\/index|\//, async(req, res, next) => {
         hottest:hottest,
         best:best,
         catList:category,
-        filter: search
+        filter: search,
+        logged: req.isLogged
     });
   } catch (err) {
     console.log(err);

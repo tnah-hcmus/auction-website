@@ -37,14 +37,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Login page
 
-app.get('/login', recaptcha.middleware.render, async(req, res, next) => {
+app.get('/login', guestLoggedIn, recaptcha.middleware.render, async(req, res, next) => {
   const categoryList = await guestModel.getListCategory();
-  console.log(res.recaptcha);
   res.render('main-views/login', { 
     title: 'Login page',
     catList: categoryList,
     captcha : res.recaptcha,
-    log: false
+    logged: req.isLogged
   });
 });
 
@@ -89,7 +88,28 @@ function isLoggedIn(req, res, next) {
         req.isLogged = true;
         return next();
     }
+    else
     res.redirect('/');
+}
+function isSeller(req, res, next) {
+    if (req.session.user.role == 1)
+    {
+        return next();
+    }
+    else
+    res.redirect('/');
+}
+function guestLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+    {
+        req.isLogged = true;
+        return next();
+    }
+    else
+    {
+        req.isLogged = false;
+        return next();
+    }
 }
 function captchaVerification(req, res, next) {
     if (req.recaptcha.error) {
@@ -100,10 +120,10 @@ function captchaVerification(req, res, next) {
     }
 }
 //Route
-app.use('/bidder',bidderRouter);
+app.use('/bidder',isLoggedIn, bidderRouter);
 app.use('/admin', adminRouter);
-app.use('/seller', sellerRouter);
-app.use('/', indexRouter);
+app.use('/seller', isLoggedIn, isSeller, sellerRouter);
+app.use('/',  guestLoggedIn, indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

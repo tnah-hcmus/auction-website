@@ -38,14 +38,24 @@
                         </div>
                     </li>
                     <li class="nav-item non-drop">
-                        <a class="nav-link test js-scroll-trigger" href="/index#faq">FAQ</a>q
+                        <a class="nav-link test js-scroll-trigger" href="/index#faq">FAQ</a>
                     </li>
                     <li class="nav-item non-drop">
                         <a class="nav-link test js-scroll-trigger" href="/index#services">ABOUT US</a>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="/login" style ="color:black">Login now!</a></button>
-                    </li>
+                    
+                    <% if(logged) { %>
+                        <li class="nav-item non-drop">
+                            <a class="nav-link test js-scroll-trigger" href="/profile">Trang cá nhân</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="/logout" style ="color:black">Log out</a></button>
+                        </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary btn-lg nav-link"><a href ="/login" style ="color:black">Login now</a></button>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </div>
