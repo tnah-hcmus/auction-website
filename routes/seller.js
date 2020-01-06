@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-const sellerModel = require('../models/seller.model.js');
+const sellerModel = require('../models/seller.model');
+const userModel = require('../models/user.model');
+const guestModel = require('../models/guest.model');
 var fs = require('fs');
 var moment = require('moment');
+var mail = require('../utils/mail-server.js');
 
 var storage = multer.diskStorage({
     destination: async(req, file, callback) => {
@@ -439,6 +442,7 @@ router.post('/reivewSellerLike', async(req, res, next) => {
 });
 
 router.post('/refuse', async(req, res, next) => {
+    const user=req.session.user;
     var bidder = String(req.body.bidder_id);
     var proID = String(req.body.product_id);
     var json = await sellerModel.findid1stBidder(proID);
@@ -456,6 +460,17 @@ router.post('/refuse', async(req, res, next) => {
         var insertBidderBlock = await sellerModel.inserttoBidderBlock(bidder, proID);
         var deleteBidder = await sellerModel.deletefromHistory(bidder, proID);
     }
+    var mailTo = await userModel.findUserById(bidder);
+    console.log(mailTo);
+    var product = await guestModel.getProductbyID(proID);
+    var info = { // thiết lập đối tượng, nội dung gửi mail
+                    from: 'Hello Auction',
+                    to: String(mailTo[0].username),
+                    subject: 'Ban from bid',
+                    text: 'Refuse from'+ user.name + 'for bid' + String(product[0].name),
+                }
+    var sender = new mail(info);
+    sender.send();
     /*if (bidder có phải là bidder giữ giá không)
     {
         xoá
