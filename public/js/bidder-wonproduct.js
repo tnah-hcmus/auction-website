@@ -127,6 +127,42 @@ $(document).ready(function(){
           });
       });
 
+$(document).ready(function() {
+    $('#review-submit-0').on('click', function() {
+
+        var input = $('#review-modal-0').children();
+        var review_text = $(input[0]).val();
+        var isDislike = $(input[1]).val();
+        var seller = $(input[2]).val();
+        var path = window.location.pathname;
+        $.post('/bidder/bidder-wonproduct/reviewDislike', { review: review_text, status: isDislike, id_seller: seller }, function(date){
+          if (date==='true')
+              alert("Review successfully!");
+        });
+      
+
+
+    });
+});
+
+$(document).ready(function() {
+    $('#review-submit-1').on('click', function() {
+
+        var input = $('#review-modal-1').children();
+        var review_text = $(input[0]).val();
+        var isLike = $(input[1]).val();
+        var seller = $(input[2]).val();
+        var path = window.location.pathname;
+        console.log(review_text);
+        $.post('/bidder/bidder-wonproduct/reviewLike', { review: review_text, status: isLike, id_seller: seller }, function(data)
+        {
+          if (data==='true')
+              alert("Review successfully!");
+        });
+    });
+});
+
+
 
 })(jQuery); // End of use strict
 

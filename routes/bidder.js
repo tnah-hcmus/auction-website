@@ -6,6 +6,35 @@ var passport     = require('passport');
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
 
+
+router.post('/bidder-wonproduct/reviewLike', async(req, res, next) => {
+     const user=req.session.user;
+    var idSeller = req.body.id_seller;
+    var review = req.body.review;
+    var status = req.body.status;
+     console.log("review ne");
+    console.log(idSeller);
+    console.log(review);
+    console.log(status);
+    var now = moment().format("YYYY-MM-DD HH:mm:ss");
+    var result = await bidderModel.insertReview(idSeller, user.id, review, now, status);
+    res.send('true');
+});
+
+router.post('/bidder-wonproduct/reviewDislike', async(req, res, next) => {
+    const user=req.session.user;
+    var idSeller = String(req.body.id_seller);
+    var review = String(req.body.review);
+    var status = String(req.body.status);
+    console.log("review ne");
+    console.log(idSeller);
+    console.log(review);
+    console.log(status);
+    var now = moment().format("YYYY-MM-DD HH:mm:ss");
+    var result = await bidderModel.insertReview(idSeller, user.id, review,now, status);
+    res.send('true');
+});
+
 //bidding product   
 router.get('/bidder-bidding/:page', async(req, res, next) => {
  var user = req.session.user;
@@ -176,14 +205,14 @@ router.post('/bidder-detail-product/buynow', async(req,res) => {
 
 
 router.post('/bidder-bidding/request', async(req,res) => {
-    var userReq = String(req.body.userid);
-    var json = await bidderModel.getCountRequestToSeller(userReq);
+    var userReq =req.session.user;
+    var json = await bidderModel.getCountRequestToSeller(userReq.id);
     
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addRequestToSeller(userReq);
+        var insert = await bidderModel.addRequestToSeller(userReq.id);
         res.send('true');
     }
     else
@@ -193,14 +222,14 @@ router.post('/bidder-bidding/request', async(req,res) => {
 });
 
 router.post('/bidder-wonproduct/request', async(req,res) => {
-    var userReq = String(req.body.userid);
-    var json = await bidderModel.getCountRequestToSeller(userReq);
+    var userReq =req.session.user;
+    var json = await bidderModel.getCountRequestToSeller(userReq.id);
     
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addRequestToSeller(userReq);
+        var insert = await bidderModel.addRequestToSeller(userReq.id);
         res.send('true');
     }
     else
@@ -210,14 +239,14 @@ router.post('/bidder-wonproduct/request', async(req,res) => {
 });
 
 router.post('/bidder-review/request', async(req,res) => {
-    var userReq = String(req.body.userid);
-    var json = await bidderModel.getCountRequestToSeller(userReq);
+   var userReq =req.session.user;
+    var json = await bidderModel.getCountRequestToSeller(userReq.id);
     
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addRequestToSeller(userReq);
+        var insert = await bidderModel.addRequestToSeller(userReq.id);
         res.send('true');
     }
     else
@@ -227,13 +256,14 @@ router.post('/bidder-review/request', async(req,res) => {
 });
 
 router.post('/bidder-watchlist/request', async(req,res) => {
-    var userReq = String(req.body.userid);
-    var json = await bidderModel.getCountRequestToSeller(userReq);
+    var userReq =req.session.user;
+    var json = await bidderModel.getCountRequestToSeller(userReq.id);
+    
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addRequestToSeller(userReq);
+        var insert = await bidderModel.addRequestToSeller(userReq.id);
         res.send('true');
     }
     else
@@ -262,14 +292,15 @@ router.post('/bidder-detail-product/addWatchList', async(req,res) => {
 });
 
 router.post('/bidder-watchlist/addWatchList', async(req,res) => {
-    var userId= String(req.body.userId);
+    var user= req.session.user;
+    console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(userId,productId); 
+    var json = await bidderModel.getCountWatchListProduct(user.id,productId); 
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log("watch list add"+count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addWatchList(userId,productId);
+        var insert = await bidderModel.addWatchList(user.id,productId);
         res.send('true');
     }
     else
@@ -279,15 +310,15 @@ router.post('/bidder-watchlist/addWatchList', async(req,res) => {
 });
 
 router.post('/bidder-bidding/addWatchList', async(req,res) => {
-    var userId= String(req.body.userId);
+   var user= req.session.user;
+    console.log(user);
     var productId = String(req.body.productId);
-    console.log(userId+"  "+ productId);
-    var json = await bidderModel.getCountWatchListProduct(userId,productId); 
+    var json = await bidderModel.getCountWatchListProduct(user.id,productId); 
     var count = JSON.parse(JSON.stringify(json))[0];
-    console.log(count.count);
+    console.log("watch list add"+count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addWatchList(userId,productId);
+        var insert = await bidderModel.addWatchList(user.id,productId);
         res.send('true');
     }
     else
@@ -297,14 +328,15 @@ router.post('/bidder-bidding/addWatchList', async(req,res) => {
 });
 
 router.post('/bidder-wonproduct/addWatchList', async(req,res) => {
-    var userId= String(req.body.userId);
+    var user= req.session.user;
+    console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(userId,productId); 
+    var json = await bidderModel.getCountWatchListProduct(user.id,productId); 
     var count = JSON.parse(JSON.stringify(json))[0];
-    console.log(count.count);
+    console.log("watch list add"+count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addWatchList(userId,productId);
+        var insert = await bidderModel.addWatchList(user.id,productId);
         res.send('true');
     }
     else
@@ -314,14 +346,15 @@ router.post('/bidder-wonproduct/addWatchList', async(req,res) => {
 });
 
 router.post('/bidder-review/addWatchList', async(req,res) => {
-    var userId= String(req.body.userId);
+   var user= req.session.user;
+    console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(userId,productId); 
+    var json = await bidderModel.getCountWatchListProduct(user.id,productId); 
     var count = JSON.parse(JSON.stringify(json))[0];
-    console.log(count.count);
+    console.log("watch list add"+count.count);
     if (count.count < 1)
     {    
-        var insert = await bidderModel.addWatchList(userId,productId);
+        var insert = await bidderModel.addWatchList(user.id,productId);
         res.send('true');
     }
     else
@@ -450,31 +483,27 @@ router.get('/bidder-review/:page', async(req, res, next) =>{
 });
 
 router.get('/bidder-account-setting', async(req, res, next)=> {
- const userId= String(req.query.id);
-  console.log("get account settign userId " +userId);
+ var user = req.session.user;
+  console.log("get account settign userId " +user.id);
  const category = await bidderModel.getListCategory();
  var filter ='name';
- var json = await bidderModel.getBidderbyID(userId);
- var user = JSON.parse(JSON.stringify(json))[0];
- console.log("get account settign " + user);
   res.render('bidder-views/bidder-account-setting', {
         catList: category,
         user: user,
-        uid: userId,
         filter: filter
     });
 });
 
 router.post('/bidder-account-setting/updateInfo', async(req, res, next)=> {
- var userId= req.body.userId;
+ var user = req.session.user;
  var name = req.body.name;
  var phone = req.body.phone;
  var email = req.body.email;
  var date = req.body.date;
- console.log("id here "+ userId);
+ console.log("id here "+ user.id);
  var dateUpdate = date.substring(6,10) +'-'+ date.substring(3,5) +'-' + date.substring(0,2)
  console.log("server" + name+"  " +phone + "  " +email + "  " +dateUpdate);
- var update = await bidderModel.updateInfo(userId,name,email,phone,dateUpdate);
+ var update = await bidderModel.updateInfo(user.id,name,email,phone,dateUpdate);
  res.send('true');
  res.redirect('/bidder-watchlist/1');
 
@@ -482,20 +511,20 @@ router.post('/bidder-account-setting/updateInfo', async(req, res, next)=> {
 
 
 router.post('/bidder-account-setting/updatePass', async(req, res, next)=> {
- var userId= req.body.userId;
+ var user = req.session.user;
  var currentPass = req.body.currentPass;
  var newPass = req.body.newPass;
  var newPass2 = req.body.newPass;
- var json = await bidderModel.getCurrentPass(userId);
+ var json = await bidderModel.getCurrentPass(user.id);
  var userPass = JSON.parse(JSON.stringify(json))[0];
- console.log("id here "+ userId);
+ console.log("id here "+ user.id);
  console.log("current pass" + currentPass);
  console.log("fr server" + userPass.password+"  " +currentPass + "  " +newPass + "  " +newPass2);
  if (bcrypt.compareSync(currentPass, userPass.password)){
     if (newPass===newPass2)
          {
             newPass = bcrypt.hashSync(newPass, bcrypt.genSaltSync(10), null);
-            var update = await bidderModel.updatePass(userId,newPass);
+            var update = await bidderModel.updatePass(user.id,newPass);
             res.send('0');
          }
     else{
@@ -507,24 +536,6 @@ router.post('/bidder-account-setting/updatePass', async(req, res, next)=> {
    
  res.redirect('/bidder-watchlist/1');
 
-});
-
-//bidding product   
-router.get('/', async(req, res, next)=> {
-    const category = await bidderModel.getListCategory();
- var items = [
-        { name: 'Laptop A', tag: 'chart-item-1', imgID:'01', price: 600, own: 'Lucifer', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019'},
-        { name: 'Laptop B', tag: 'chart-item-2', imgID:'02', price: 600, own: 'Lucifer', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019'}, 
-        { name: 'Laptop C', tag: 'chart-item-3', imgID:'03', price: 600, own: 'Lucifer', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019'},
-        { name: 'Laptop D', tag: 'chart-item-4', imgID:'04', price: 600, own: 'Lucifer', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019'},
-        { name: 'Laptop E', tag: 'chart-item-5', imgID:'05', price: 600, own: 'Lucifer', type: 'Laptop', dateStart: '07/12/2019', dateEnd: '08/12/2019'}
-    ];
-var user = { name: 'Tuyết Chung',point :"5/10",totalLike: "50",totalDislike: "100"};
-    res.render('bidder-views/bidder-bidding', {
-        catList: category,
-        list: items,
-        user: user
-    });
 });
 
 module.exports = router;
