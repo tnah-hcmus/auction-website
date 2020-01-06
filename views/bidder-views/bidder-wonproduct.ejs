@@ -236,12 +236,12 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body" id="review-modal-1">
-                                            <textarea id="subject" name="subject" placeholder="Write your review.."></textarea>
-                                            <input name="status" type="text" class="form-control none" value="1">
-                                            <input name="id_seller" type="text" class="form-control none" value="<%=item.ownerId%>">
+                                            <textarea name="subject" type="text" placeholder="Write your review.."></textarea>
+                                            <input type="text" class="form-control none" value="1">
+                                            <input type="text" class="form-control none" value="<%=item.ownerId%>">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" id="review-submit-1" data-dismiss="modal">Send</button>
+                                            <button type="button" class="btn btn-default review-submit-1 "data-dismiss="modal">Send</button>
                                         </div>
                                     </div>
                                 </div>
@@ -258,12 +258,12 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body" id="review-modal-0">
-                                            <textarea name="review" type="text" placeholder="Write your review.." value=""></textarea>
-                                            <input name="status" type="text" class="form-control none" value="0">
-                                            <input name="id_seller" type="text" class="form-control none" value="<%=item.ownerId%>">
+                                            <textarea type="text" placeholder="Write your review.."></textarea>
+                                            <input  type="text" class="form-control none" value="0">
+                                            <input type="text" class="form-control none" value="<%=item.ownerId%>">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default" id="review-submit-0" data-dismiss="modal">Send</button>
+                                            <button type="submit" class="btn btn-default review-submit-0" data-dismiss="modal">Send</button>
                                         </div>
                                     </div>
 

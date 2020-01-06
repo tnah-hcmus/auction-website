@@ -119,12 +119,17 @@
                         <button data-target="#alert-check" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
                         <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning addWatchList"><i class="far fa-heart"></i></button>
                     </form>
-                    <ul class="list-inline content mx-auto mt-5">
-                    <div class="none auto-bid">
-                        <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
-                        <input id ="maxPrice" type="number" name="quant[1]" class="input-number qty" step="<%=product.bidStep%>" value ="0" min="<%=nextStep%>" max="<%=product.buynow%>">
-                        <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
+                     <div class=" none auto-bid">
+                        <!-- <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button> -->
+                        <p>Max price:<p>
+                        <input id ="maxPrice" type="number" name="quant[1]" class="input-number qty" step="<%=product.bidStep%>" value ="<%=nextStep%>" min="<%=nextStep%>" max="<%=product.buynow%>">
+                       <!--  <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
+                        </br> -->
+                        </br>
                     </div>
+                    <ul class="list-inline content mx-auto mt-5">
+
+
                          <p><i class="fas fa-user"></i>Bidder:  <a href="#" class="link"><b>****<%= product.hold.substring(4,50)%></b></a></p>
                         <li>Item condition: <%= product.status %></li>
                         <li>Auction starts: <%= product.dateStart %></li>
@@ -203,7 +208,11 @@
                             <tr>
                                 <td><%=history.date%> </td>
                                 <td> <%=history.price%> </td>
-                                <a class="link"><td>****<%=history.biddername.substring(4,50)%> </td></a>
+                                <% if (user.id == product.id_owner) { %>
+                                <td><a href="/bidder/review/1?id=<%=history.bidderId%>" class="link" class="link"><b>****<%=history.biddername.substring(4,50)%> </b></a></td>
+                                <% } else { %>
+                                    <td><b>****<%=history.biddername.substring(4,50)%> </b></td>
+                                <% } %> 
                                 <td> </td>
 
                             </tr>
@@ -213,9 +222,15 @@
                     </div>
 
                     <div id="Vendor info" class="tabcontent">
-                        <p><i class="fas fa-shopping-cart"></i>Store Name: ****<%= own.name.substring(4,50) %></p>
-                        <p><i class="fas fa-user"></i>Email: <b><%= own.email %></b></p>
+                        <ul>
+                    <% if (user.id != product.id_owner) { %>
+                        <p><i class="fas fa-shopping-cart"> Seller Name:</i><a href="/bidder/review/1?id=<%=product.id_owner%>" class="link"> <b>****<%= own.name.substring(4,50) %></b></a></p>
+                    <% } else { %>
+                        <p><i class="fas fa-shopping-cart"></i><a class="link">Seller Name: ****<%= own.name.substring(4,50) %></a></p>
+                    <% } %> 
+                        <!-- <p><i class="fas fa-user"></i>Email: <b><%= own.email %></b></p> -->
                         <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%=point%> rating from reviewer</p> <!---<%= own.rating %> -->
+                    </ul>
                     </div>
                 </div>
 

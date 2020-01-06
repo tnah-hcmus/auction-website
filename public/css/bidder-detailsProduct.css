@@ -8,7 +8,7 @@ p {
 }
 
 a {
-    color: #fed136;
+    color: #000;
 }
 
 a:hover {
@@ -47,10 +47,15 @@ h6 {
     box-sizing: border-box;
 }
 
+.auto-bid input{
+    boder: 1px solid #000;
+}
 
 /* Style the list */
 
-
+button a {
+    color: #000;
+}
 
 ul.breadcrumb {
     padding: 10px 16px;
@@ -100,6 +105,8 @@ div.quantity {
     float: left;
     margin: 0 4px 0 0;
 }
+
+
 
 .none{
     display: none;
@@ -285,24 +292,6 @@ tr:nth-child(even) {
 
 }
 
-a td:link {
-  color: red;
-}
-
-/* visited link */
-a td:visited {
-  color: green;
-}
-
-/* mouse over link */
-a td:hover {
-  color: #fed136;
-}
-
-/* selected link */
-a td:active {
-  color: blue;
-}
 /* Style the tab */
 
 .tab {

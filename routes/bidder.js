@@ -84,6 +84,7 @@ router.get('/bidder-detail-product/', async(req,res) => {
   const categoryList = await bidderModel.getListCategory();
   var filter = String(req.query.filter);
   if (filter == 'undefined') filter = 'name';
+  console.log("day ne "+ id);
   var result = await bidderModel.getProductbyID(id);
     const one = JSON.parse(JSON.stringify(result))[0];
   result = await bidderModel.getOwnerbyID(id);  
@@ -176,6 +177,7 @@ router.get('/list-view/:page', async(req, res, next) => {
 router.post('/bidder-detail-product/Bid', async(req, res) => {
   const user=req.session.user;
   const productId = String(req.body.productId);
+  var temp3= await bidderModel.getProductbyID(productId);
   var price = String(req.body.price);
   var maxPrice = String(req.body.maxPrice);
   maxPrice = parseInt(maxPrice);
@@ -236,15 +238,17 @@ router.post('/bidder-detail-product/Bid', async(req, res) => {
                     var update = await bidderModel.updateAutoBid(productId, user.id, maxPrice);
                     if (maxAuto != 0)
                     {
+
                         var biding = await bidderModel.updateBiddingList(bidder,productId,maxAuto,now);
-                        if (price < maxPrice) price = maxAuto + 500;
+                        if (price < maxPrice && price < maxAuto) 
+                            price = maxAuto + temp3[0].bidStep;
                         var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
                     }
                     var update = await bidderModel.BidProduct(user.id,productId,price,product.auctionTime);
                 }
                 else
                 {
-                    price =  maxPrice + 500;
+                    price =  maxPrice + temp3[0].bidStep;
                     var biding = await bidderModel.updateBiddingList(bidder,productId,price,now);
                     var update = await bidderModel.BidProduct(bidder,productId,price,product.auctionTime);
                 }
@@ -467,6 +471,49 @@ router.post('/bidder-review/addWatchList', async(req,res) => {
     }  
 });
 
+router.get('/review/:page', async(req, res, next) =>{
+ var id = req.query.id;
+ var user = req.session.user;
+ var temp1 = await bidderModel.getBidderbyID(id);
+ var user1 = JSON.parse(JSON.stringify(temp1))[0];
+ const category = await bidderModel.getListCategory();
+ var filter = 'name';
+ var dataPerPage = 9;
+ var page = req.params.page || 1;
+ var skip = dataPerPage*(page - 1);
+ json = await bidderModel.getTotalLike(id);
+ var totalLike =  JSON.parse(JSON.stringify(json))[0];
+ var result = await bidderModel.getTotalDislike(id);
+ var totalDislike =  JSON.parse(JSON.stringify(result))[0];
+ var temp = totalLike.totalLike + totalDislike.totalDisLike;
+ var point =  totalLike.totalLike + "/" +  temp;
+ var percentLike = (totalLike.totalLike/temp)*100;
+ var percentDislike = 100-percentLike;
+ var review = await bidderModel.getReviewList(id, dataPerPage, skip); 
+ var temp1 = await bidderModel.getLengthReviewList(id);
+ var length =  JSON.parse(JSON.stringify(temp1))[0];
+ console.log(user);
+ console.log(page);
+ console.log(skip);
+ var filter = 'name';
+ res.render('bidder-views/bidder-userReview', {
+        catList: category,
+        reviews: review,
+        user: user,
+        user1:user1,
+        uid: id,
+        totalLike: totalLike, 
+        totalDislike: totalDislike,
+        point: point,
+        filter: filter,
+        percentLike: percentLike,
+        percentDislike: percentDislike,
+        current: page,
+        pages: Math.ceil(length.length/dataPerPage),
+        logged: req.isLogged
+    });
+});
+
 router.get('/bidder-watchlist/:page', async(req, res, next) => {
  var user = req.session.user;
  const category = await bidderModel.getListCategory();
@@ -549,7 +596,7 @@ router.get('/bidder-wonproduct/:page', async(req, res, next)=> {
 });
 
 router.get('/bidder-review/:page', async(req, res, next) =>{
-     var user = req.session.user;
+ var user = req.session.user;
  const category = await bidderModel.getListCategory();
  console.log("tui here");
  console.log(req.session.user);

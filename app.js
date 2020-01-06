@@ -72,6 +72,12 @@ app.get('/profile', isLoggedIn, async(req, res) => {
         if (req.session.user.role == 0) res.redirect('/bidder/bidder-watchlist/1');
         if (req.session.user.role == 1) res.redirect('/seller/profile-seller');
     });
+app.get('/review', isLoggedIn, async(req, res) => {
+        const categoryList = await guestModel.getListCategory();
+        req.session.user = req.session.passport.user;
+        if (req.session.user.role == 0) res.redirect('/bidder/bidder-watchlist/1');
+        if (req.session.user.role == 1) res.redirect('/seller/profile-seller');
+    });
 app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');

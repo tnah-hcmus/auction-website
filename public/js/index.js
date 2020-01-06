@@ -62,7 +62,7 @@ function toggleSignUp(e){
 
 
 $(document).ready(function(){
-      $("#signup-mail").blur(function(){
+      $(".form-signup #signup-mail").blur(function(){
       var path = window.location.pathname;
       var new_text = $(this).val();
       $.post(path+'/check', { username: new_text}, function(data)

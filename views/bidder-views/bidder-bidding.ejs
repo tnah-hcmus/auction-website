@@ -218,8 +218,8 @@
                             <hr class="featurette-divider">
                             <!-- Project Details Go Here -->
                             <p class="content"><%= item.details %></p>
-                            <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $
-                                <%= item.buynow %>
+                            <button type="button" class="btn-buynow btn-warning  mb-5"><a href="/bidder/bidder-detail-product/?id=<%= item.id %>">BUY NOW FOR $
+                                <%= item.buynow %></a>
                             </button>
                             <ul class="list-inline content mx-auto">
                                 <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>

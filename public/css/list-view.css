@@ -29,6 +29,14 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+button a {
+  color: #000;
+}
+
+.none{
+  display: none;
+}
+
 .product-title {
     font-size: 30px ;
     font-weight: bold ;

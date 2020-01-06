@@ -34,25 +34,8 @@
 <% include ../partial-layout/header%>
     <!-- Header -->
   <header class="masthead">
-    <div class="container">
-        <div class="input-group search-bar text-center">
-            <div class="input-group-prepend dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-              <i class="fas fa-filter"></i>
-            </a>
-            <div class="dropdown-menu" >
-              <a class="dropdown-item" href="#">Search by name</a>
-              <a class="dropdown-item" href="#">Search by category</a>
-            </div>
-          </div>
-          <input type="text" class="form-control" placeholder="Search your goods">
-          <div class="input-group-append">
-            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-          </div>
-
-        </div>
-        <br> <br>
-      </div>
+       <% include ../partial-layout/search-bar%>
+            </br></br>
     </header>
 
     <!-- container -->
