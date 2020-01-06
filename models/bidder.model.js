@@ -36,5 +36,9 @@ module.exports = {
   	BuyNowProduct(id_user,id_product,price,auctionTime) {return db.load("update product p set p.auctioned=1, p.id_bidder= "+id_user+", p.current_price="+price+", p.auctionTime="+auctionTime+" where p.id="+id_product)},
   	updateBiddingList(id_product,id_user,price,time){return db.load("insert into biddinglist value ("+id_user+","+id_product+","+price+",'"+time+"')")},
   	getHistory(id_product){return db.load("select u.name as biddername, b.id_product as id, b.id_user as bidder, b.bid_price as price, b.time as date from biddinglist b, user u where b.id_user=u.id and b.id_product=" +id_product)},
-  	insertReview(id_seller,id_user,review,time,status) {return db.load("insert into review(id_user,id_reviewer,review,time,status)  value ("+id_seller+","+id_user+",'"+review+"','"+time+"',"+status+")")}
+  	insertReview(id_seller,id_user,review,time,status) {return db.load("insert into review(id_user,id_reviewer,review,time,status)  value ("+id_seller+","+id_user+",'"+review+"','"+time+"',"+status+")")},
+  	checkExistAuto(id) {return db.load('SELECT EXISTS (SELECT * from auto_bid where product_id ='+id+') as bool')},
+  	getAutoBid(id) {return db.load('SELECT * from auto_bid where product_id ='+id)},
+  	insertAutoBid(productId, bidder, maxAuto) {return db.load("insert into auto_bid value ("+productId+","+maxAuto+","+bidder+")")},
+  	updateAutoBid(id, bidder, maxPrice) {return db.load("update auto_bid set id_bidder=" +bidder + " ,max_price = "+maxPrice+" where product_id=" +id)}
 };

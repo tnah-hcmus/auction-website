@@ -26,7 +26,7 @@ module.exports = {
     getTotalLike(id) { return db.load("SELECT Count(r.status) as totalLike FROM review r WHERE r.id_user=" + id + " AND r.status=1") },
     getTotalDislike(id) { return db.load("SELECT Count(r.status) as totalDisLike FROM review r WHERE r.id_user=" + id + " AND r.status=0") },
     getmaxIdPro() { return db.load("select max(id) as maxID from product") },
-    inserttoPro(namePro, idU, priceStep, buyNow, startDate, endDate, description) { return db.load("insert into product (name, id_owner, bid_step, buy_now_price, startDate, endDate, details) values ('" + namePro + "', '" + idU + "', '" + priceStep + "', '" + buyNow + "', '" + startDate + "', '" + endDate + "', '" + description + "' )") },
+    inserttoPro(namePro, idU, priceStep, current_price, buyNow, startDate, endDate, description) { return db.load("insert into product (name, id_owner, bid_step, current_price, buy_now_price, startDate, endDate, details) values ('" + namePro + "', '" + idU + "', '" + priceStep + "', '" + current_price + "', '" + buyNow + "', '" + startDate + "', '" + endDate + "', '" + description + "' )") },
     getoldDetailsbyId(id) { return db.load("select p.details as oldDetails from product p where p.id = " + id) },
     updateDetailsbyId(id, content) { return db.load("update product set details = '" + content + "' where id = " + id) },
     insertoReview(id_user, id_reviewer, review, status) { return db.load("insert into review (id_user, id_reviewer, review, status) values ('" + id_user + "', '" + id_reviewer + "', '" + review + "', '" + status + "')") },

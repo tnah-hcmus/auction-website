@@ -58,13 +58,13 @@ router.get('/profile-seller', async(req, res, next) => {
         point: point,
         percentLike: percentLike,
         percentDislike: percentDislike,
+        logged: req.isLogged
     });
 });
 
 //Detail product-view page
 router.get('/detailsProduct-seller', async(req, res, next) => {
-    var user = req.session.user;
-    const idU = user.id;
+    const id = String(req.query.id);
     var history = await sellerModel.getHistorybyID(id);
     const categoryList = await sellerModel.getListCategory();
     var filter = String(req.query.filter);
@@ -156,6 +156,7 @@ router.get('/watchList-seller/:page', async(req, res, next) => {
         point: point,
         percentLike: percentLike,
         percentDislike: percentDislike,
+        watchPro: items,
         modalPro: items,
         current: page,
         length: length,
@@ -358,7 +359,7 @@ router.post('/postproduct', upload.array('addImg'), async(req, res, next) => {
     const idU = user.id;
     if (req.files.length >= 3) {
         var namePro = String(req.body.namePro);
-        var startPrice = String(req.body.startPrice);
+        var currentPrice = String(req.body.price);
         var priceStep = String(req.body.priceStep);
         var startDate = String(req.body.startDate);
         var endDate = String(req.body.endDate);
@@ -366,10 +367,10 @@ router.post('/postproduct', upload.array('addImg'), async(req, res, next) => {
         var description = String(req.body.description);
         var addImg = String(req.body.addImg);
         var extend = String(req.body.extend);
-        var result = await sellerModel.inserttoPro(namePro, idU, priceStep, startPrice, buyNow, startDate, endDate, description);
-        res.redirect("/seller/myProduct-seller/1?idU=" + idU);
+        var result = await sellerModel.inserttoPro(namePro, idU, priceStep, currentPrice, buyNow, startDate, endDate, description);
+        res.redirect("/seller/myProduct-seller/1");
     } else {
-        res.redirect("/seller/postProduct-seller?idU=" + idU);
+        res.redirect("/seller/postProduct-seller");
     }
 });
 
@@ -380,7 +381,7 @@ router.post('/detailsProduct', async(req, res, next) => {
     var json = await sellerModel.getoldDetailsbyId(id);
     var oldDetails = JSON.parse(JSON.stringify(json))[0];
     console.log(oldDetails);
-    var newDetails = "\r" + oldDetails.oldDetails + "\r" + now + "\r" + extraDetails + "\r";
+    var newDetails = oldDetails.oldDetails + '<p class ="content">' + now + '</p> <p class = "content">' + extraDetails + "</p>";
     var updateDetails = await sellerModel.updateDetailsbyId(id, newDetails);
     res.redirect("/seller/detailsProduct-seller?id=" + id);
 });

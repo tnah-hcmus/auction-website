@@ -115,7 +115,7 @@
 
                                 <div>
                                     <hr class="featurette-divider ">
-                                    <p><button><a class="account-setting" href="seller-account-setting">Account setting</a></button></p>
+                                    <p><button class="btn btn-dark"><a href="/seller/postProduct-seller">Post new product</a></button></p>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                     <div class="row">
                                         <% myProduct.forEach(function(item) { %>
                                             <div class="col-md-4 col-sm-6 list-item">
-                                                <a class="list-link" data-toggle="modal" href="#chart-item-<%= item.id %>">
+                                                <a class="list-link" href="/seller/detailsProduct-seller?id=<%= item.id %>">
                                                     <div class="list-hover">
                                                         <div class="list-hover-content">
                                                             <i class="fas fa-search fa-3x"></i>
@@ -150,7 +150,7 @@
                                                 </a>
                                                 <div class="list-caption">
                                                     <h4>
-                                                        <%= item.name %>
+                                                        <%= item.product%>
                                                     </h4>
                                                     <p class="text-muted">Expiration date:
                                                         <%= item.endDate %>
@@ -267,7 +267,7 @@
                                         <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
                                         <!-- Custom scripts for this template -->
-                                        <script src="/js/myProductjs"></script>
+                                        <script src="/js/myProduct.js"></script>
 
 
 

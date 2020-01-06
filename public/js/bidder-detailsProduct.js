@@ -143,6 +143,10 @@ function toggleSignUp(e){
     $('#logreg-forms .form-signin').toggle(); // display:block or none
     $('#logreg-forms .form-signup').toggle(); // display:block or none
 }
+function toggleAutoBid(e){
+    e.preventDefault();
+    $('.auto-bid').toggle(); // display:block or none
+}
 
 $(document).ready(function(){
     // Login Register Form
@@ -150,6 +154,7 @@ $(document).ready(function(){
     $('#logreg-forms #cancel_reset').click(toggleResetPswd);
     $('#logreg-forms #btn-signup').click(toggleSignUp);
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
+    $('#auto-bid').click(toggleAutoBid);
 })
 
 // Quantity "plus" and "minus" buttons
@@ -207,10 +212,11 @@ $(document).ready(function(){
         $("#Bid").click(function(){
           var price = $("#input-number").val();
           var productId = $(".productId").val();
-          console.log("bid "+price+" " + productId);
+          var auto = $("#maxPrice").val();
+          if (auto == 0) auto = price;
            $.ajax({
                   type: 'POST',
-                  data: {"price":price,"productId" : productId},
+                  data: {"price":price,"productId" : productId, "maxPrice": auto},
                   url: '/bidder/bidder-detail-product/Bid',
                   }).done(function(data) { 
                       //Xử lý data ở đây 
