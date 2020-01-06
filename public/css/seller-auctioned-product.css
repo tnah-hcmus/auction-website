@@ -42,6 +42,10 @@ h6 {
     color: orange;
 }
 
+.dis-none {
+    display: none !important;
+}
+
 
 /* Three column layout */
 

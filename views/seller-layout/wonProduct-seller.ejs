@@ -27,9 +27,9 @@
 
 </head>
 
-<style type="text/css">
+<!--style!-- type="text/css">
     .bar-up {
-        width: <%=percentLike %>%;
+        width: <%= percentLike.percentLike %>%;
         height: 18px;
         background-color: #4CAF50;
     }
@@ -39,7 +39,8 @@
         height: 18px;
         background-color: #2196F3;
     }
-</style>
+</!--style!-->
+
 
 <body id="page-top">
 
@@ -128,13 +129,7 @@
                                 <hr class="featurette-divider ">
                                 <p><b>You are a seller </b></p>
                             </div>
-                            <div>
-                                <hr class="featurette-divider ">
-                                <p><b>Member Since:</b></p>
-                                <p class="text-muted">
-                                    <%= dateJoin.dateJoin %>
-                                </p>
-                            </div>
+
                             <div>
                                 <hr class="featurette-divider ">
                                 <p><button><a class="account-setting" href="seller-account-setting">Account setting</a></button></p>
@@ -145,14 +140,14 @@
                 <div class="col-lg-8">
                     <!-- menu -->
                     <div class="topnav mt-5">
-                        <a href="/seller/watchList-seller/1?idU=<%=idU%>">Watch list</a>
-                        <a href="/seller/bidding-seller/1?idU=<%=idU%>">Bidding products</a>
-                        <a href="/seller/wonProduct-seller/1?idU=<%=idU%>" class="active">Won products</a>
-                        <a href="/seller/review-seller/1?idU=<%=idU%>">Reviews</a>
+                        <a href="/seller/watchList-seller/1">Watch list</a>
+                        <a href="/seller/bidding-seller/1">Bidding products</a>
+                        <a href="/seller/wonProduct-seller/1" class="active">Won products</a>
+                        <a href="/seller/review-seller/1">Reviews</a>
                     </div>
                     <div class="topnav mt-7">
-                        <a href="/seller/auctionedProduct-seller/1?idU=<%=idU%>">Auctioned product</a>
-                        <a href="/seller/myProduct-seller/1?idU=<%=idU%>">My product</a>
+                        <a href="/seller/auctionedProduct-seller/1">Auctioned product</a>
+                        <a href="/seller/myProduct-seller/1">My product</a>
                     </div>
                     <div class="profile-content">
                         <!-- tab menu content -->
@@ -168,20 +163,20 @@
                                                         <i class="fas fa-search fa-3x"></i>
                                                     </div>
                                                 </div>
-                                                <img class="img-fluid" src="../img/list/<%= item.imgID %>-thumbnail.jpg" alt="">
+                                                <img class="img-fluid" src="/img/list/<%= item.ID %>-thumbnail.jpg" alt="">
                                             </a>
                                             <div class="list-caption">
                                                 <h4>
                                                     <%= item.name %>
                                                 </h4>
                                                 <p class="text-muted">Owner:
-                                                    <%= item.ownerName %>
+                                                    <%= item.bidderName %>
                                                 </p>
                                                 <p class="text-muted">Date released:
                                                     <%= item.dateRelease %>
                                                 </p>
                                                 <hr class="featurette-divider ">
-                                                <p class="mb-5"><span class="dot"><img class="avatar"src="../img/profile/user<%= item.ownerID %>.jpg"> <b><%= item.ownerName %></b></span>
+                                                <p class="mb-5"><span class="dot"><img class="avatar"src="/img/profile/user<%= item.ownerID %>.jpg"> <b><%= item.ownerName %></b></span>
                                                     <a class="mr-2" data-toggle="modal" data-target="#review-up-<%= item.ID %>"><i class="far fa-thumbs-up"></i></a>
                                                     <a class="mr-3" data-toggle="modal" data-target="#review-down-<%= item.ID %>"><i class="far fa-thumbs-down"></i></a></p>
                                             </div>
@@ -195,7 +190,7 @@
                                             <li class="page-item disabled"><a class="page-link">First</a></li>
                                             <% } 
                                     else { %>
-                                                <li class="page-item"><a class="page-link" href="/1">First</a></li>
+                                                <li class="page-item"><a class="page-link" href="/seller/wonProduct-seller/1">First</a></li>
                                                 <% } %>
                                                     <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
                                                         <% if (i !== 1) { %>
@@ -212,7 +207,7 @@
                                                     else { 
                                                         %>
                                                                             <li class="page-item">
-                                                                                <a class="page-link" href="/<%= i %>">
+                                                                                <a class="page-link" href="/seller/wonProduct-seller/<%= i %>">
                                                                                     <%= i %>
                                                                                 </a>
                                                                             </li>
@@ -224,7 +219,7 @@
                                                                                             <% if (current == pages) { %>
                                                                                                 <li class="page-item disabled"><a class="page-link">Last</a></li>
                                                                                                 <% } else { %>
-                                                                                                    <li class="page-item"><a class="page-link" href="/<%= pages %>">Last</a></li>
+                                                                                                    <li class="page-item"><a class="page-link" href="/seller/wonProduct-seller/<%= pages %>">Last</a></li>
                                                                                                     <% } %>
                                     </ul>
                                     <% } %>
@@ -247,11 +242,13 @@
                                             <h4 class="modal-title">Your review</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body" id="review-modal-1">
                                             <textarea id="subject" name="subject" placeholder="Write your review.."></textarea>
+                                            <input name="status" type="text" class="form-control dis-none" value="1">
+                                            <input name="id_seller" type="text" class="form-control dis-none" value="<%=item.ownerID%>">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Send</button>
+                                            <button type="button" class="btn btn-default" id="review-submit-1" data-dismiss="modal">Send</button>
                                         </div>
                                     </div>
                                 </div>
@@ -267,11 +264,13 @@
                                             <h4 class="modal-title">Your review</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <div class="modal-body">
-                                            <textarea id="subject" name="subject" placeholder="Write your review.."></textarea>
+                                        <div class="modal-body" id="review-modal-0">
+                                            <textarea name="review" type="text" placeholder="Write your review.." value=""></textarea>
+                                            <input name="status" type="text" class="form-control dis-none" value="0">
+                                            <input name="id_seller" type="text" class="form-control dis-none" value="<%=item.ownerID%>">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Send</button>
+                                            <button type="submit" class="btn btn-default" id="review-submit-0" data-dismiss="modal">Send</button>
                                         </div>
                                     </div>
 
@@ -297,7 +296,7 @@
 
 
                     <!-- Custom scripts for this template -->
-                    <script src="/js/bidder-watchlist.js"></script>
+                    <script src="/js/wonProduct.js"></script>
 
 
 

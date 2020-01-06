@@ -11,17 +11,17 @@
     <title>Hello Auction</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="../css/detailsProduct-seller.css" rel="stylesheet">
+    <link href="/css/detailsProduct-seller.css" rel="stylesheet">
 
 </head>
 
@@ -155,44 +155,46 @@
 
                 <!-- Tab content -->
                 <div id="Description" class="tabcontent">
-                    <p class="content">10/10/2018</p>
-                    <p class="content">ABCDE laptop on the lid is designed with aluminum alloy with characteristic concentric circles, in addition to the surface is covered with a layer of flashy diamond imitation with advanced nano embossing technology, "light weight"
-                        standard with 1.2kg weight.</p>
-                    <p class="content">30/10/2018</p>
-                    <p class="content">The design of the device tapers towards the keyboard, so holding the phone or moving is still comfortable and easy.</p>
+                    <p class="content">Friday, December 8th 2018</p>
+                    <p class="content">
+                        <%= product.details %>
+                    </p>
                     <button id="add-description" type="button" class="btn-add-description btn-outline-warning"><i class="fa fa-edit" aria-hidden="true"></i> Add more description</button>
 
+
                     <div id="add-more-description" class="tabcontent">
-                        <textarea id="add-more-description" type="description" name="description" class="form-control add-description-area" placeholder="Add description" required=""></textarea>
-                        <button class="btn btn-primary btn-block" id="submit-btn" type="submit"><i class="fas fa-edit"></i> Add</button>
-                        <a href="#" id="cancel" class="cancel"><i class="fas fa-angle-left"></i> Back</a>
+                        <form action="/seller/detailsProduct" method="POST">
+                            <textarea id="add-more-description" type="description" name="description" class="form-control add-description-area" placeholder="Add description" required=""></textarea>
+                            <button class="btn btn-primary btn-block" id="submit-btn" type="submit"><i class="fas fa-edit"></i> Add</button>
+                            <a href="#" id="cancel" class="cancel"><i class="fas fa-angle-left"></i> Back</a>
+                        </form>
                     </div>
                 </div>
 
                 <div id="Auction history" class="tabcontent tb-auction-history">
                     <table>
                         <tr>
+                            <th>ID User</th>
+                            <th>User name</th>
                             <th>Date</th>
                             <th>Bid</th>
-                            <th>User</th>
-                            <th>Note</th>
                             <th>Refuse</th>
                         </tr>
                         <% history.forEach(function(bid) { %>
                             <tr>
                                 <td>
+                                    <%= bid.id_user %>
+                                </td>
+                                <td>
+                                    <%= bid.username %>
+                                </td>
+                                <td>
                                     <%= bid.time %>
                                 </td>
-                                <td> $
-                                    <%= bid.current_price %>
-                                </td>
                                 <td>
-                                    <%= bid.bidder %>
+                                    <%= bid.bid_price %>
                                 </td>
-                                <td>
-                                    <p> test </p>
-                                </td>
-                                <td><button class="btn btn-primary btn-refuse">Refuse</button></td>
+                                <td><button class="btn btn-primary btn-refuse"><a data-toggle="modal" href="#confirm-modal">Refuse</a></button></td>
                             </tr>
                             <% }); %>
                     </table>
@@ -212,21 +214,38 @@
 
         </section>
 
+        <div class="modal fade text-center" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="confirm-modal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Are you sure</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="modal-btn-yes">Yes</button>
+                        <button type="button" class="btn btn-danger" id="modal-btn-no">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <% include ../partial-layout/footer%>
 
 
 
             <!-- Bootstrap core JavaScript -->
-            <script src="../vendor/jquery/jquery.min.js"></script>
-            <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="/vendor/jquery/jquery.min.js"></script>
+            <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
             <!-- Plugin JavaScript -->
-            <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
             <!-- Custom scripts for this template -->
-            <script src="../js/detailsProduct.js"></script>
-            <script src="../js/index.js"></script>
+            <script src="/js/detailsProduct-seller.js"></script>
+            <script src="/js/index.js"></script>
 
 
 </body>

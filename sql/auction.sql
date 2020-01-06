@@ -310,4 +310,96 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+--
+-- Table structure for table `bidder_block`
+--
+
+DROP TABLE IF EXISTS `bidder_block`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bidder_block` (
+  `id_bidder` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  PRIMARY KEY (`id_bidder`,`id_product`),
+  KEY `id_product` (`id_product`),
+  CONSTRAINT `bidder_block_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`),
+  CONSTRAINT `bidder_block_ibfk_2` FOREIGN KEY (`id_bidder`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bidder_block`
+--
+
+LOCK TABLES `bidder_block` WRITE;
+/*!40000 ALTER TABLE `bidder_block` DISABLE KEYS */;
+INSERT INTO `bidder_block` VALUES (8,15);
+/*!40000 ALTER TABLE `bidder_block` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `biddingproduct`
+--
+
+DROP TABLE IF EXISTS `biddingproduct`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `biddingproduct` (
+  `id_user` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  PRIMARY KEY (`id_user`,`id_product`),
+  KEY `id_product` (`id_product`),
+  CONSTRAINT `biddingproduct_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`),
+  CONSTRAINT `biddingproduct_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `biddingproduct`
+--
+
+LOCK TABLES `biddingproduct` WRITE;
+/*!40000 ALTER TABLE `biddingproduct` DISABLE KEYS */;
+INSERT INTO `biddingproduct` VALUES (1,22),(1,48),(10,27),(11,15),(11,35),(11,50),(30,40);
+/*!40000 ALTER TABLE `biddingproduct` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wonproduct`
+--
+
+DROP TABLE IF EXISTS `wonproduct`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wonproduct` (
+  `id_user` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  PRIMARY KEY (`id_user`,`id_product`),
+  KEY `id_product` (`id_product`),
+  CONSTRAINT `wonproduct_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`),
+  CONSTRAINT `wonproduct_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wonproduct`
+--
+
+LOCK TABLES `wonproduct` WRITE;
+/*!40000 ALTER TABLE `wonproduct` DISABLE KEYS */;
+INSERT INTO `wonproduct` VALUES (1,25),(1,48),(10,12),(11,15),(11,35),(11,50),(30,30);
+/*!40000 ALTER TABLE `wonproduct` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
 -- Dump completed on 2020-01-06 17:27:04
