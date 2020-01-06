@@ -32,6 +32,7 @@
     <header class="masthead">
         <div class="container">
             <% include ../partial-layout/search-bar%>
+        </br></br>
         </div>
     </header>
 
@@ -58,19 +59,19 @@
                             <!--  images with number  -->
                             <div class="mySlides">
                                 <div class="numbertext">1 / 3</div>
-                                <img src="img/<%= product.id %>/01-full.jpg" style="width:100%">
+                                <img src="/img/<%= product.id %>/1-full.jpg" style="width:100%">
 
                             </div>
 
                             <div class="mySlides">
                                 <div class="numbertext">2 / 3</div>
-                                <img src="img/<%= product.id %>/02-full.jpg" style="width:100%">
+                                <img src="/img/<%= product.id %>/2-full.jpg" style="width:100%">
 
                             </div>
 
                             <div class="mySlides">
                                 <div class="numbertext">3 / 3</div>
-                                <img src="img/<%= product.id %>/03-full.jpg" style="width:100%">
+                                <img src="/img/<%= product.id %>/3-full.jpg" style="width:100%">
 
                             </div>
 
@@ -83,13 +84,13 @@
                         <!-- Thumbnail images -->
                         <div class="rowslide">
                             <div class="columnslide">
-                                <img class="demo cursor" src="img/<%= product.id %>/01-full.jpg" style="width:100%" onclick="currentSlide(1)" alt="laptop">
+                                <img class="demo cursor" src="/img/<%= product.id %>/1-full.jpg" style="width:100%" onclick="currentSlide(1)" alt="laptop">
                             </div>
                             <div class="columnslide">
-                                <img class="demo cursor" src="img/<%= product.id %>/02-full.jpg" style="width:100%" onclick="currentSlide(2)" alt="laptsop">
+                                <img class="demo cursor" src="/img/<%= product.id %>/2-full.jpg" style="width:100%" onclick="currentSlide(2)" alt="laptsop">
                             </div>
                             <div class="columnslide">
-                                <img class="demo cursor" src="img/<%= product.id %>/03-full.jpg" style="width:100%" onclick="currentSlide(3)" alt="laptop">
+                                <img class="demo cursor" src="/img/<%= product.id %>/3-full.jpg" style="width:100%" onclick="currentSlide(3)" alt="laptop">
                             </div>
                         </div>
                     </div>
@@ -116,7 +117,8 @@
                         <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
                         <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning" ><i class="far fa-heart"></i></button>
                     </form>
-                    <ul class="list-inline content mx-auto">
+                    <ul class="list-inline content mx-auto  mt-5">
+                        <p><i class="fas fa-user"></i>Bidder:  <a href="#" class="link"><b>****<%= product.hold.substring(4,50)%></b></a></p>
                         <li>Đã đăng: <%= product.dayStart %> ngày <%= product.hourStart %> tiếng <%= product.minStart %> phút trước </li>
                         <li>Kết thúc trong: <%= product.dayEnd %> ngày <%= product.hourEnd %> tiếng <%= product.minEnd %> phút nữa </li>
                     </ul>
@@ -205,8 +207,8 @@
                         <div>
                             <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
                                 <a href="/detailsProduct?<%= item.id %>"><i class="fas fa-search"></i></a></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                            <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                            <button data-target="#alert-login" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
                             </button>
                         </div>
                     </div>

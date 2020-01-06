@@ -165,7 +165,8 @@
             <section class="bg-light page-section">
                   <div class="container">
                   
-                    <% reviews.forEach(function(review) { %>
+                    <% reviews.forEach(function(review) { 
+                        if (review.status === 1) {%>
                       <div class="review-card">
                           <div class="row">
                               <div class="col-md-2">
@@ -182,6 +183,24 @@
                               </div>
                           </div>
                       </div>
+                      <% } else {%>
+                        <div class="review-card">
+                            <div class="row">
+                                <div class="col-md-2">
+                                  <img class="review-avatar"src="/img/profile/user-<%=review.reviewerId%>.jpg">
+                                </div>
+                                <div class="col-md-10 mt-3 ">
+                                  <span>
+                                    <h4 class="mb-0"> <%= review.reviewerName %> <i class="far fa-thumbs-down"></i></h4>
+                                   <!--  <a class="text-muted" >  <%= review.time %></a> -->
+                                   <!--   </br> -->
+                                    <div class="review mb-3 mt-2 mr-3"><a class="text-muted "> <%= review.review %></a>
+                                    </div>
+                                  </span>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
                       <hr class="featurette-divider ">
                     <% }); %>
                   

@@ -45,7 +45,7 @@ router.get('/search/:page', async(req, res, next) => {
   var filter = String(req.query.filter);
   if (filter == 'undefined') filter = String(req.query.search);
   const categoryList = await guestModel.getListCategory();
-  var dataPerPage = 1;
+  var dataPerPage = 12;
   var page = req.params.page || 1;
   var skip = dataPerPage*(page - 1);
   if(filter == 'name')
@@ -67,7 +67,7 @@ router.get('/search/:page', async(req, res, next) => {
   	list: result,
   	current:page,
   	length:length,
-  	pages: Math.floor(length/dataPerPage),
+  	pages: Math.ceil(length/dataPerPage),
     recent: recent,
     logged: req.isLogged
   });
@@ -85,7 +85,7 @@ router.get('/list-view/:page', async(req, res, next) => {
 	var search = String(req.query.search);
     if (search == 'undefined') search = 'name';
 	const categoryList = await guestModel.getListCategory();
-	var dataPerPage = 1;
+	var dataPerPage = 12;
 	var page = req.params.page || 1;
 	var skip = dataPerPage*(page - 1);
 	switch(catID)
@@ -121,7 +121,7 @@ router.get('/list-view/:page', async(req, res, next) => {
 		catList: categoryList,
 		catID: catID,
 		current: page,
-		pages: Math.floor(category.length/dataPerPage),
+		pages: Math.ceil(category.length/dataPerPage),
     recent: recent,
     logged: req.isLogged
 	});

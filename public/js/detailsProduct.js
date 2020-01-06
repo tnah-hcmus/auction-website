@@ -1,33 +1,45 @@
-  //<!-- SlideShow Products -->
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  // Next/previous controls
-  function plusSlides(n) {
-      showSlides(slideIndex += n);
-  }
-
-  // Thumbnail image controls
-  function currentSlide(n) {
-      showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("demo");
-      if (n > slides.length) { slideIndex = 1 }
-      if (n < 1) { slideIndex = slides.length }
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
+var slideIndex=1;
+      var myTimer;
+      function showSlides(n){
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var pics = document.getElementsByClassName("pic");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+          for (i = 0; i < pics.length; i++) {
+              pics[i].className = pics[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          pics[slideIndex-1].className += " active";
       }
-      for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
 
-  }
+      function plusSlides(n){
+          clearInterval(myTimer);
+          if (n < 0){
+            showSlides(slideIndex -= 1);
+          } else {
+           showSlides(slideIndex += 1); 
+          }
+          if (n == -1){
+            myTimer = setInterval(function(){plusSlides(n + 2)}, 1000);
+          } else {
+            myTimer = setInterval(function(){plusSlides(n + 1)}, 1000);
+          }
+      }
+
+      function currentSlide(n){
+          clearInterval(myTimer);
+          myTimer = setInterval(function(){plusSlides(n + 1)}, 1000);
+          showSlides(slideIndex = n);
+      }
+
+      window.addEventListener("load",function() {
+          showSlides(slideIndex);
+          myTimer = setInterval(function(){plusSlides(1)}, 1000);
+      })
 
 
 

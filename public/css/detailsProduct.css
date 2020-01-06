@@ -93,6 +93,11 @@ div.quantity {
     margin: 0 4px 0 0;
 }
 
+.mySlides{
+    width: 420px;
+    height: 260px;
+}
+
 .minus {
     border: transparent;
     border-radius: 4px;

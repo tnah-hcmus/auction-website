@@ -122,6 +122,56 @@ router.get('/bidder-detail-product/', async(req,res) => {
     });
 });
 
+//List of product page
+router.get('/list-view/:page', async(req, res, next) => {
+    const user = req.session.user;
+    var catID = String(req.query.category);
+    var search = String(req.query.search);
+    if (search == 'undefined') search = 'name';
+    const categoryList = await bidderModel.getListCategory();
+    var dataPerPage = 12;
+    var page = req.params.page || 1;
+    var skip = dataPerPage*(page - 1);
+    switch(catID)
+    {
+        case 'laptop':
+            catID = 4;
+            var items = await bidderModel.getProductbyCategory(catID, dataPerPage, skip);
+            var result = await bidderModel.getInfoCategory(catID);
+            var category = JSON.parse(JSON.stringify(result))[0];
+            break;
+        case 'smartphone':
+            catID= 5;
+            var items = await bidderModel.getProductbyCategory(catID, dataPerPage, skip);
+            var result = await bidderModel.getInfoCategory(catID);
+            var category = JSON.parse(JSON.stringify(result))[0];
+            break;
+        case 'all':
+            var items =  await bidderModel.getAllProduct(dataPerPage, skip);
+            var numPro = await bidderModel.getNumProduct();
+            var json = JSON.parse(JSON.stringify(numPro));
+            var category = {name: 'Tất cả sản phẩm', description: 'Tất cả các sản phẩm hiện có', length: json[0].num};
+            break;
+        default:
+            var items = await bidderModel.getProductbyCategory(catID, dataPerPage, skip);
+            var result = await bidderModel.getInfoCategory(catID);
+            var category = JSON.parse(JSON.stringify(result))[0];
+    }
+  var recent = 3600;
+    res.render('bidder-views/bidder-list-view', { 
+        user: user,
+        category: category,
+        filter: search,
+        list: items,
+        catList: categoryList,
+        catID: catID,
+        current: page,
+        pages: Math.ceil(category.length/dataPerPage),
+        recent: recent,
+        logged: req.isLogged
+    });
+});
+
 
 router.post('/bidder-detail-product/Bid', async(req,res) => {
   const user=req.session.user;
@@ -146,15 +196,23 @@ router.post('/bidder-detail-product/Bid', async(req,res) => {
     console.log("diem" + point);
    if (product.auctioned == 0)
    {
-    if (point>=80 || point==0)
+    if (point>=80 || temp==0)
      {
         if (price>product.price)
         {
             product.auctionTime+=1;
             console.log(price);
             console.log(product.price);
-            var update = await bidderModel.BidProduct(user.id,productId,price,product.auctionTime);
-            var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+            if(price<product.buynow)
+            {
+                var update = await bidderModel.BidProduct(user.id,productId,price,product.auctionTime);
+                var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+            }
+            else
+            {
+                var update = await bidderModel.BuyNowProduct(user.id,productId,price,product.auctionTime);
+                var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+            }            
             res.send('true');
             res.redirect('/bidder/bidder-detail-product/?id='+productId);
         }
@@ -166,7 +224,7 @@ router.post('/bidder-detail-product/Bid', async(req,res) => {
      }
     else
     {
-        res.send('false');
+        res.send('falsePoint');
     } 
    }
    else {
@@ -542,6 +600,55 @@ router.post('/bidder-account-setting/updatePass', async(req, res, next)=> {
    
  res.redirect('/bidder-watchlist/1');
 
+});
+
+//Homepage
+router.get(/\/index|\//, async(req, res, next) => {
+ try {
+    const user=req.session.user;
+    const faqs = await bidderModel.faq();
+    const category = await bidderModel.getListCategory();
+    const type = String(req.query.sort);
+    var search = String(req.query.search);
+    if (search == 'undefined') search = 'name';
+    var nearest = '';
+    var hottest = '';
+    var highest = '';
+    var best = '';
+    switch(type) 
+    {
+        case 'nearest':
+            var items = await bidderModel.topNearestAuction();
+            nearest = 'active';
+            break;
+        case 'hottest':
+            var items = await bidderModel.topAuctionTime();
+            hottest = 'active';
+            break;
+        case 'best':
+            var items = await bidderModel.topDeAuctionPrice();
+            best = 'active';
+            break;
+        default:
+            var items = await bidderModel.topAuctionPrice();
+            highest = 'active';
+    } 
+    res.render('bidder-views/bidder-index', {
+        user:user,
+        items: items,
+        faqs:faqs,
+        nearest:nearest,
+        highest:highest,
+        hottest:hottest,
+        best:best,
+        catList:category,
+        filter: search,
+        logged: req.isLogged
+    });
+  } catch (err) {
+    console.log(err);
+    res.end('View error log in console.');
+  }
 });
 
 module.exports = router;

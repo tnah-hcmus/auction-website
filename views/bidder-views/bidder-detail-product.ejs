@@ -32,6 +32,7 @@
     <header class="masthead">
         <div class="container">
             <% include ../partial-layout/search-bar%>
+            </br></br>
         </div>
     </header>
 
@@ -111,14 +112,14 @@
                     <form class="">
                       <div class="quantity buttons_added">  
                         <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
-                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="<%=product.bidStep%>" value="<%=nextStep%>" min="<%=nextStep%>" max="<%=product.buynow%>">
+                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="<%=product.bidStep%>" value="<%=nextStep%>" min="<%=nextStep%>" max="<%=2*product.buynow%>">
                         <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
                       </div>  
                        <input class="none productId" type="text" value="<%= product.id %>">
                         <button data-target="#alert-check" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button>
                         <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning addWatchList"><i class="far fa-heart"></i></button>
                     </form>
-                    <ul class="list-inline content mx-auto">
+                    <ul class="list-inline content mx-auto mt-5">
                          <p><i class="fas fa-user"></i>Bidder:  <a href="#" class="link"><b>****<%= product.hold.substring(4,50)%></b></a></p>
                         <li>Item condition: <%= product.status %></li>
                         <li>Auction starts: <%= product.dateStart %></li>
@@ -197,7 +198,7 @@
                             <tr>
                                 <td><%=history.date%> </td>
                                 <td> <%=history.price%> </td>
-                                <td> <%=history.biddername%> </td>
+                                <a class="link"><td>****<%=history.biddername.substring(4,50)%> </td></a>
                                 <td> </td>
 
                             </tr>
