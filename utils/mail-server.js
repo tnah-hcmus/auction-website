@@ -9,7 +9,6 @@ var transporter =  nodemailer.createTransport({ // config mail server
 module.exports = function(params) {
 
     this.send = function(){
-        console.log(params);
         transporter.sendMail(params);
     }
 }

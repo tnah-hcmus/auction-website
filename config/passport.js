@@ -17,13 +17,13 @@ module.exports = function(passport) {
     });
 
     // used to deserialize the user
-    passport.deserializeUser(async (id, done) => {
+    passport.deserializeUser(async (user, done) => {
         try{
-            var user = await userModel.findUserById(id);
+            var result = await userModel.findUserById(user.id);
             if (!user) {
             return done(new Error('user not found'));
             }
-            done(null, user);
+            done(null, result[0]);
         }        
         catch(e) {done(e);}
     });
