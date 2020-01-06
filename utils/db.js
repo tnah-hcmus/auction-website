@@ -12,5 +12,5 @@ const pool = mysql.createPool({
 const mysql_query = util.promisify(pool.query).bind(pool);
 
 module.exports = {
-  load: sql => mysql_query(sql)
+    load: sql => mysql_query(sql)
 };
