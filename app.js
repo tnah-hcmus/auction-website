@@ -62,7 +62,7 @@ app.post('/login/check', async(req, res) => {
 })
 
 app.post('/signup', recaptcha.middleware.verify, captchaVerification, passport.authenticate('local-signup', {
-    successRedirect: '/profile', // Điều hướng tới trang hiển thị profile
+    successRedirect: '/logged', // Điều hướng tới trang hiển thị profile
     failureRedirect: '/signup', // Trở lại trang đăng ký nếu lỗi
     failureFlash: true
 }));

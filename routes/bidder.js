@@ -238,11 +238,17 @@ router.post('/bidder-detail-product/Bid', async(req, res) => {
                     var update = await bidderModel.updateAutoBid(productId, user.id, maxPrice);
                     if (maxAuto != 0)
                     {
-
-                        var biding = await bidderModel.updateBiddingList(bidder,productId,maxAuto,now);
-                        if (price < maxPrice && price < maxAuto) 
-                            price = maxAuto + temp3[0].bidStep;
-                        var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+                        if (price < maxPrice && price < maxAuto)
+                        {
+                            var biding = await bidderModel.updateBiddingList(bidder,productId,maxAuto,now);
+                            price = maxAuto + tesmp3[0].bidStep;
+                            var biding = await bidderModel.updateBiddingList(user.id,productId,price,now);
+                        }
+                        else
+                        {
+                        }
+                        
+                        
                     }
                     var update = await bidderModel.BidProduct(user.id,productId,price,product.auctionTime);
                 }

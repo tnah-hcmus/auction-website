@@ -138,6 +138,10 @@
                           </a>
                           <div class="list-caption">
                             <h4><%= item.name %></h4>
+                            <% if (item.bidder==user.id) { %>
+                              <a class="text-muted a-currentbid">Đang giữ giá</a>
+                            </br>
+                              <% } %>
                             <a class="text-muted a-currentbid">Current bid: </a>
                             <a class=" text-muted a-price">$<%= item.price %></a>
                             <hr class="featurette-divider "> 

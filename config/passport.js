@@ -46,6 +46,7 @@ module.exports = function(passport) {
                     // create the user
                     var newUser = {
                         username: username,
+                        role: 0,
                         password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null) // use the generateHash function in our user model
                         };
                     }
@@ -54,7 +55,7 @@ module.exports = function(passport) {
                     return done(e);
                 }
                 newUser.name = req.body.name;
-                var insert = await userModel.insertUser(newUser.username, newUser.password, newUser.name);
+                var insert = await userModel.insertUser(newUser.username, newUser.password, newUser.name, 0);
                 newUser.id = insert.insertId;
                 req.session.cookie.expires = false;
                 return done(null, newUser);
