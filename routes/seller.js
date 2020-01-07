@@ -8,6 +8,7 @@ var fs = require('fs');
 var moment = require('moment');
 var mail = require('../utils/mail-server.js');
 
+
 var storage = multer.diskStorage({
     destination: async(req, file, callback) => {
         var json = await sellerModel.getmaxIdPro();
@@ -371,6 +372,11 @@ router.post('/postproduct', upload.array('addImg'), async(req, res, next) => {
         var addImg = String(req.body.addImg);
         var extend = String(req.body.extend);
         var result = await sellerModel.inserttoPro(namePro, idU, priceStep, currentPrice, buyNow, startDate, endDate, description);
+        for (var i = 0; i < req.files.length; i++) {
+                fs.rename(req.files[i].path, req.files[i].destination + '/' + String(i + 1) + '-full.jpg', function(err) {
+                errorcode = err;
+            });
+        }
         res.redirect("/seller/myProduct-seller/1");
     } else {
         res.redirect("/seller/postProduct-seller");
