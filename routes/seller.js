@@ -291,7 +291,9 @@ router.get('/bidding-seller/:page', async(req, res, next) => {
 //My product - seller page
 router.get('/myProduct-seller/:page', async(req, res, next) => {
     var user = req.session.user;
+    console.log(user);
     const idU = user.id;
+    console.log("id" + idU);
     var json = await sellerModel.getSellerbyID(idU);
     var user = JSON.parse(JSON.stringify(json))[0];
     json = await sellerModel.getTotalLike(idU);
@@ -306,11 +308,10 @@ router.get('/myProduct-seller/:page', async(req, res, next) => {
     var page = req.params.page || 1;
     if (page < 1) page = 1;
     const offset = (page - 1) * 6;
-    var items = await sellerModel.getListmyProductbyID(idU, offset);
+    var item = await sellerModel.getListmyProductbyID(idU, offset);
+    console.log(item[0]);
     var json = await sellerModel.countmyPro(idU);
     var length = JSON.parse(JSON.stringify(json))[0].total;
-
-
     res.render('seller-layout/myProduct-seller', {
         user: user,
         idU: idU,
@@ -319,8 +320,8 @@ router.get('/myProduct-seller/:page', async(req, res, next) => {
         point: point,
         percentLike: percentLike,
         percentDislike: percentDislike,
-        myProduct: items,
-        modalPro: items,
+        myProduct: item,
+        modalPro: item,
         current: page,
         length: length,
         pages: Math.floor(length / 6),

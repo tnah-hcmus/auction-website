@@ -53,7 +53,7 @@
                 <button class="tablinks btn-warning" onclick="openTab(event, 'Change Information')" id="defaultOpen"><b>Change Information</b></button>
                 <button class="tablinks btn-warning" onclick="openTab(event, 'Change Password')"><b>Change Password</b></button>
           </div>
-               <inpust class="none"  type="text" id="userId" value="<%= user.id %>">
+               
               <div id="Change Information" class="tabcontent">
                 <div class="form-box-items">
                   <!-- FORM BOX ITEM -->
@@ -91,7 +91,7 @@
                       
                        <div class="input-container"> 
                         <label class="rl-label" for="date">Date</label>
-                        <input class="form-control" id="date" name="date" placeholder="DD-MM-YYYY" value="<%=user.dob.substring(8,10) +'-'+user.dob.substring(5,7) +'-'+ user.dob.substring(0,4) %>" type="text"/>
+                        <input class="form-control" id="date" name="date" placeholder="DD-MM-YYYY" value="<%=user.dob %>" type="text"/>
                       </div>                  
                       
                       <button id="saveInfo" type="submit" class="btn btn-warning" onsubmit = "return validateForm()">Save</button>
@@ -149,7 +149,7 @@
  
   <!-- Footer -->
 <% include ../partial-layout/footer%>
-
+<inpust class="none"  type="text" id="userId" value="<%= user.id %>">
 
 
 
